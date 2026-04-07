@@ -63,7 +63,7 @@ export default function RSVP() {
           Please RSVP
         </motion.h3>
         <p className="text-lg md:text-xl text-gray-500 mb-10 md:mb-16 tracking-wide font-light">
-          Kindly confirm your attendance by January 1st, 2026.
+          Kindly confirm your attendance by November 1st, 2026.
         </p>
         
         <AnimatePresence mode="wait">
