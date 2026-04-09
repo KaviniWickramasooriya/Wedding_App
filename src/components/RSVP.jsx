@@ -4,19 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function RSVP() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'success' | 'error'
+  const [submitStatus, setSubmitStatus] = useState('idle'); 
   
   const [formData, setFormData] = useState({ 
-    name: '', 
-    attending: 'yes', 
-    guests: '1', 
-    dietary: '', 
-    message: '' 
+    name: '', attending: 'yes', guests: '1', dietary: '', message: '' 
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,8 +18,7 @@ export default function RSVP() {
     setSubmitStatus('idle');
 
     const payload = {
-      // ⚠️ Add your Web3Forms Access Key here
-      access_key: "3c2b6575-366b-4b10-b9cd-dd28b265323b", 
+      access_key: "YOUR_WEB3FORMS_KEY", // Make sure to re-insert your key
       subject: `Wedding RSVP - ${formData.name}`,
       from_name: "Wedding Invite App",
       Name: formData.name,
@@ -52,144 +45,142 @@ export default function RSVP() {
   };
 
   return (
-    <div className="py-20 md:py-32 px-6 bg-white">
-      <div className="max-w-md md:max-w-2xl mx-auto text-center">
+    <div className="py-24 md:py-40 px-6 bg-transparent">
+      <div className="max-w-lg md:max-w-3xl mx-auto text-center">
         <motion.h3 
-          initial={{ opacity: 0, y: 20 }} 
+          initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-cursive text-6xl md:text-8xl text-blush-500 mb-4 md:mb-6"
+          transition={{ duration: 1 }}
+          className="font-cursive text-7xl md:text-9xl text-lavender-500 mb-6 md:mb-10 drop-shadow-sm"
         >
-          Please RSVP
+          Please Respond
         </motion.h3>
-        <p className="text-lg md:text-xl text-gray-500 mb-10 md:mb-16 tracking-wide font-light">
+        <p className="text-xl md:text-2xl text-gray-400 mb-14 md:mb-20 tracking-wide font-light">
           Kindly confirm your attendance by November 1st, 2026.
         </p>
         
         <AnimatePresence mode="wait">
-          {/* STATE 1: INITIAL BUTTON */}
           {!isFormOpen && submitStatus === 'idle' && (
             <motion.button 
               key="rsvp-btn"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              whileHover={{ scale: 1.05, boxShadow: "0px 15px 30px rgba(208,106,142,0.3)" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04, boxShadow: "0px 20px 40px rgba(145,109,177,0.3)" }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setIsFormOpen(true)}
-              className="w-full md:w-2/3 mx-auto block py-5 bg-gradient-to-r from-blush-400 to-blush-500 text-white rounded-full text-base md:text-lg uppercase tracking-widest font-semibold shadow-xl transition-all"
+              className="w-full md:w-3/5 mx-auto block py-6 bg-gradient-to-r from-lavender-400 to-lavender-500 text-white rounded-full text-sm md:text-base uppercase tracking-[0.2em] font-semibold shadow-2xl transition-all"
             >
               RSVP Now
             </motion.button>
           )}
 
-          {/* STATE 2: SUCCESS MESSAGE */}
           {submitStatus === 'success' && (
             <motion.div 
               key="success-msg"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring", stiffness: 100 }}
-              className="bg-blush-50/50 p-12 md:p-20 rounded-[3rem] shadow-[0_20px_40px_rgba(208,106,142,0.1)] text-center"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 80 }}
+              className="bg-white/80 backdrop-blur-lg p-16 md:p-24 rounded-[3rem] shadow-[0_25px_60px_rgba(145,109,177,0.12)] border border-white text-center"
             >
-              <h4 className="font-cursive text-5xl md:text-7xl text-blush-500 mb-6">Thank You!</h4>
-              <p className="text-gray-600 text-xl md:text-2xl font-light leading-relaxed">
-                Your RSVP has been successfully sent. <br/>
-                We can't wait to celebrate with you!
+              <h4 className="font-cursive text-6xl md:text-8xl text-lavender-500 mb-8">Thank You!</h4>
+              <p className="text-gray-500 text-xl md:text-3xl font-light leading-relaxed">
+                Your RSVP has been successfully sent. <br className="hidden md:block"/>
+                We can't wait to celebrate with you.
               </p>
             </motion.div>
           )}
 
-          {/* STATE 3: THE FORM */}
           {isFormOpen && submitStatus !== 'success' && (
             <motion.form 
               key="rsvp-form"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               onSubmit={handleSubmit} 
-              className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_20px_60px_rgba(208,106,142,0.15)] text-left"
+              className="bg-white/90 backdrop-blur-xl p-10 md:p-16 rounded-[3rem] shadow-[0_30px_80px_rgba(145,109,177,0.15)] border border-white text-left"
             >
               {submitStatus === 'error' && (
-                <div className="mb-6 p-4 bg-red-50 text-red-600 text-sm rounded-xl text-center border border-red-100">
+                <div className="mb-8 p-5 bg-red-50 text-red-500 text-sm rounded-2xl text-center border border-red-100 font-medium tracking-wide">
                   Oops! Something went wrong. Please try again.
                 </div>
               )}
 
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                {/* NAME */}
-                <div className="mb-6 md:mb-0">
-                  <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3 ml-2">Full Name</label>
+              <div className="md:grid md:grid-cols-2 md:gap-10">
+                <div className="mb-8 md:mb-0">
+                  <label className="block text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 mb-4 ml-3 font-semibold">Full Name</label>
                   <input 
                     type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="e.g. Lahiru Ashan"
-                    className="w-full px-6 py-4 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blush-300 text-gray-700 transition-all placeholder:text-gray-300 border-none"
+                    className="w-full px-6 py-5 bg-lavender-50/50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-lavender-300 text-gray-700 transition-all placeholder:text-gray-300 border border-transparent focus:border-lavender-200 focus:bg-white text-lg font-light"
                   />
                 </div>
 
-                {/* ATTENDING */}
-                <div className="mb-6 md:mb-0">
-                  <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3 ml-2">Will you attend?</label>
-                  <div className="flex gap-8 h-[60px] items-center px-6 bg-gray-50 rounded-2xl">
-                    <label className="flex items-center gap-3 text-gray-700 text-lg cursor-pointer hover:text-blush-500 transition">
-                      <input type="radio" name="attending" value="yes" checked={formData.attending === 'yes'} onChange={handleChange} className="accent-blush-500 w-5 h-5"/> Yes
+                <div className="mb-8 md:mb-0">
+                  <label className="block text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 mb-4 ml-3 font-semibold">Will you attend?</label>
+                  <div className="flex gap-8 h-[68px] items-center px-8 bg-lavender-50/50 rounded-3xl border border-transparent transition-all">
+                    <label className="flex items-center gap-4 text-gray-600 text-lg md:text-xl font-light cursor-pointer hover:text-lavender-500 transition group">
+                      <input type="radio" name="attending" value="yes" checked={formData.attending === 'yes'} onChange={handleChange} className="accent-lavender-500 w-5 h-5 transition-transform group-hover:scale-110"/> Yes
                     </label>
-                    <label className="flex items-center gap-3 text-gray-700 text-lg cursor-pointer hover:text-blush-500 transition">
-                      <input type="radio" name="attending" value="no" checked={formData.attending === 'no'} onChange={handleChange} className="accent-blush-500 w-5 h-5"/> No
+                    <label className="flex items-center gap-4 text-gray-600 text-lg md:text-xl font-light cursor-pointer hover:text-lavender-500 transition group">
+                      <input type="radio" name="attending" value="no" checked={formData.attending === 'no'} onChange={handleChange} className="accent-lavender-500 w-5 h-5 transition-transform group-hover:scale-110"/> No
                     </label>
                   </div>
                 </div>
 
-                {/* GUEST COUNT & DIETARY (Only show if attending) */}
                 <AnimatePresence>
                   {formData.attending === 'yes' && (
                     <>
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-                        className="mb-6 md:mb-0 overflow-hidden"
+                        className="mb-8 md:mb-0 overflow-hidden"
                       >
-                        <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3 ml-2">Number of Guests</label>
-                        <input 
-                          type="number" name="guests" min="1" max="10" required value={formData.guests} onChange={handleChange}
-                          className="w-full px-6 py-4 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blush-300 text-gray-700 transition-all border-none"
-                        />
+                        <div className="pt-2">
+                            <label className="block text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 mb-4 ml-3 font-semibold">Number of Guests</label>
+                            <input 
+                            type="number" name="guests" min="1" max="10" required value={formData.guests} onChange={handleChange}
+                            className="w-full px-6 py-5 bg-lavender-50/50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-lavender-300 text-gray-700 transition-all border border-transparent focus:border-lavender-200 focus:bg-white text-lg font-light"
+                            />
+                        </div>
                       </motion.div>
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-                        className="mb-6 md:mb-0 overflow-hidden"
+                        className="mb-8 md:mb-0 overflow-hidden"
                       >
-                        <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3 ml-2">Dietary Restrictions</label>
-                        <input 
-                          type="text" name="dietary" value={formData.dietary} onChange={handleChange} placeholder="e.g. Vegetarian"
-                          className="w-full px-6 py-4 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blush-300 text-gray-700 transition-all placeholder:text-gray-300 border-none"
-                        />
+                         <div className="pt-2">
+                            <label className="block text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 mb-4 ml-3 font-semibold">Dietary Restrictions</label>
+                            <input 
+                            type="text" name="dietary" value={formData.dietary} onChange={handleChange} placeholder="e.g. Vegetarian"
+                            className="w-full px-6 py-5 bg-lavender-50/50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-lavender-300 text-gray-700 transition-all placeholder:text-gray-300 border border-transparent focus:border-lavender-200 focus:bg-white text-lg font-light"
+                            />
+                        </div>
                       </motion.div>
                     </>
                   )}
                 </AnimatePresence>
               </div>
 
-              {/* MESSAGE */}
-              <div className="mb-8 mt-6">
-                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3 ml-2">Message for the couple</label>
+              <div className="mb-10 mt-4 md:mt-8">
+                <label className="block text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 mb-4 ml-3 font-semibold">Message for the couple</label>
                 <textarea 
                   name="message" value={formData.message} onChange={handleChange} rows="4" placeholder="Leave a little note..."
-                  className="w-full px-6 py-4 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blush-300 text-gray-700 transition-all resize-none border-none placeholder:text-gray-300"
+                  className="w-full px-6 py-6 bg-lavender-50/50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-lavender-300 text-gray-700 transition-all resize-none border border-transparent focus:border-lavender-200 focus:bg-white placeholder:text-gray-300 text-lg font-light"
                 ></textarea>
               </div>
 
-              {/* ACTION BUTTONS */}
-              <div className="flex flex-col md:flex-row gap-4 mt-4">
+              <div className="flex flex-col md:flex-row gap-5">
                 <motion.button 
                   whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                   type="submit" disabled={isSubmitting}
-                  className="w-full md:w-2/3 py-5 bg-gradient-to-r from-blush-400 to-blush-500 text-white rounded-2xl text-base md:text-lg uppercase tracking-widest font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full md:w-3/4 py-6 bg-gradient-to-r from-lavender-400 to-lavender-500 text-white rounded-[2rem] text-sm md:text-base uppercase tracking-[0.2em] font-semibold shadow-[0_15px_30px_rgba(145,109,177,0.3)] hover:shadow-[0_20px_40px_rgba(145,109,177,0.4)] transition-all disabled:opacity-70 disabled:cursor-not-allowed border border-lavender-300/50"
                 >
                   {isSubmitting ? 'Sending...' : 'Confirm Details'}
                 </motion.button>
                 
                 <button 
                   type="button" disabled={isSubmitting} onClick={() => setIsFormOpen(false)}
-                  className="w-full md:w-1/3 py-5 text-gray-400 bg-transparent hover:bg-gray-50 rounded-2xl text-sm uppercase tracking-widest transition-colors disabled:opacity-50"
+                  className="w-full md:w-1/4 py-6 text-gray-400 bg-transparent hover:bg-gray-50/50 hover:text-gray-600 rounded-[2rem] text-xs md:text-sm uppercase tracking-[0.2em] font-semibold transition-all disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -198,13 +189,12 @@ export default function RSVP() {
           )}
         </AnimatePresence>
 
-        {/* FOOTER */}
-        <div className="mt-20 text-xs md:text-sm uppercase tracking-widest text-gray-300 flex flex-col items-center gap-2">
+        <div className="mt-28 text-xs md:text-sm uppercase tracking-[0.3em] text-gray-300 flex flex-col items-center gap-4">
           <p>Made with love</p>
           <motion.span 
-            animate={{ scale: [1, 1.2, 1] }} 
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="text-blush-200 text-2xl md:text-3xl"
+            animate={{ scale: [1, 1.3, 1] }} 
+            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+            className="text-lavender-300 text-2xl md:text-3xl"
           >
             ♥
           </motion.span>

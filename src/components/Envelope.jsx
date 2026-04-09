@@ -5,30 +5,29 @@ export default function Envelope({ onOpen }) {
     <motion.div 
       exit={{ y: "-100%", opacity: 0, scale: 0.9 }}
       transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }} 
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blush-50 via-[#fcf9f8] to-[#f4ebe9] cursor-pointer overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-lavender-50 via-[#fcfbfe] to-[#f5f3f8] cursor-pointer overflow-hidden"
       onClick={onOpen}
     >
       <motion.div 
-        whileHover={{ scale: 1.03, y: -10 }}
-        whileTap={{ scale: 0.95 }}
-        // Removed borders, added heavy cinematic shadow
-        className="relative w-80 h-56 md:w-[600px] md:h-[400px] bg-white shadow-[0_30px_60px_rgba(208,106,142,0.15)] rounded-lg md:rounded-2xl flex items-center justify-center transition-all duration-300"
+        whileHover={{ scale: 1.04, y: -12 }}
+        whileTap={{ scale: 0.96 }}
+        className="relative w-[85vw] h-60 max-w-[600px] md:h-[400px] bg-white shadow-[0_40px_80px_rgba(145,109,177,0.15)] rounded-xl md:rounded-3xl flex items-center justify-center transition-all duration-500 border border-lavender-50/50"
       >
-        <div className="absolute top-0 left-0 w-full overflow-hidden h-1/2 pointer-events-none rounded-t-lg md:rounded-t-2xl">
-          <div className="absolute top-[-60%] left-1/2 w-[120%] h-[200%] bg-[#faf7f5] shadow-sm transform -translate-x-1/2 rotate-45 origin-center rounded-br-[40px] md:rounded-br-[60px]"></div>
+        <div className="absolute top-0 left-0 w-full overflow-hidden h-1/2 pointer-events-none rounded-t-xl md:rounded-t-3xl">
+          <div className="absolute top-[-60%] left-1/2 w-[120%] h-[200%] bg-[#faf9fc] shadow-sm transform -translate-x-1/2 rotate-45 origin-center rounded-br-[40px] md:rounded-br-[60px] border-b border-r border-lavender-100/50"></div>
         </div>
         
-        <div className="text-center z-10 flex flex-col items-center mt-8 md:mt-12">
+        <div className="text-center z-10 flex flex-col items-center mt-12 md:mt-16">
           <motion.div 
-            animate={{ scale: [1, 1.08, 1], boxShadow: ["0 5px 15px rgba(185,28,28,0.3)", "0 10px 30px rgba(185,28,28,0.5)", "0 5px 15px rgba(185,28,28,0.3)"] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="relative w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-red-800 to-red-900 rounded-full flex items-center justify-center mb-6 md:mb-10"
+            animate={{ scale: [1, 1.06, 1], boxShadow: ["0 8px 20px rgba(120,83,150,0.2)", "0 15px 35px rgba(120,83,150,0.4)", "0 8px 20px rgba(120,83,150,0.2)"] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            className="relative w-24 h-24 md:w-36 md:h-36 bg-gradient-to-br from-lavender-600 to-lavender-800 rounded-full flex items-center justify-center mb-6 md:mb-10"
           >
-            <div className="absolute inset-2 md:inset-3 border-2 border-red-400/30 rounded-full"></div>
-            <span className="text-white font-cursive text-3xl md:text-5xl drop-shadow-md">A&Y</span>
+            <div className="absolute inset-2 md:inset-3 border-[1.5px] border-lavender-200/40 rounded-full"></div>
+            <span className="text-white font-cursive text-4xl md:text-6xl drop-shadow-lg tracking-wide">A&Y</span>
           </motion.div>
           
-          <p className="font-serif italic text-gray-500 tracking-[0.3em] text-[10px] md:text-sm uppercase opacity-70">
+          <p className="font-serif italic text-lavender-400/80 tracking-[0.35em] text-[11px] md:text-sm uppercase font-semibold">
             Tap to Open
           </p>
         </div>

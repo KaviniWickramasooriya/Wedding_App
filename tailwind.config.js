@@ -11,15 +11,16 @@ module.exports = {
         cursive: ['"Great Vibes"', 'cursive'],
       },
       colors: {
-        // A wider and softer blush palette
-        blush: {
-          50: '#fdf8f9',
-          100: '#f9eaee',
-          200: '#f3d5df',
-          300: '#eab5c7',
-          400: '#dd8ba7',
-          500: '#d06a8e',
-          600: '#b05372', // Deeper shade for accents
+        // A soft, elegant, dusty lavender palette (not harsh purple)
+        lavender: {
+          50: '#f8f7fb',
+          100: '#efebf4',
+          200: '#ded5e8',
+          300: '#c6b5d8',
+          400: '#a98ec2',
+          500: '#916db1', // Base accent
+          600: '#785396', // Deeper shade for high contrast
+          700: '#62427a',
         }
       },
       backgroundImage: {

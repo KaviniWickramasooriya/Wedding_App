@@ -3,17 +3,16 @@ import { motion } from 'framer-motion';
 export default function VideoHero() {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.2, type: "spring" }}
-      className="w-full px-4 md:px-12 py-8 bg-white flex justify-center"
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full px-5 md:px-16 py-10 bg-transparent flex justify-center"
     >
       <motion.div 
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.6 }}
-        // Removed borders, added a glowing shadow
-        className="relative w-full max-w-4xl h-[50vh] md:h-[65vh] min-h-[400px] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_60px_rgba(208,106,142,0.25)]"
+        whileHover={{ scale: 1.015 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative w-full max-w-5xl h-[55vh] md:h-[70vh] min-h-[450px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-[0_30px_80px_rgba(145,109,177,0.2)] border border-white/60"
       >
         <video 
           autoPlay 
@@ -24,7 +23,7 @@ export default function VideoHero() {
         >
           <source src="/wedding-video.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-lavender-900/40 via-transparent to-black/10 pointer-events-none mix-blend-overlay"></div>
       </motion.div>
     </motion.div>
   );

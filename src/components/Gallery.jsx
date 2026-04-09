@@ -8,25 +8,29 @@ export default function Gallery() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 1 }}
-      className="py-16 md:py-28 bg-white text-center"
+      transition={{ duration: 1.5 }}
+      className="py-20 md:py-32 bg-transparent text-center"
     >
-      <h3 className="font-cursive text-5xl md:text-7xl text-blush-500 mb-12 md:mb-20 drop-shadow-sm">Ever After Begins</h3>
+      <h3 className="font-cursive text-6xl md:text-8xl text-lavender-500 mb-16 md:mb-24 drop-shadow-sm">Ever After Begins</h3>
       
-      <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible hide-scrollbar gap-6 md:gap-10 px-6 md:px-12 snap-x snap-mandatory max-w-6xl mx-auto pb-8">
+      <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible hide-scrollbar gap-8 md:gap-12 px-8 md:px-16 snap-x snap-mandatory max-w-7xl mx-auto pb-10">
         {images.map((src, index) => (
-          <motion.img 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -15, scale: 1.02 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+          <motion.div
             key={index}
-            src={src} 
-            alt={`Gallery ${index}`} 
-            // Borderless with rich shadows
-            className="w-72 md:w-full h-[24rem] md:h-[32rem] object-cover rounded-3xl shadow-[0_15px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_50px_rgba(208,106,142,0.3)] snap-center flex-shrink-0 cursor-pointer"
-          />
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="snap-center flex-shrink-0 w-[80vw] md:w-full"
+          >
+            <motion.img 
+              whileHover={{ y: -15, scale: 1.03 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              src={src} 
+              alt={`Gallery ${index}`} 
+              className="w-full h-[28rem] md:h-[40rem] object-cover rounded-[2.5rem] shadow-[0_20px_40px_rgba(145,109,177,0.15)] hover:shadow-[0_30px_60px_rgba(145,109,177,0.3)] cursor-pointer border border-white/50"
+            />
+          </motion.div>
         ))}
       </div>
     </motion.div>

@@ -34,25 +34,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fdfafb] via-white to-blush-50 font-serif text-gray-800 flex justify-center selection:bg-blush-200 selection:text-blush-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#fbfbfe] via-white to-lavender-50 font-serif text-gray-800 flex justify-center selection:bg-lavender-200 selection:text-lavender-900">
       <AnimatePresence>
         {!isOpened ? (
           <Envelope onOpen={handleOpen} />
         ) : (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            // Softened the main container shadow to be almost invisible
-            className="w-full max-w-5xl mx-auto bg-white/40 backdrop-blur-3xl min-h-screen shadow-[0_0_100px_rgba(208,106,142,0.05)] relative pb-20 md:my-10 md:rounded-[4rem] overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-5xl mx-auto bg-white/60 backdrop-blur-3xl min-h-screen shadow-[0_0_120px_rgba(145,109,177,0.08)] relative pb-20 md:my-10 md:rounded-[4rem] overflow-hidden border border-white/50"
           >
             <motion.button 
-              whileHover={{ scale: 1.1, rotate: 10 }}
+              whileHover={{ scale: 1.1, rotate: 10, backgroundColor: "#f8f7fb" }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleMusic}
-              className="fixed md:absolute top-6 right-6 z-50 bg-white/80 backdrop-blur-xl p-4 rounded-full text-blush-500 shadow-[0_8px_20px_rgba(208,106,142,0.2)] transition-colors"
+              className="fixed md:absolute top-6 right-6 z-50 bg-white/90 backdrop-blur-xl p-4 rounded-full text-lavender-500 shadow-[0_8px_25px_rgba(145,109,177,0.2)] transition-all border border-lavender-50"
             >
-              {isPlaying ? <FaPause size={16} /> : <FaMusic size={16} />}
+              {isPlaying ? <FaPause size={18} /> : <FaMusic size={18} />}
             </motion.button>
             
             <TopNames /> 
