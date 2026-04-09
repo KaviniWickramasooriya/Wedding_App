@@ -7,12 +7,12 @@ export default function VideoHero() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full px-5 md:px-16 py-10 bg-transparent flex justify-center"
+      className="w-full px-5 md:px-16 py-8 bg-transparent flex justify-center"
     >
       <motion.div 
         whileHover={{ scale: 1.015 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative w-full max-w-5xl h-[55vh] md:h-[70vh] min-h-[450px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-[0_30px_80px_rgba(145,109,177,0.2)] border border-white/60"
+        className="relative w-full max-w-5xl h-[55vh] md:h-[70vh] min-h-[400px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-[0_30px_80px_rgba(145,109,177,0.2)] border border-white/60"
       >
         <video 
           autoPlay 

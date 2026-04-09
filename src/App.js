@@ -43,7 +43,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-5xl mx-auto bg-white/60 backdrop-blur-3xl min-h-screen shadow-[0_0_120px_rgba(145,109,177,0.08)] relative pb-20 md:my-10 md:rounded-[4rem] overflow-hidden border border-white/50"
+            className="w-full max-w-5xl mx-auto bg-white/60 backdrop-blur-3xl min-h-screen shadow-[0_0_120px_rgba(145,109,177,0.08)] relative pb-2 md:my-10 md:rounded-[4rem] overflow-hidden border border-white/50"
           >
             <motion.button 
               whileHover={{ scale: 1.1, rotate: 10, backgroundColor: "#f8f7fb" }}

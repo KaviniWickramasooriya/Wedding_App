@@ -28,7 +28,7 @@ export default function Hero({ guestName }) {
         
         <motion.h2 
           whileHover={{ scale: 1.02 }}
-          className="font-cursive text-6xl md:text-8xl text-lavender-500 mb-10 drop-shadow-sm cursor-default px-4"
+          className="font-cursive text-6xl md:text-8xl text-lavender-500 mb-10 drop-shadow-sm cursor-default px-4 leading-normal"
         >
           {guestName}
         </motion.h2>
