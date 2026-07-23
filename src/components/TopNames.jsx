@@ -1,58 +1,72 @@
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function TopNames() {
-  const wordAnimation = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i) => ({
-      opacity: 1, y: 0,
-      transition: { delay: i * 0.2, duration: 1.2, ease: [0.16, 1, 0.3, 1] }
-    }),
-  };
-
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className="px-6 pt-20 md:pt-32 pb-10 md:pb-16 text-center bg-gradient-to-b from-lavender-50/60 to-transparent"
+    <motion.div
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: -10 }}
+      transition={{
+        duration: 1,
+        delay: 0.3,
+      }}
+      className="
+        flex 
+        justify-center 
+        items-center 
+        gap-5
+        pt-4
+        pb-3
+      "
     >
-      <motion.h3 
-        custom={0} initial="hidden" animate="visible" variants={wordAnimation}
-        className="uppercase tracking-[0.45em] md:tracking-[0.6em] text-[10px] md:text-sm text-lavender-400 mb-12 font-semibold"
+
+      <motion.span
+        whileHover={{ scale: 1.1 }}
+        className="
+          font-serif
+          text-5xl
+          text-lavender-700
+          tracking-widest
+          font-light
+        "
       >
-        The Wedding Of
-      </motion.h3>
-      
-      {/* FIX 1: Changed gap-2 to gap-0 so there is no built-in spacing on mobile */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-0 md:gap-10 -mb-8">
-        
-        <motion.h1 
-          custom={1} initial="hidden" animate="visible" variants={wordAnimation}
-          whileHover={{ scale: 1.05, rotate: -1 }}
-          transition={{ duration: 0.4 }}
-          className="font-cursive text-8xl md:text-9xl lg:text-[11rem] bg-gradient-to-r from-lavender-400 via-lavender-500 to-lavender-600 bg-clip-text text-transparent px-5 py-4 -my-4 md:py-6 md:-my-6 cursor-default leading-normal z-10"
-        >
-          Anu
-        </motion.h1>
-        
-        <motion.span 
-          animate={{ opacity: [0.6, 1, 0.6] }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          className="text-lavender-300 text-5xl md:text-7xl font-light drop-shadow-sm z-20 -my-3 md:my-0"
-        >
-          &
-        </motion.span>
-        
-        <motion.h1 
-          custom={2} initial="hidden" animate="visible" variants={wordAnimation}
-          whileHover={{ scale: 1.05, rotate: 1 }}
-          transition={{ duration: 0.4 }}
-          className="font-cursive text-8xl md:text-9xl lg:text-[11rem] bg-gradient-to-r from-lavender-600 via-lavender-500 to-lavender-400 bg-clip-text text-transparent px-7 py-4 -my-4 md:py-6 md:-my-6 cursor-default leading-normal z-10"
-        >
-          Yasith
-        </motion.h1>
-        
-      </div>
+        A
+      </motion.span>
+
+
+      <motion.span
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 10, -10, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="
+          text-[#d4af37]
+          text-4xl
+          drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]
+        "
+      >
+        ♥
+      </motion.span>
+
+
+      <motion.span
+        whileHover={{ scale: 1.1 }}
+        className="
+          font-serif
+          text-5xl
+          text-lavender-700
+          tracking-widest
+          font-light
+        "
+      >
+        Y
+      </motion.span>
+
     </motion.div>
   );
 }

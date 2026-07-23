@@ -1,41 +1,42 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function Hero({ guestName }) {
+export default function Hero() {
   return (
     <motion.div 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.5 }}
-      className="px-6 pt-16 md:pt-28 pb-16 md:pb-28 text-center bg-transparent"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5 }}
+      // Added a rich lavender gradient background with padding adjustments
+      className="py-24 px-8 md:px-12 text-center bg-gradient-to-b from-lavender-50 via-lavender-100/50 to-white relative overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto flex flex-col items-center">     
+      {/* Decorative ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-lavender-200/30 rounded-full blur-[120px] pointer-events-none -z-0" />
+
+      <div className="max-w-3xl mx-auto relative z-10">
+        <h2 className="font-serif text-4xl text-lavender-700 tracking-[0.2em] uppercase mb-6 flex items-center justify-center gap-4">
+          <span className="h-[1px] w-12 bg-lavender-300"></span>
+          Our Story
+          <span className="h-[1px] w-12 bg-lavender-300"></span>
+        </h2>
+        
+        <p className="font-serif text-xl text-gray-600 leading-relaxed italic mb-10 px-4">
+          "Every love story is beautiful, but ours is our absolute favourite. Here are a few of the precious moments that brought us to this day."
+        </p>
+        
         <motion.div 
-          whileHover={{ scale: 1.03, rotate: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-80 h-80 md:w-[32rem] md:h-[32rem] mx-auto rounded-full overflow-hidden shadow-[0_0_80px_rgba(145,109,177,0.25)] border-4 border-white mb-16 md:mb-24"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.5 }}
+          className="w-full aspect-video rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(145,109,177,0.2)] border-8 border-white mb-6 relative group"
         >
           <img 
-            src="/couple-1.jpg" 
-            alt="Anu and Yasith" 
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+            src="/photos/2.jpg" 
+            alt="Anu & Yasith Story" 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-lavender-900/10 group-hover:bg-transparent transition-colors duration-500" />
         </motion.div>
-
-        <p className="text-lg md:text-2xl italic text-gray-500 mb-10 px-4 md:px-12 leading-loose md:leading-[2.5] font-light max-w-2xl">
-          With hearts full of love and happiness, we are delighted to announce our wedding. We would be honored to have
-        </p>
-        
-        <motion.h2 
-          whileHover={{ scale: 1.02 }}
-          className="font-cursive text-6xl md:text-8xl text-lavender-500 mb-10 drop-shadow-sm cursor-default px-4 leading-normal"
-        >
-          {guestName}
-        </motion.h2>
-        
-        <p className="text-lg md:text-2xl italic text-gray-500 leading-loose md:leading-[2.5] px-4 md:px-12 font-light max-w-2xl">
-          join us as we celebrate this precious milestone.
-        </p>
       </div>
     </motion.div>
   );
