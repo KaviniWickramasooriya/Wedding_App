@@ -92,15 +92,17 @@ export default function Envelope({ onOpen }) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center mb-10"
+          className="flex flex-col items-center mb-8 w-full"
         >
-          <h1 className="font-serif text-5xl md:text-6xl tracking-[0.2em] text-white mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-            ANU
+          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap">
+            ANUTHTHARA
           </h1>
-          <span className="font-cursive text-4xl md:text-5xl text-[#d4af37] my-3 drop-shadow-sm">
+
+          <span className="font-cursive text-3xl sm:text-4xl md:text-5xl text-[#d4af37] my-2 drop-shadow-sm">
             and
           </span>
-          <h1 className="font-serif text-5xl md:text-6xl tracking-[0.2em] text-white mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+
+          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap">
             YASITH
           </h1>
         </motion.div>

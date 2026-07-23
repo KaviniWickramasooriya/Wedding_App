@@ -22,6 +22,11 @@ export default function VideoHero() {
         items-center
         relative
         px-4
+        py-8
+        bg-gradient-to-b
+        from-lavender-100/60
+        via-lavender-200/40
+        to-transparent
       "
     >
 
@@ -38,7 +43,7 @@ export default function VideoHero() {
           aspect-[4/5]
           rounded-t-[12rem]
           overflow-hidden
-          shadow-[0_25px_60px_rgba(145,109,177,0.35)]
+          shadow-[0_25px_70px_rgba(145,109,177,0.45)]
           border-[8px]
           border-white
           relative
@@ -70,7 +75,7 @@ export default function VideoHero() {
             absolute
             inset-0
             bg-gradient-to-t
-            from-lavender-700/40
+            from-lavender-800/40
             via-transparent
             to-transparent
           "
@@ -79,11 +84,11 @@ export default function VideoHero() {
       </motion.div>
 
 
-      {/* Lavender Glow */}
+      {/* Darker Lavender Ambient Glow */}
       <motion.div
         animate={{
           scale: [1, 1.15, 1],
-          opacity: [0.2,0.35,0.2],
+          opacity: [0.25,0.45,0.25],
         }}
         transition={{
           duration: 5,
@@ -93,7 +98,7 @@ export default function VideoHero() {
           absolute
           w-[130%]
           h-[130%]
-          bg-lavender-300/20
+          bg-lavender-400/30
           blur-3xl
           rounded-full
           -z-10

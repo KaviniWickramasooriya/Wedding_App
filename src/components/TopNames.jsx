@@ -25,9 +25,10 @@ export default function TopNames() {
         className="
           font-serif
           text-5xl
-          text-lavender-700
+          text-[#8064A2]
           tracking-widest
           font-light
+          drop-shadow-[0_2px_8px_rgba(128,100,162,0.35)]
         "
       >
         A
@@ -47,7 +48,7 @@ export default function TopNames() {
         className="
           text-[#d4af37]
           text-4xl
-          drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]
+          drop-shadow-[0_0_12px_rgba(212,175,55,0.6)]
         "
       >
         ♥
@@ -59,9 +60,10 @@ export default function TopNames() {
         className="
           font-serif
           text-5xl
-          text-lavender-700
+          text-[#8064A2]
           tracking-widest
           font-light
+          drop-shadow-[0_2px_8px_rgba(128,100,162,0.35)]
         "
       >
         Y

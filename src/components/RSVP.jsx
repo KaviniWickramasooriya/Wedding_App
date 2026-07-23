@@ -110,7 +110,7 @@ export default function RSVP() {
           className="
             absolute
             inset-0
-            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.7),transparent_65%)]
+            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),transparent_65%)]
           "
         />
 
@@ -333,7 +333,7 @@ export default function RSVP() {
                     bg-white/50
                     cursor-pointer
                     text-sm
-                    has-[:checked]:bg-[#d4af37]
+                    has-[:checked]:bg-[#d1ab3c]
                     has-[:checked]:text-white
                   "
                 >
@@ -437,8 +437,8 @@ export default function RSVP() {
                 rounded-xl
 
                 bg-gradient-to-r
-                from-[#d4af37]
-                to-[#b8952d]
+                from-[#d1ab3c]
+                to-[#d1ab3c]
 
                 text-white
                 text-xs
