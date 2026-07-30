@@ -41,11 +41,12 @@ export default function RSVP() {
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
+      // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
       }}
       className="
         w-full
@@ -189,7 +190,11 @@ export default function RSVP() {
         <motion.div key="form">
 
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="
               font-serif
               text-[11px]
@@ -201,10 +206,14 @@ export default function RSVP() {
             "
           >
             Kindly Reply
-          </p>
+          </motion.p>
 
 
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="
               font-serif
               text-2xl
@@ -215,10 +224,14 @@ export default function RSVP() {
             "
           >
             Will You Join Us?
-          </h2>
+          </motion.h2>
 
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="
               font-serif
               text-xs
@@ -230,7 +243,7 @@ export default function RSVP() {
           >
             Your presence is our greatest gift.
             Please let us know if you will be joining our celebration.
-          </p>
+          </motion.p>
 
 
 
@@ -324,7 +337,10 @@ export default function RSVP() {
               <div className="flex gap-3">
 
 
-                <label
+                <motion.label
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
                   className="
                     flex-1
                     text-center
@@ -335,6 +351,7 @@ export default function RSVP() {
                     text-sm
                     has-[:checked]:bg-[#d1ab3c]
                     has-[:checked]:text-white
+                    shadow-sm
                   "
                 >
                   <input
@@ -345,10 +362,13 @@ export default function RSVP() {
                     value="Joyfully Accepts"
                   />
                   Accepts
-                </label>
+                </motion.label>
 
 
-                <label
+                <motion.label
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
                   className="
                     flex-1
                     text-center
@@ -359,6 +379,7 @@ export default function RSVP() {
                     text-sm
                     has-[:checked]:bg-lavender-700
                     has-[:checked]:text-white
+                    shadow-sm
                   "
                 >
                   <input
@@ -368,7 +389,7 @@ export default function RSVP() {
                     value="Regretfully Declines"
                   />
                   Declines
-                </label>
+                </motion.label>
 
 
               </div>

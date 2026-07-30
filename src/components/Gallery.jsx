@@ -8,38 +8,34 @@ export default function Gallery() {
     "/photos/5.jpg", "/photos/6.jpg", "/photos/7.jpg", "/photos/8.jpg"
   ];
 
-
+  // Faster container stagger so images render almost instantly
   const container = { 
     hidden: { opacity: 0 }, 
     show: { 
       opacity: 1, 
-      transition: { staggerChildren: 0.12 } 
+      transition: { staggerChildren: 0.04 } 
     } 
   };
 
-
+  // Immediate, snappy item transition to prevent any lag perception on slow networks
   const item = { 
-    hidden: { opacity: 0, y: 30, scale: 0.95 }, 
+    hidden: { opacity: 0, scale: 0.98 }, 
     show: { 
       opacity: 1, 
-      y: 0, 
       scale: 1, 
       transition: { 
-        duration: 0.6, 
-        ease: [0.16, 1, 0.3, 1] 
+        duration: 0.25, 
+        ease: "easeOut" 
       } 
     } 
   };
 
-
   return (
-
     <motion.div 
       initial="hidden" 
       whileInView="show" 
-      viewport={{ once: true, amount: 0.1 }} 
+      viewport={{ once: false, amount: 0.05 }} 
       variants={container}
-
       className="
         py-24 
         px-6 
@@ -52,8 +48,6 @@ export default function Gallery() {
         overflow-hidden
       "
     >
-
-
       {/* Lavender Ambient Glow */}
       <div 
         className="
@@ -72,24 +66,19 @@ export default function Gallery() {
         "
       />
 
-
       <div className="
         max-w-5xl 
         mx-auto 
         relative 
         z-10
       ">
-
-
         {/* Section Header */}
         <div className="text-center mb-16">
-
-
           <motion.p 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-
+            viewport={{ once: false }}
+            transition={{ duration: 0.3 }}
             className="
               font-cursive 
               text-4xl 
@@ -101,14 +90,11 @@ export default function Gallery() {
             Precious Moments
           </motion.p>
 
-
-
           <motion.h2 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-
+            viewport={{ once: false }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="
               font-serif 
               text-3xl 
@@ -121,21 +107,20 @@ export default function Gallery() {
             Photo Gallery
           </motion.h2>
 
-
-
-          <div className="
-            h-[2px] 
-            w-20 
-            bg-[#d4af37]/60 
-            mx-auto 
-            mt-4 
-            rounded-full
-          " />
-
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="
+              h-[2px] 
+              bg-[#d4af37]/60 
+              mx-auto 
+              mt-4 
+              rounded-full
+            " 
+          />
         </div>
-
-
-
 
         {/* Gallery Grid */}
         <div className="
@@ -145,22 +130,16 @@ export default function Gallery() {
           gap-4 
           md:gap-6
         ">
-
-
           {images.map((src, i) => (
-
             <motion.div 
               key={i} 
               variants={item}
-
-              whileHover={{ y: -8 }}
-
+              whileHover={{ y: -6 }}
               transition={{
-                type:"spring",
-                stiffness:300,
-                damping:20
+                type: "spring",
+                stiffness: 400,
+                damping: 25
               }}
-
               className={`
                 rounded-[2rem]
                 overflow-hidden
@@ -170,6 +149,7 @@ export default function Gallery() {
                 relative
                 group
                 cursor-pointer
+                bg-lavender-100/50
 
                 ${
                   (i === 0 || i === 4)
@@ -180,24 +160,21 @@ export default function Gallery() {
                 }
               `}
             >
-
-
               <img 
                 src={src}
                 alt={`Anu & Yasith Pre-shoot ${i+1}`}
-
+                loading="eager" // Forces immediate loading to bypass network delay/lazy-load wait time
+                decoding="async"
                 className="
                   w-full 
                   h-full 
                   object-cover 
                   transition-transform 
-                  duration-700 
+                  duration-500 
                   ease-out 
-                  group-hover:scale-110
+                  group-hover:scale-105
                 "
               />
-
-
 
               {/* Lavender Dark Overlay */}
               <div 
@@ -211,11 +188,9 @@ export default function Gallery() {
                   opacity-0 
                   group-hover:opacity-100 
                   transition-opacity 
-                  duration-500
+                  duration-300
                 "
               />
-
-
 
               {/* Gold Frame */}
               <div 
@@ -228,13 +203,11 @@ export default function Gallery() {
                   opacity-0 
                   group-hover:opacity-100 
                   transition-all 
-                  duration-500 
+                  duration-300 
                   scale-95 
                   group-hover:scale-100
                 "
               />
-
-
 
               {/* Hover Caption */}
               <div 
@@ -250,12 +223,11 @@ export default function Gallery() {
                   opacity-0 
                   group-hover:opacity-100 
                   transition-all 
-                  duration-500 
-                  translate-y-4 
+                  duration-300 
+                  translate-y-2 
                   group-hover:translate-y-0
                 "
               >
-
                 <span className="
                   font-cursive 
                   text-3xl 
@@ -265,7 +237,6 @@ export default function Gallery() {
                 ">
                   Anu & Yasith
                 </span>
-
 
                 <span className="
                   font-serif 
@@ -277,22 +248,11 @@ export default function Gallery() {
                 ">
                   Memory {i + 1}
                 </span>
-
               </div>
-
-
             </motion.div>
-
           ))}
-
-
         </div>
-
-
       </div>
-
-
     </motion.div>
-
   );
 }

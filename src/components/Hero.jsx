@@ -5,9 +5,10 @@ export default function Hero() {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
+      // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
         pt-24 
         pb-16
@@ -15,9 +16,9 @@ export default function Hero() {
         md:px-12 
         text-center 
         bg-gradient-to-b 
-      from-lavender-100 
-      via-lavender-400/60 
-      to-white
+        from-lavender-100 
+        via-lavender-400/60 
+        to-white
         relative 
         overflow-hidden
       "
@@ -41,40 +42,55 @@ export default function Hero() {
 
       <div className="max-w-3xl mx-auto relative z-10">
 
-        <h2 className="
-          font-serif 
-          text-4xl 
-          text-lavender-700 
-          tracking-[0.2em] 
-          uppercase 
-          mb-6 
-          flex 
-          items-center 
-          justify-center 
-          gap-4
-        ">
+        <motion.h2 
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="
+            font-serif 
+            text-4xl 
+            text-lavender-700 
+            tracking-[0.2em] 
+            uppercase 
+            mb-6 
+            flex 
+            items-center 
+            justify-center 
+            gap-4
+          "
+        >
           <span className="h-[1px] w-12 bg-lavender-300"></span>
           Our Story
           <span className="h-[1px] w-12 bg-lavender-300"></span>
-        </h2>
+        </motion.h2>
 
 
-        <p className="
-          font-serif 
-          text-xl 
-          text-gray-600 
-          leading-relaxed 
-          italic 
-          mb-10 
-          px-4
-        ">
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="
+            font-serif 
+            text-xl 
+            text-gray-600 
+            leading-relaxed 
+            italic 
+            mb-10 
+            px-4
+          "
+        >
           "Every love story is beautiful, but ours is our absolute favourite. Here are a few of the precious moments that brought us to this day."
-        </p>
+        </motion.p>
 
 
         <motion.div 
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          whileHover={{ scale: 1.02, y: -4 }}
+          transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 20 }}
           className="
             w-full 
             aspect-video 
@@ -86,6 +102,7 @@ export default function Hero() {
             mb-6 
             relative 
             group
+            cursor-pointer
           "
         >
 

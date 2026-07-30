@@ -11,22 +11,30 @@ export default function Envelope({ onOpen }) {
     backgroundSize: '120px 100%' // Width of each curtain fold
   };
 
-  // Slower, heavier easing curve for the curtain opening
-  const curtainTransition = { 
-    duration: 2.0, // Increased duration for a much slower opening
-    ease: [0.65, 0, 0.35, 1] 
+  // Creates the physical accordion curtain bunching effect (collapsing width from 50% to 0% symmetrically)
+  const curtainOpenVariant = {
+    open: {
+      width: "0%",
+      transition: {
+        duration: 2.2,
+        ease: [0.65, 0, 0.35, 1]
+      }
+    }
   };
 
   return (
     <motion.div
-      // Kept opaque longer to match the slow curtain speed
       exit={{ opacity: 1, transition: { duration: 2.5 } }}
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
-      {/* --- LEFT CURTAIN HALF --- */}
+      {/* --- LEFT CURTAIN HALF (Pulls to the left edge by collapsing width) --- */}
       <motion.div
-        exit={{ x: '-100%', transition: curtainTransition }}
-        className="absolute top-0 left-0 w-1/2 h-full bg-lavender-700 shadow-[15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
+        initial={{ width: "50%" }}
+        animate="initial"
+        exit="open"
+        variants={curtainOpenVariant}
+        style={{ transformOrigin: "left" }}
+        className="absolute top-0 left-0 h-full bg-lavender-700 shadow-[15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
         {/* Fabric Texture & Lighting */}
         <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-lavender-300 via-transparent to-transparent pointer-events-none" />
@@ -36,10 +44,14 @@ export default function Envelope({ onOpen }) {
         <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-transparent via-lavender-300 to-transparent opacity-50" />
       </motion.div>
 
-      {/* --- RIGHT CURTAIN HALF --- */}
+      {/* --- RIGHT CURTAIN HALF (Pulls to the right edge by collapsing width) --- */}
       <motion.div
-        exit={{ x: '100%', transition: curtainTransition }}
-        className="absolute top-0 right-0 w-1/2 h-full bg-lavender-700 shadow-[-15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
+        initial={{ width: "50%" }}
+        animate="initial"
+        exit="open"
+        variants={curtainOpenVariant}
+        style={{ transformOrigin: "right" }}
+        className="absolute top-0 right-0 h-full bg-lavender-700 shadow-[-15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
         {/* Fabric Texture & Lighting */}
         <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-lavender-300 via-transparent to-transparent pointer-events-none" />
@@ -51,7 +63,6 @@ export default function Envelope({ onOpen }) {
 
       {/* --- CENTRAL CONTENT --- */}
       <motion.div 
-        // The content fades out slightly slower now (0.6s) but still vanishes before the slow curtains fully open
         exit={{ opacity: 0, scale: 0.95, filter: "blur(12px)", transition: { duration: 0.6, ease: "easeOut" } }}
         className="relative z-20 flex flex-col items-center text-center px-6 w-full max-w-md pointer-events-auto"
       >
@@ -94,17 +105,25 @@ export default function Envelope({ onOpen }) {
           transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center mb-8 w-full"
         >
-          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap">
+          <motion.h1 
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap cursor-pointer"
+          >
             ANUTHTHARA
-          </h1>
+          </motion.h1>
 
           <span className="font-cursive text-3xl sm:text-4xl md:text-5xl text-[#d4af37] my-2 drop-shadow-sm">
             and
           </span>
 
-          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap">
+          <motion.h1 
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="font-serif text-4xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white mt-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] whitespace-nowrap cursor-pointer"
+          >
             YASITH
-          </h1>
+          </motion.h1>
         </motion.div>
 
         <motion.p 
@@ -140,7 +159,7 @@ export default function Envelope({ onOpen }) {
           transition={{ duration: 2.5, repeat: Infinity, delay: 2, ease: "easeInOut" }}
           className="mt-8 text-[10px] tracking-[0.4em] text-lavender-300 uppercase"
         >
-          Tap to Open
+          Tap to Open 
         </motion.p>
 
       </motion.div>

@@ -7,8 +7,8 @@ export default function Footer() {
     <motion.footer
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
         w-full 
         bg-gray-500/90 
@@ -49,9 +49,10 @@ export default function Footer() {
 
 
         <motion.p
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="
             font-serif 
             text-[10px] 
@@ -66,9 +67,10 @@ export default function Footer() {
 
 
         <motion.p
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          transition={{ delay: 0.3 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="
             font-serif 
             text-2xl 
@@ -103,24 +105,43 @@ export default function Footer() {
 
 
         {/* Names */}
-        <motion.h3
-          whileHover={{
-            scale: 1.08,
-            letterSpacing: "0.5em",
-          }}
-          transition={{ duration: 0.3 }}
-          className="
-            font-serif 
-            text-4xl 
-            tracking-[0.35em] 
-            mb-2 
-            cursor-default
-          "
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-2"
         >
-          A 
-          <span className="text-lavender-200 mx-2">♥</span>
-          Y
-        </motion.h3>
+          <motion.h3
+            whileHover={{
+              scale: 1.08,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="
+              font-serif 
+              text-4xl 
+              tracking-[0.35em] 
+              cursor-pointer 
+              inline-block
+            "
+          >
+            <motion.span 
+              whileHover={{ scale: 1.15 }} 
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="inline-block"
+            >
+              A
+            </motion.span> 
+            <span className="text-lavender-200 mx-2">♥</span>
+            <motion.span 
+              whileHover={{ scale: 1.15 }} 
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="inline-block"
+            >
+              Y
+            </motion.span>
+          </motion.h3>
+        </motion.div>
 
 
         <p
@@ -221,6 +242,7 @@ export default function Footer() {
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: 70 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="
             h-px 
@@ -256,7 +278,7 @@ export default function Footer() {
             className="inline mx-1 text-lavender-200 animate-pulse"
             size={11}
           />
-           for Our Special Day
+            for Our Special Day
         </motion.p>
 
 

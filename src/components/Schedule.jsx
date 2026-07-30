@@ -45,9 +45,7 @@ export default function Schedule() {
     }
   ];
 
-
-  const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Anu+and+Yasith&dates=20261202T093000Z/20261202T163000Z&details=Join+us+to+celebrate+our+wedding+at+Eagle+Banquet+Hall,+Water's+Edge!&location=Eagle+Banquet+Hall,+Water's+Edge,+Battaramulla";
-
+  const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Anu+and+Yasith&dates=20261202T093000Z/20261202T163000Z&details=Join+us+to+celebrate+our+wedding+at+Eagle+Banquet+Hall,+Water%27s+Edge!&location=Eagle+Banquet+Hall,+Water%27s+Edge,+Battaramulla";
 
   return (
     <div className="
@@ -78,75 +76,91 @@ export default function Schedule() {
         -z-0
       " />
 
-
       <div className="max-w-3xl mx-auto relative z-10">
-
 
         {/* Header */}
         <motion.div 
-          initial={{ opacity:0, y:-20 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.8 }}
+          initial={{ opacity: 0, y: -20 }}
+          // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-12 md:mb-16"
         >
 
-          <p className="
-            font-cursive 
-            text-3xl 
-            md:text-4xl 
-            text-[#d4af37] 
-            mb-2
-          ">
+          <motion.p 
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="
+              font-cursive 
+              text-3xl 
+              md:text-4xl 
+              text-[#d4af37] 
+              mb-2
+            "
+          >
             Order of Events
-          </p>
+          </motion.p>
 
 
-          <h2 className="
-            font-serif 
-            text-4xl 
-            md:text-5xl 
-            text-lavender-700 
-            tracking-[0.2em] 
-            uppercase
-          ">
+          <motion.h2 
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="
+              font-serif 
+              text-4xl 
+              md:text-5xl 
+              text-lavender-700 
+              tracking-[0.2em] 
+              uppercase
+            "
+          >
             The Schedule
-          </h2>
+          </motion.h2>
 
 
-          <div className="
-            h-[2px] 
-            w-16 
-            bg-[#d4af37]/60 
-            mx-auto 
-            mt-4 
-            rounded-full
-          " />
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 64 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="
+              h-[2px] 
+              bg-[#d4af37]/60 
+              mx-auto 
+              mt-4 
+              rounded-full
+            " 
+          />
 
         </motion.div>
-
 
 
         {/* Timeline Cards */}
         <div className="space-y-3 md:space-y-4">
 
-          {events.map((item,index)=>(
+          {events.map((item, index) => (
 
             <motion.div
 
-              initial={{opacity:0,x:-30}}
-              whileInView={{opacity:1,x:0}}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               whileHover={{
-                scale:1.01,
-                y:-2,
-                backgroundColor:"rgba(255,255,255,0.95)"
+                scale: 1.02,
+                y: -3,
+                backgroundColor: "rgba(255,255,255,0.95)",
+                boxShadow: "0 15px 35px rgba(145,109,177,0.2)"
               }}
-              viewport={{once:true}}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{
-                type:"spring",
-                stiffness:80,
-                damping:15,
-                delay:index*0.1
+                type: "spring",
+                stiffness: 80,
+                damping: 15,
+                delay: index * 0.1
               }}
 
               key={index}
@@ -167,7 +181,7 @@ export default function Schedule() {
                 items-center 
                 text-center 
                 md:text-left
-                cursor-default 
+                cursor-pointer 
                 group 
                 transition-all
                 duration-300
@@ -175,7 +189,6 @@ export default function Schedule() {
                 overflow-hidden
               "
             >
-
 
               {/* Gold hover line */}
               <div className="
@@ -189,8 +202,6 @@ export default function Schedule() {
                 group-hover:opacity-100
                 transition-opacity
               "/>
-
-
 
               {/* Time */}
               <div className="
@@ -233,7 +244,6 @@ export default function Schedule() {
               </div>
 
 
-
               {/* Title */}
               <span className="
                 text-gray-600
@@ -246,7 +256,6 @@ export default function Schedule() {
                 {item.title}
               </span>
 
-
             </motion.div>
 
           ))}
@@ -254,20 +263,18 @@ export default function Schedule() {
         </div>
 
 
-
-
         {/* Calendar Button */}
         <motion.div
-          initial={{opacity:0,y:20}}
-          whileInView={{opacity:1,y:0}}
-          viewport={{once:true}}
-          transition={{delay:0.6,duration:0.8}}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: 0.4, duration: 0.8 }}
           className="mt-12 text-center"
         >
 
           <motion.a
-            whileHover={{scale:1.03}}
-            whileTap={{scale:0.97}}
+            whileHover={{ scale: 1.05, backgroundColor: "#62427a", color: "#ffffff" }}
+            whileTap={{ scale: 0.95 }}
             href={calendarLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -291,6 +298,7 @@ export default function Schedule() {
               shadow-[0_10px_30px_rgba(145,109,177,0.12)]
               border
               border-lavender-200
+              transition-all
             "
           >
 
@@ -304,7 +312,6 @@ export default function Schedule() {
           </motion.a>
 
         </motion.div>
-
 
       </div>
 

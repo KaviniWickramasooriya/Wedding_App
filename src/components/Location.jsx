@@ -7,9 +7,8 @@ export default function Location() {
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5 }}
-
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
         pt-8
         pb-24
@@ -58,43 +57,63 @@ export default function Location() {
         {/* Section Header */}
         <div className="text-center mb-16">
 
-          <p className="
-            font-cursive 
-            text-4xl 
-            text-[#d4af37] 
-            mb-2 
-            drop-shadow-sm
-          ">
+          <motion.p 
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="
+              font-cursive 
+              text-4xl 
+              text-[#d4af37] 
+              mb-2 
+              drop-shadow-sm
+            "
+          >
             How to find us
-          </p>
+          </motion.p>
 
 
-          <h2 className="
-            font-serif 
-            text-3xl 
-            md:text-5xl 
-            text-lavender-700 
-            tracking-[0.2em] 
-            uppercase
-          ">
+          <motion.h2 
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="
+              font-serif 
+              text-3xl 
+              md:text-5xl 
+              text-lavender-700 
+              tracking-[0.2em] 
+              uppercase
+            "
+          >
             The Location
-          </h2>
+          </motion.h2>
 
 
-          <div className="
-            h-[2px] 
-            w-20 
-            bg-[#d4af37]/60 
-            mx-auto 
-            mt-4 
-            rounded-full
-          " />
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="
+              h-[2px] 
+              bg-[#d4af37]/60 
+              mx-auto 
+              mt-4 
+              rounded-full
+            " 
+          />
 
         </div>
 
 
         {/* Location Card */}
         <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
           whileHover={{ y: -5 }}
           transition={{ type:"spring", stiffness:300, damping:20 }}
           className="
@@ -119,7 +138,7 @@ export default function Location() {
               height="100%"
               style={{border:0}}
               allowFullScreen=""
-              loading="lazy"
+              loading="eager" // Forces immediate loading to bypass network delay
               referrerPolicy="no-referrer-when-downgrade"
               title="Waters Edge Map"
             />
