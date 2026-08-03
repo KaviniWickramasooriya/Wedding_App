@@ -90,5 +90,5 @@ Make sure you have [Node.js](https://nodejs.org/) installed.
   ├── App.jsx                # Main layout composition
   └── main.jsx               # React entry point
 
-## 💖 Made With Love
+💖 Made With Love
 Created with care and passion for a very special celebration on December 2, 2026.
