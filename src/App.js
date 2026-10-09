@@ -1,8 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMusic, FaPause } from "react-icons/fa";
 
 import Envelope from "./components/Envelope";
+import InvitationCard from "./components/InvitationCard";
 import TopNames from "./components/TopNames";
 import VideoHero from "./components/VideoHero";
 import DateDisplay from "./components/DateDisplay";
@@ -15,18 +16,44 @@ import RSVP from "./components/RSVP";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const [isOpened, setIsOpened] = useState(false);
+  const [stage, setStage] = useState("envelope"); // "envelope" -> "card" -> "website"
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
 
-  const handleOpen = () => {
-    setIsOpened(true);
+  // Auto-scroll effect once the website stage is active
+  useEffect(() => {
+    if (stage !== "website") return;
 
-    audioRef.current
-      .play()
-      .catch((e) => console.log("Audio play blocked:", e));
+    let scrollInterval;
+    const startTimeout = setTimeout(() => {
+      scrollInterval = setInterval(() => {
+        window.scrollBy({ top: 2, behavior: "smooth" });
+      }, 15);
+    }, 1500);
 
+    const stopAutoScroll = () => {
+      clearInterval(scrollInterval);
+    };
+
+    window.addEventListener("wheel", stopAutoScroll, { passive: true });
+    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+
+    return () => {
+      clearTimeout(startTimeout);
+      clearInterval(scrollInterval);
+      window.removeEventListener("wheel", stopAutoScroll);
+      window.removeEventListener("touchstart", stopAutoScroll);
+    };
+  }, [stage]);
+
+  const handleOpenEnvelope = () => {
+    setStage("card");
+  };
+
+  const handleOpenWebsite = () => {
+    setStage("website");
+    audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
     setIsPlaying(true);
   };
 
@@ -36,7 +63,6 @@ export default function App() {
     } else {
       audioRef.current.play();
     }
-
     setIsPlaying(!isPlaying);
   };
 
@@ -53,28 +79,20 @@ export default function App() {
       "
     >
       <AnimatePresence mode="wait">
+        {stage === "envelope" && (
+          <Envelope onOpen={handleOpenEnvelope} key="envelope" />
+        )}
 
-        {!isOpened ? (
-          <Envelope 
-            onOpen={handleOpen} 
-            key="envelope" 
-          />
+        {stage === "card" && (
+          <InvitationCard onOpen={handleOpenWebsite} key="invitation-card" />
+        )}
 
-        ) : (
-
+        {stage === "website" && (
           <motion.div
             key="main-content"
-            initial={{
-              opacity: 0,
-              scale: 0.98,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7 }}
             className="
               w-full
               max-w-5xl
@@ -89,16 +107,10 @@ export default function App() {
               pb-0
             "
           >
-
             {/* Music Button */}
             <motion.button
-              whileHover={{
-                scale: 1.1,
-                rotate: 10,
-              }}
-              whileTap={{
-                scale: 0.9,
-              }}
+              whileHover={{ scale: 1.1, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
               onClick={toggleMusic}
               className="
               fixed md:absolute
@@ -114,14 +126,8 @@ export default function App() {
               transition-all
               "
             >
-              {isPlaying ? (
-                <FaPause size={18} />
-              ) : (
-                <FaMusic size={18} />
-              )}
-
+              {isPlaying ? <FaPause size={18} /> : <FaMusic size={18} />}
             </motion.button>
-
 
             <section
               className="
@@ -137,39 +143,22 @@ export default function App() {
               <VideoHero />
             </section>
 
-
             <DateDisplay />
 
-            <Countdown 
-              targetDate="2026-12-02T00:00:00" 
-            />
+            <Countdown targetDate="2026-12-02T00:00:00" />
 
-
-            {/* Reduced spacing between Hero and Location */}
             <div className="space-y-4">
-
               <Hero />
-
               <Location />
-
             </div>
 
-
             <Gallery />
-
             <Schedule />
-
             <RSVP />
-
             <Footer />
-
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
-
     </div>
   );
 }
