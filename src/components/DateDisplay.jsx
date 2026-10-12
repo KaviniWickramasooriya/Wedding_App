@@ -40,7 +40,7 @@ export default function DateDisplay() {
       {/* Soft decorative background lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-lavender-200/20 rounded-full blur-[100px] pointer-events-none -z-0" />
 
-      <motion.p variants={itemVariants} className="font-serif italic text-lavender-500 mb-4 text-lg">
+      <motion.p variants={itemVariants} className="font-serif italic text-gray-500 mb-4 text-lg">
         Mr. & Mrs. Wickramasooriya <br />
             Together with <br />
             Mr. & Mrs. Madanayake <br/>

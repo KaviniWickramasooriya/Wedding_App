@@ -21,37 +21,42 @@ export default function App() {
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
 
-  // Auto-scroll effect once the website stage is active
+  // Enhanced Auto-scroll effect optimized for iPhone & Mobile deployment
   useEffect(() => {
     if (stage !== "website") return;
 
-    let scrollInterval;
-    let frameId;
+    let animationFrameId;
+    let startTimeout;
 
-    const startTimeout = setTimeout(() => {
-      frameId = requestAnimationFrame(() => {
-        scrollInterval = setInterval(() => {
-          window.scrollBy({ top: 3, behavior: "smooth" });
-        }, 20);
-      });
-    }, 1200);
+    const startScroll = () => {
+      startTimeout = setTimeout(() => {
+        const step = () => {
+          window.scrollBy({ top: 2, behavior: "auto" });
+          animationFrameId = requestAnimationFrame(step);
+        };
+        animationFrameId = requestAnimationFrame(step);
+      }, 1200);
+    };
+
+    startScroll();
 
     const stopAutoScroll = () => {
-      if (scrollInterval) clearInterval(scrollInterval);
-      if (frameId) cancelAnimationFrame(frameId);
+      if (startTimeout) clearTimeout(startTimeout);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
 
     window.addEventListener("wheel", stopAutoScroll, { passive: true });
     window.addEventListener("touchstart", stopAutoScroll, { passive: true });
     window.addEventListener("mousedown", stopAutoScroll, { passive: true });
+    window.addEventListener("scroll", stopAutoScroll, { passive: true });
 
     return () => {
-      clearTimeout(startTimeout);
-      if (scrollInterval) clearInterval(scrollInterval);
-      if (frameId) cancelAnimationFrame(frameId);
+      if (startTimeout) clearTimeout(startTimeout);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener("wheel", stopAutoScroll);
       window.removeEventListener("touchstart", stopAutoScroll);
       window.removeEventListener("mousedown", stopAutoScroll);
+      window.removeEventListener("scroll", stopAutoScroll);
     };
   }, [stage]);
 
@@ -121,7 +126,7 @@ export default function App() {
               className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
             >
               <img
-                src="/photos/card.png"
+                src="/photos/card.jpg"
                 alt="Wedding Invitation Card"
                 className="w-full h-auto object-contain rounded-xl max-h-[80vh]"
               />
