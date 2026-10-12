@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaMusic, FaPause } from "react-icons/fa";
 
 import Envelope from "./components/Envelope";
-import InvitationCard from "./components/InvitationCard";
+// import InvitationCard from "./components/InvitationCard"; // Commented out as requested
 import TopNames from "./components/TopNames";
 import VideoHero from "./components/VideoHero";
 import DateDisplay from "./components/DateDisplay";
 import Countdown from "./components/Countdown";
 import Hero from "./components/Hero";
 import Location from "./components/Location";
-import Gallery from "./components/Gallery";
+// import Gallery from "./components/Gallery";
 import Schedule from "./components/Schedule";
 import RSVP from "./components/RSVP";
 import Footer from "./components/Footer";
@@ -74,6 +74,17 @@ export default function App() {
     setIsPlaying(!isPlaying);
   };
 
+  // 60-second auto-open timer for the card stage displaying card.png
+  useEffect(() => {
+    if (stage !== "card") return;
+
+    const timer = setTimeout(() => {
+      handleOpenWebsite();
+    }, 60000);
+
+    return () => clearTimeout(timer);
+  }, [stage]);
+
   return (
     <div
       className="
@@ -91,8 +102,40 @@ export default function App() {
           <Envelope onOpen={handleOpenEnvelope} key="envelope" />
         )}
 
+        {/* Card Stage displaying /photos/card.png with 60s auto-open & click-to-enter */}
         {stage === "card" && (
-          <InvitationCard onOpen={handleOpenWebsite} key="invitation-card" />
+          <motion.div
+            key="invitation-card-image"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-lavender-900/60 backdrop-blur-md overflow-y-auto cursor-pointer"
+            onClick={handleOpenWebsite}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
+            >
+              <img
+                src="/photos/card.png"
+                alt="Wedding Invitation Card"
+                className="w-full h-auto object-contain rounded-xl max-h-[80vh]"
+              />
+              <motion.div 
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="mt-4 mb-2"
+              >
+                <span className="inline-block px-6 py-2.5 rounded-full bg-lavender-700 text-white text-[10px] tracking-[0.25em] uppercase font-bold shadow-md">
+                  Click to Enter Website
+                </span>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         )}
 
         {stage === "website" && (
@@ -158,16 +201,16 @@ export default function App() {
               <VideoHero />
             </section>
 
-            <DateDisplay />
-
             <Countdown targetDate="2026-12-02T00:00:00" />
+
+            <DateDisplay />
 
             <div className="space-y-4">
               <Hero />
               <Location />
             </div>
 
-            <Gallery />
+            {/* <Gallery /> */}
             <Schedule />
             <RSVP />
             <Footer />

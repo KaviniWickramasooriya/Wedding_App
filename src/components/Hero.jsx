@@ -5,7 +5,6 @@ export default function Hero() {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
-      // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -107,7 +106,7 @@ export default function Hero() {
         >
 
           <img 
-            src="/photos/2.jpg" 
+            src="/photos/image.jpeg" 
             alt="Anu & Yasith Story" 
             className="
               w-full 
@@ -117,6 +116,7 @@ export default function Hero() {
               duration-1000 
               group-hover:scale-105
             "
+            style={{ objectPosition: 'center 75%' }}
           />
 
           <div className="

@@ -41,7 +41,11 @@ export default function DateDisplay() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-lavender-200/20 rounded-full blur-[100px] pointer-events-none -z-0" />
 
       <motion.p variants={itemVariants} className="font-serif italic text-lavender-500 mb-4 text-lg">
-        Together with their families
+        Mr. & Mrs. Wickramasooriya <br />
+            Together with <br />
+            Mr. & Mrs. Madanayake <br/>
+            invite to celebrate the marriage of<br/>
+            their children
       </motion.p>
       
       {/* Names Container with staggered entrance */}
@@ -68,15 +72,18 @@ export default function DateDisplay() {
         variants={itemVariants}
         whileInView={{ scale: [0.95, 1], opacity: [0, 1] }}
         viewport={{ once: false }}
-        className="py-5 border-y-2 border-lavender-200 mt-6 mb-8 w-full max-w-sm bg-gradient-to-r from-transparent via-lavender-50 to-transparent shadow-sm"
+        className="py-5 border-y-2 border-lavender-200 mt-6 mb-4 w-full max-w-sm bg-gradient-to-r from-transparent via-lavender-50 to-transparent shadow-sm flex flex-col items-center justify-center gap-1.5"
       >
         <p className="font-serif tracking-[0.15em] md:tracking-[0.2em] text-lavender-700 uppercase font-bold text-base md:text-lg drop-shadow-sm">
           Wednesday, December 2, 2026
         </p>
+        <p className="font-serif tracking-[0.2em] text-gray-600 uppercase font-semibold text-xs">
+          From 9:00 A.M. Onwards
+        </p>
       </motion.div>
 
       {/* Action Button */}
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} className="mt-4">
         <motion.a 
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}

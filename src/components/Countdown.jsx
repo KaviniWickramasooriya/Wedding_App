@@ -50,7 +50,7 @@ export default function Countdown({ targetDate }) {
       {/* Decorative ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-lavender-300/20 rounded-full blur-[100px] pointer-events-none -z-0" />
 
-      <motion.h3 
+      {/* <motion.h3 
         initial={{ opacity: 0, y: -15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false }}
@@ -58,7 +58,7 @@ export default function Countdown({ targetDate }) {
         className="font-cursive text-4xl md:text-5xl text-[#d4af37] mb-8 drop-shadow-sm relative z-10"
       >
         We are getting married
-      </motion.h3>
+      </motion.h3> */}
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}

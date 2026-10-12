@@ -53,7 +53,7 @@ export default function VideoHero() {
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          src="/photos/image.png"
+          src="/photos/image.jpg"
           alt="Anu & Yasith"
           loading="eager"
           decoding="async"

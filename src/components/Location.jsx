@@ -10,14 +10,14 @@ export default function Location() {
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
-        pt-8
+        pt-12
         pb-24
         px-6 
         md:px-12 
         bg-gradient-to-b 
         from-white 
-        via-gray-200 
-        to-[#e2e4e6] 
+        via-lavender-50/40 
+        to-lavender-100/60
         flex 
         flex-col 
         items-center 
@@ -35,9 +35,9 @@ export default function Location() {
         -translate-y-1/2 
         w-[70%] 
         h-[70%] 
-        bg-lavender-300/25 
+        bg-lavender-300/20 
         rounded-full 
-        blur-[120px] 
+        blur-[140px] 
         pointer-events-none 
         -z-0
       " />
@@ -47,7 +47,7 @@ export default function Location() {
         relative 
         z-10 
         w-full 
-        max-w-lg 
+        max-w-xl 
         flex 
         flex-col 
         items-center
@@ -55,7 +55,7 @@ export default function Location() {
 
 
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
 
           <motion.p 
             initial={{ opacity: 0, y: -15 }}
@@ -65,8 +65,9 @@ export default function Location() {
             className="
               font-cursive 
               text-4xl 
+              md:text-5xl
               text-[#d4af37] 
-              mb-2 
+              mb-1 
               drop-shadow-sm
             "
           >
@@ -82,10 +83,11 @@ export default function Location() {
             className="
               font-serif 
               text-3xl 
-              md:text-5xl 
+              md:text-4xl 
               text-lavender-700 
               tracking-[0.2em] 
               uppercase
+              font-light
             "
           >
             The Location
@@ -94,12 +96,12 @@ export default function Location() {
 
           <motion.div 
             initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
+            whileInView={{ width: 90 }}
             viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="
-              h-[2px] 
-              bg-[#d4af37]/60 
+              h-[1px] 
+              bg-[#d4af37] 
               mx-auto 
               mt-4 
               rounded-full
@@ -109,76 +111,79 @@ export default function Location() {
         </div>
 
 
-        {/* Location Card */}
+        {/* Location Card with Luxury Glassmorphism */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false }}
-          whileHover={{ y: -5 }}
+          whileHover={{ y: -4 }}
           transition={{ type:"spring", stiffness:300, damping:20 }}
           className="
             w-full 
-            bg-white/90 
-            backdrop-blur-md 
+            bg-white/80 
+            backdrop-blur-xl 
             rounded-[2.5rem] 
             overflow-hidden 
-            shadow-[0_20px_50px_rgba(145,109,177,0.15)] 
-            border-4 
-            border-white 
+            shadow-[0_25px_60px_rgba(145,109,177,0.18)] 
+            border border-white/80
             flex 
             flex-col
           "
         >
 
-          <div className="w-full h-72 bg-gray-200 relative">
+          {/* Map Container precisely centered on Waters Edge */}
+          <div className="w-full h-72 bg-lavender-100/50 relative overflow-hidden">
 
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.91681745428!2d79.90799197475685!3d6.89973809310014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25a2b3b789945%3A0xc3b84497be4f57c!2sWaters%20Edge!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
+              src="https://maps.google.com/maps?q=Waters%20Edge,%20Battaramulla&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{border:0}}
               allowFullScreen=""
-              loading="eager" // Forces immediate loading to bypass network delay
+              loading="eager"
               referrerPolicy="no-referrer-when-downgrade"
               title="Waters Edge Map"
+              className="grayscale-[20%] contrast-[105%]"
             />
 
           </div>
 
 
           <div className="
-            p-10 
+            p-8
+            md:p-12
             text-center 
             flex 
             flex-col 
             items-center 
             bg-gradient-to-t 
-            from-lavender-50/50 
-            to-white
+            from-lavender-50/60 
+            to-white/90
           ">
 
             <div className="
-              w-14 
-              h-14 
+              w-12 
+              h-12 
               rounded-2xl 
-              bg-lavender-100 
-              text-lavender-600 
+              bg-lavender-100/80 
+              text-lavender-700 
               flex 
               items-center 
               justify-center 
-              shadow-inner 
+              shadow-sm
+              border border-lavender-200/50
               mb-4
             ">
-              <FaMapMarkerAlt size={24}/>
+              <FaMapMarkerAlt size={20}/>
             </div>
 
 
             <h4 className="
               font-serif 
-              text-2xl 
+              text-xl 
               md:text-3xl 
               text-lavender-700 
-              font-bold 
+              font-normal 
               mb-1
             ">
               Eagle Banquet Hall
@@ -187,8 +192,9 @@ export default function Location() {
 
             <p className="
               font-serif 
-              text-lg 
-              text-[#d4af37] 
+              text-2xl
+              md:text-lg 
+              text-[#b8973c] 
               mb-2 
               italic
             ">
@@ -197,40 +203,41 @@ export default function Location() {
 
 
             <p className="
-              text-sm 
+              text-xs 
               font-serif 
               text-gray-500 
               mb-8 
-              tracking-wide
+              tracking-[0.15em]
             ">
               316 Ethul Kotte Road, Battaramulla
             </p>
 
 
             <motion.a 
-              whileHover={{scale:1.05, backgroundColor:"#785396"}}
-              whileTap={{scale:0.95}}
-              href="https://maps.app.goo.gl/ZvE6k7QgJPRHkpvk6"
+              whileHover={{ scale: 1.05, backgroundColor: "#68488a" }}
+              whileTap={{ scale: 0.95 }}
+              href="https://maps.app.goo.gl/miNKr8uEbpws7HCaA"
               target="_blank"
               rel="noopener noreferrer"
               className="
                 inline-flex 
                 items-center 
                 gap-3 
-                px-10 
-                py-4 
+                px-8 
+                py-3.5 
                 rounded-full 
-                bg-lavender-600 
+                bg-lavender-700 
                 text-white 
-                text-xs 
-                tracking-[0.2em] 
+                text-[10px] 
+                tracking-[0.25em] 
                 uppercase 
-                font-semibold 
+                font-bold 
                 shadow-[0_10px_25px_rgba(109,74,138,0.3)]
+                transition-all
               "
             >
-              <FaDirections size={15}/>
-              Get Directions
+              <FaDirections size={14}/>
+              Get Directions 
             </motion.a>
 
 

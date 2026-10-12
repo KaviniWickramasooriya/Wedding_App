@@ -83,7 +83,7 @@ export default function Footer() {
         </motion.p>
 
 
-        <motion.p
+        {/* <motion.p
           animate={{
             opacity: [0.6, 1, 0.6],
           }}
@@ -100,7 +100,7 @@ export default function Footer() {
           "
         >
           Styled with love 
-        </motion.p>
+        </motion.p> */}
 
 
 
@@ -200,7 +200,7 @@ export default function Footer() {
 
 
           <motion.a
-            href="tel:+94702300790"
+            href="tel:+94701086343"
             whileHover={{
               scale: 1.06,
               y: -4,
@@ -278,7 +278,7 @@ export default function Footer() {
             className="inline mx-1 text-lavender-200 animate-pulse"
             size={11}
           />
-            for Our Special Day
+            {" "}for Our Special Day
         </motion.p>
 
 
