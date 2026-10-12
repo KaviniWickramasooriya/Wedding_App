@@ -4,82 +4,103 @@ import { motion } from "framer-motion";
 export default function TopNames() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -30 }}
-      whileInView={{ opacity: 1, y: -10 }}
+      initial={{ opacity: 0, y: -25 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
-      transition={{
-        duration: 1,
-        delay: 0.3,
-      }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="
         flex 
         justify-center 
         items-center 
-        gap-6
-        pt-4
-        pb-3
-        lg:mt-6
+        gap-5
+        py-4
+        relative
       "
     >
+      {/* Subtle Ambient Gold Backglow */}
+      <div className="absolute w-44 h-12 bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-xl pointer-events-none -z-10" />
 
-      <motion.span
+      {/* Monogram A Container */}
+      <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: false }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        whileHover={{ scale: 1.25 }}
+        transition={{ duration: 0.8 }}
+        whileHover={{ scale: 1.15, y: -2 }}
         className="
-          font-serif
-          text-6xl
-          text-[#8064A2]
-          tracking-widest
-          font-light
-          drop-shadow-[0_4px_12px_rgba(128,100,162,0.4)]
+          w-14 h-14
+          rounded-2xl
+          bg-white/70
+          backdrop-blur-md
+          border border-[#d4af37]/40
+          shadow-[0_10px_30px_rgba(145,109,177,0.15)]
+          flex items-center justify-center
           cursor-pointer
+          group
         "
       >
-        A
-      </motion.span>
+        <span className="
+          font-serif
+          text-3xl
+          text-lavender-800
+          font-light
+          tracking-wider
+          group-hover:text-[#d4af37]
+          transition-colors
+          duration-300
+        ">
+          A
+        </span>
+      </motion.div>
 
-
-      <motion.span
+      {/* Pulsing Luxury Heart */}
+      <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 10, -10, 0],
+          scale: [1, 1.25, 1],
+          filter: ["drop-shadow(0 0 8px rgba(212,175,55,0.4))", "drop-shadow(0 0 16px rgba(212,175,55,0.8))", "drop-shadow(0 0 8px rgba(212,175,55,0.4))"]
         }}
         transition={{
-          duration: 3,
+          duration: 2.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="
-          text-[#d4af37]
-          text-4xl
-          drop-shadow-[0_0_12px_rgba(212,175,55,0.6)]
-        "
+        className="text-[#d4af37] text-2xl px-1"
       >
         ♥
-      </motion.span>
+      </motion.div>
 
-
-      <motion.span
+      {/* Monogram Y Container */}
+      <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: false }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        whileHover={{ scale: 1.25 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        whileHover={{ scale: 1.15, y: -2 }}
         className="
-          font-serif
-          text-6xl
-          text-[#8064A2]
-          tracking-widest
-          font-light
-          drop-shadow-[0_4px_12px_rgba(128,100,162,0.4)]
+          w-14 h-14
+          rounded-2xl
+          bg-white/70
+          backdrop-blur-md
+          border border-[#d4af37]/40
+          shadow-[0_10px_30px_rgba(145,109,177,0.15)]
+          flex items-center justify-center
           cursor-pointer
+          group
         "
       >
-        Y
-      </motion.span>
+        <span className="
+          font-serif
+          text-3xl
+          text-lavender-800
+          font-light
+          tracking-wider
+          group-hover:text-[#d4af37]
+          transition-colors
+          duration-300
+        ">
+          Y
+        </span>
+      </motion.div>
 
     </motion.div>
   );

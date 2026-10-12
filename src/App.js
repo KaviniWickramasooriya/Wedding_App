@@ -21,7 +21,7 @@ export default function App() {
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
 
-  // Robust Auto-scroll effect optimized for all devices including iPhones
+  // Auto-scroll effect once the website stage is active
   useEffect(() => {
     if (stage !== "website") return;
 
@@ -29,7 +29,6 @@ export default function App() {
     let frameId;
 
     const startTimeout = setTimeout(() => {
-      // Use requestAnimationFrame to ensure smooth mobile painting before starting scroll
       frameId = requestAnimationFrame(() => {
         scrollInterval = setInterval(() => {
           window.scrollBy({ top: 3, behavior: "smooth" });
@@ -138,6 +137,7 @@ export default function App() {
               {isPlaying ? <FaPause size={18} /> : <FaMusic size={18} />}
             </motion.button>
 
+            {/* 1st Page Section with Unified Background Color */}
             <section
               className="
               min-h-screen
@@ -146,6 +146,12 @@ export default function App() {
               justify-center
               items-center
               overflow-hidden
+              bg-gradient-to-b
+              from-lavender-100/70
+              via-lavender-200/50
+              to-white
+              pt-6
+              pb-12
               "
             >
               <TopNames />

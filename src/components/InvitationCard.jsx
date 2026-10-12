@@ -42,17 +42,19 @@ export default function InvitationCard({ onOpen }) {
 
           <div className="py-1 sm:py-2">
             <h2 
-              className="text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              style={{ textTransform: 'none' }}
             >
-              <span className="font-serif">A</span><span className="font-cursive">nuththara</span>
+              Anuththara
             </h2>
             <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-gray-500 my-1 font-sans font-medium">
               AND
             </p>
             <h2 
-              className="text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              style={{ textTransform: 'none' }}
             >
-              <span className="font-serif">Y</span><span className="font-cursive">asith</span>
+              Yasith
             </h2>
           </div>
 
