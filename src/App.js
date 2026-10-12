@@ -21,29 +21,38 @@ export default function App() {
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
 
-  // Auto-scroll effect once the website stage is active
+  // Robust Auto-scroll effect optimized for all devices including iPhones
   useEffect(() => {
     if (stage !== "website") return;
 
     let scrollInterval;
+    let frameId;
+
     const startTimeout = setTimeout(() => {
-      scrollInterval = setInterval(() => {
-        window.scrollBy({ top: 2, behavior: "smooth" });
-      }, 15);
-    }, 1500);
+      // Use requestAnimationFrame to ensure smooth mobile painting before starting scroll
+      frameId = requestAnimationFrame(() => {
+        scrollInterval = setInterval(() => {
+          window.scrollBy({ top: 3, behavior: "smooth" });
+        }, 20);
+      });
+    }, 1200);
 
     const stopAutoScroll = () => {
-      clearInterval(scrollInterval);
+      if (scrollInterval) clearInterval(scrollInterval);
+      if (frameId) cancelAnimationFrame(frameId);
     };
 
     window.addEventListener("wheel", stopAutoScroll, { passive: true });
     window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+    window.addEventListener("mousedown", stopAutoScroll, { passive: true });
 
     return () => {
       clearTimeout(startTimeout);
-      clearInterval(scrollInterval);
+      if (scrollInterval) clearInterval(scrollInterval);
+      if (frameId) cancelAnimationFrame(frameId);
       window.removeEventListener("wheel", stopAutoScroll);
       window.removeEventListener("touchstart", stopAutoScroll);
+      window.removeEventListener("mousedown", stopAutoScroll);
     };
   }, [stage]);
 
