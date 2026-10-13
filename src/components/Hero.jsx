@@ -9,37 +9,58 @@ export default function Hero() {
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
-        pt-24 
-        pb-16
-        px-8 
+        py-16
+        px-6 
         md:px-12 
         text-center 
-        bg-gradient-to-b 
-        from-lavender-100 
-        via-lavender-400/60 
-        to-white
         relative 
         overflow-hidden
+        w-full
+        min-h-[85vh]
+        flex
+        items-end
+        justify-center
+        pb-16
       "
     >
+      {/* Background Image Container with full native resolution & clarity */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src="/photos/DSC06478.jpg" 
+          alt="Anu & Yasith Background" 
+          className="
+            w-full 
+            h-full 
+            object-cover 
+            object-center
+            [image-rendering:-webkit-optimize-contrast]
+            transform-gpu
+          "
+        />
+        {/* Gentle dark gradient overlay for text readability without reducing image sharpness */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+      </div>
 
-      {/* Decorative ambient background glow */}
-      <div className="
-        absolute 
-        top-1/2 
-        left-1/2 
-        -translate-x-1/2 
-        -translate-y-1/2 
-        w-[80%] 
-        h-[80%] 
-        bg-lavender-200/30 
-        rounded-full 
-        blur-[120px] 
-        pointer-events-none 
-        -z-0
-      " />
-
-      <div className="max-w-3xl mx-auto relative z-10">
+      {/* Glassmorphic Content Card positioned lower */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 250, damping: 20 }}
+        className="
+          max-w-xl 
+          mx-auto 
+          relative 
+          z-10
+          bg-white/90
+          backdrop-blur-xl
+          p-8
+          md:p-12
+          rounded-[2.5rem]
+          border border-white/90
+          shadow-[0_25px_60px_rgba(0,0,0,0.35)]
+        "
+      >
 
         <motion.h2 
           initial={{ opacity: 0, y: -15 }}
@@ -48,20 +69,26 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="
             font-serif 
-            text-4xl 
-            text-lavender-700 
-            tracking-[0.2em] 
+            text-2xl 
+            md:text-3xl 
+            text-lavender-900 
+            tracking-[0.25em] 
             uppercase 
             mb-6 
             flex 
+            flex-col
             items-center 
             justify-center 
-            gap-4
+            gap-2
+            font-light
           "
         >
-          <span className="h-[1px] w-12 bg-lavender-300"></span>
-          Our Story
-          <span className="h-[1px] w-12 bg-lavender-300"></span>
+          <div className="flex items-center gap-3">
+            <span className="h-[1px] w-8 bg-[#d4af37]"></span>
+            <span>OUR</span>
+            <span className="h-[1px] w-8 bg-[#d4af37]"></span>
+          </div>
+          <span className="font-normal text-lavender-900">STORY</span>
         </motion.h2>
 
 
@@ -72,65 +99,18 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="
             font-serif 
-            text-xl 
-            text-gray-600 
+            text-base 
+            md:text-lg 
+            text-gray-800 
             leading-relaxed 
             italic 
-            mb-10 
-            px-4
+            px-2
           "
         >
-          "Every love story is beautiful, but ours is our absolute favourite. Here are a few of the precious moments that brought us to this day."
+          "Our hearts chose one another when our paths first crossed, and every step since has led us happily to this forever."
         </motion.p>
 
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false }}
-          whileHover={{ scale: 1.02, y: -4 }}
-          transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 20 }}
-          className="
-            w-full 
-            aspect-video 
-            rounded-[2rem] 
-            overflow-hidden 
-            shadow-[0_20px_50px_rgba(145,109,177,0.2)] 
-            border-8 
-            border-white 
-            mb-6 
-            relative 
-            group
-            cursor-pointer
-          "
-        >
-
-          <img 
-            src="/photos/image.jpeg" 
-            alt="Anu & Yasith Story" 
-            className="
-              w-full 
-              h-full 
-              object-cover 
-              transition-transform 
-              duration-1000 
-              group-hover:scale-105
-            "
-            style={{ objectPosition: 'center 75%' }}
-          />
-
-          <div className="
-            absolute 
-            inset-0 
-            bg-lavender-900/10 
-            group-hover:bg-transparent 
-            transition-colors 
-            duration-500
-          " />
-
-        </motion.div>
-
-      </div>
+      </motion.div>
 
     </motion.div>
   );
