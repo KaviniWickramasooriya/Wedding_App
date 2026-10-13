@@ -1,6 +1,18 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Expanded array of floating stars & sparkling particles
+const floatingStars = [
+  { top: "10%", left: "5%", size: 4, duration: 3, delay: 0 },
+  { top: "18%", left: "90%", size: 3, duration: 4, delay: 1 },
+  { top: "40%", left: "8%", size: 5, duration: 5, delay: 0.5 },
+  { top: "60%", left: "92%", size: 3.5, duration: 3.5, delay: 1.5 },
+  { top: "85%", left: "15%", size: 4, duration: 4.5, delay: 0.8 },
+  { top: "90%", left: "85%", size: 4.5, duration: 3.2, delay: 2 },
+  { top: "25%", left: "48%", size: 3, duration: 4, delay: 0.3 },
+  { top: "75%", left: "52%", size: 4, duration: 3.8, delay: 1.2 }
+];
+
 export default function VideoHero() {
   return (
     <motion.div
@@ -23,6 +35,33 @@ export default function VideoHero() {
         mx-auto
       "
     >
+      {/* Floating Lavender Stars & Particles Background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        {floatingStars.map((star, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full bg-lavender-400 shadow-[0_0_12px_rgba(196,181,253,0.9)]"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+            }}
+            animate={{
+              opacity: [0.2, 1, 0.2],
+              y: [0, -30, 0],
+              scale: [1, 1.6, 1],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Main Arch Frame Container */}
       <motion.div
         whileHover={{ scale: 1.015, y: -4 }}
@@ -70,7 +109,7 @@ export default function VideoHero() {
         {/* Luxury Gold Inner Border Accent */}
         <div className="absolute inset-3.5 border border-[#d4af37]/80 rounded-t-[11rem] pointer-events-none z-20 shadow-[inset_0_0_15px_rgba(212,175,55,0.2)] transition-colors duration-500 group-hover:border-[#d4af37]" />
 
-        {/* Floating Glassmorphic Date Badge inside top of image */}
+        {/* Previous Date Badge Style inside top of image */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +123,7 @@ export default function VideoHero() {
         </motion.div>
       </motion.div>
 
-      {/* Editorial Content Displayed Underneath the Image with Added Spacing */}
+      {/* Editorial Content Displayed Underneath the Image */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -107,8 +146,8 @@ export default function VideoHero() {
       {/* Ambient Pulsing Glow Aura */}
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
+          scale: [1, 1.25, 1],
+          opacity: [0.25, 0.45, 0.25],
         }}
         transition={{
           duration: 6,
@@ -120,8 +159,8 @@ export default function VideoHero() {
           w-[140%]
           h-[140%]
           bg-gradient-to-tr
-          from-lavender-300/30
-          to-lavender-400/10
+          from-lavender-300/35
+          to-lavender-400/15
           blur-[100px]
           rounded-full
           -z-10

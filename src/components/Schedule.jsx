@@ -6,9 +6,20 @@ import {
   FaUtensils, 
   FaGlassCheers, 
   FaCameraRetro, 
-  FaCalendarPlus,
+  // FaCalendarPlus,
   FaCarSide
 } from 'react-icons/fa';
+
+// Floating lavender stars & particles array for background animation
+const floatingStars = [
+  { top: "10%", left: "10%", size: 4, duration: 3, delay: 0 },
+  { top: "25%", left: "85%", size: 3, duration: 4, delay: 1 },
+  { top: "45%", left: "12%", size: 5, duration: 5, delay: 0.5 },
+  { top: "65%", left: "88%", size: 3.5, duration: 3.5, delay: 1.5 },
+  { top: "82%", left: "18%", size: 4, duration: 4.5, delay: 0.8 },
+  { top: "20%", left: "50%", size: 3, duration: 4, delay: 0.3 },
+  { top: "75%", left: "55%", size: 4.5, duration: 3.8, delay: 1.2 }
+];
 
 export default function Schedule() {
 
@@ -16,36 +27,36 @@ export default function Schedule() {
     { 
       time: "8:45 AM", 
       title: "Groom & Bride Entourage Arrival", 
-      icon: <FaUserTie size={18} /> 
+      icon: <FaUserTie size={16} /> 
     },
     { 
       time: "9:30 AM", 
       title: "Poruwa Ceremony & Auspicious Rituals", 
-      icon: <FaRing size={18} /> 
+      icon: <FaRing size={16} /> 
     },
     { 
       time: "11:00 AM", 
       title: "Signing of the Register & Family Photos", 
-      icon: <FaCameraRetro size={18} /> 
+      icon: <FaCameraRetro size={16} /> 
     },
     { 
       time: "12:00 PM", 
       title: "Wedding Reception & Cocktail Hour", 
-      icon: <FaGlassCheers size={18} /> 
+      icon: <FaGlassCheers size={16} /> 
     },
     { 
       time: "12:45 PM", 
       title: "Grand Wedding Lunch Buffet", 
-      icon: <FaUtensils size={18} /> 
+      icon: <FaUtensils size={16} /> 
     },
     { 
       time: "3:45 PM", 
       title: "Going Away", 
-      icon: <FaCarSide size={18} /> 
+      icon: <FaCarSide size={16} /> 
     }
   ];
 
-  const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Anu+and+Yasith&dates=20261202T093000Z/20261202T163000Z&details=Join+us+to+celebrate+our+wedding+at+Eagle+Banquet+Hall,+Water%27s+Edge!&location=Eagle+Banquet+Hall,+Water%27s+Edge,+Battaramulla";
+  // const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Anu+and+Yasith&dates=20261202T033000Z/20261202T103000Z&details=Join+us+to+celebrate+our+wedding!&location=Water%27s+Edge,+Battaramulla";
 
   return (
     <div className="
@@ -59,6 +70,33 @@ export default function Schedule() {
       relative 
       overflow-hidden
     ">
+
+      {/* Floating Lavender Stars & Particles Background Animation */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        {floatingStars.map((star, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full bg-lavender-400 shadow-[0_0_12px_rgba(196,181,253,0.9)]"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+            }}
+            animate={{
+              opacity: [0.2, 1, 0.2],
+              y: [0, -25, 0],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
 
       {/* Background Decorative Glow */}
       <div className="
@@ -76,12 +114,11 @@ export default function Schedule() {
         -z-0
       " />
 
-      <div className="max-w-3xl mx-auto relative z-10">
+      <div className="max-w-2xl mx-auto relative z-10">
 
-        {/* Header */}
+        {/* Header with 'The Schedule' in one row structure */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
-          // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8 }}
@@ -105,82 +142,72 @@ export default function Schedule() {
           </motion.p>
 
 
-          <motion.h2 
+          <motion.div 
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="
+            className="flex items-center justify-center gap-4 my-2"
+          >
+            <span className="h-[1px] w-10 md:w-16 bg-[#d4af37]/60"></span>
+            <h2 className="
               font-serif 
-              text-4xl 
-              md:text-5xl 
-              text-lavender-700 
+              text-3xl 
+              md:text-4xl 
+              text-lavender-800 
               tracking-[0.2em] 
               uppercase
-            "
-          >
-            The Schedule
-          </motion.h2>
-
-
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: 64 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="
-              h-[2px] 
-              bg-[#d4af37]/60 
-              mx-auto 
-              mt-4 
-              rounded-full
-            " 
-          />
+              whitespace-nowrap
+            ">
+              The Schedule
+            </h2>
+            <span className="h-[1px] w-10 md:w-16 bg-[#d4af37]/60"></span>
+          </motion.div>
 
         </motion.div>
 
 
-        {/* Timeline Cards */}
-        <div className="space-y-3 md:space-y-4">
+        {/* Professional Row-wise Timeline Cards */}
+        <div className="space-y-4">
 
           {events.map((item, index) => (
 
             <motion.div
 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               whileHover={{
-                scale: 1.02,
-                y: -3,
+                scale: 1.015,
+                y: -2,
                 backgroundColor: "rgba(255,255,255,0.95)",
-                boxShadow: "0 15px 35px rgba(145,109,177,0.2)"
+                boxShadow: "0 15px 35px rgba(145,109,177,0.18)"
               }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{
                 type: "spring",
-                stiffness: 80,
-                damping: 15,
-                delay: index * 0.1
+                stiffness: 100,
+                damping: 18,
+                delay: index * 0.08
               }}
 
               key={index}
 
               className="
-                bg-white/80 
+                bg-white/85 
                 backdrop-blur-md 
-                px-5 
-                py-4
+                px-6 
+                py-5
                 rounded-[1.5rem]
-                shadow-[0_10px_25px_rgba(145,109,177,0.1)]
+                shadow-[0_8px_25px_rgba(145,109,177,0.1)]
                 border 
                 border-white/90
                 flex 
                 flex-col 
-                md:flex-row 
-                md:justify-between 
+                sm:flex-row 
                 items-center 
-                text-center 
-                md:text-left
+                justify-between
+                gap-2 
+                sm:gap-4
                 cursor-pointer 
                 group 
                 transition-all
@@ -190,34 +217,27 @@ export default function Schedule() {
               "
             >
 
-              {/* Gold hover line */}
+              {/* Gold hover accent line on left */}
               <div className="
                 absolute 
                 left-0 
                 top-0 
                 bottom-0 
-                w-1 
+                w-1.5 
                 bg-[#d4af37]
                 opacity-0
                 group-hover:opacity-100
                 transition-opacity
               "/>
 
-              {/* Time */}
-              <div className="
-                flex 
-                items-center 
-                gap-4 
-                mb-2 
-                md:mb-0
-              ">
-
+              {/* Time & Icon Block (Left Side) - Reduced width and gap for tighter spacing */}
+              <div className="flex items-center gap-3 w-full sm:w-40 justify-center sm:justify-start">
                 <div className="
                   w-10 
                   h-10 
                   rounded-xl 
-                  bg-lavender-100 
-                  text-lavender-600
+                  bg-lavender-100/80 
+                  text-lavender-700
                   flex 
                   items-center 
                   justify-center
@@ -225,36 +245,37 @@ export default function Schedule() {
                   group-hover:bg-lavender-700
                   group-hover:text-white
                   transition-all
+                  shrink-0
                 ">
                   {item.icon}
                 </div>
 
-
                 <span className="
-                  text-lavender-700
-                  font-semibold
-                  text-xl
-                  md:text-2xl
+                  text-lavender-900
+                  font-bold
+                  text-lg
+                  md:text-xl
                   font-serif
-                  tracking-wide
+                  tracking-wider
+                  whitespace-nowrap
                 ">
                   {item.time}
                 </span>
-
               </div>
 
-
-              {/* Title */}
-              <span className="
-                text-gray-600
-                tracking-wide
-                text-base
-                md:text-lg
-                font-light
-                font-serif
-              ">
-                {item.title}
-              </span>
+              {/* Title Block (Right Side - Professional Row Alignment) */}
+              <div className="w-full sm:flex-1 text-center sm:text-right">
+                <span className="
+                  text-gray-700
+                  tracking-wide
+                  text-sm
+                  md:text-base
+                  font-serif
+                  font-light
+                ">
+                  {item.title}
+                </span>
+              </div>
 
             </motion.div>
 
@@ -263,8 +284,8 @@ export default function Schedule() {
         </div>
 
 
-        {/* Calendar Button */}
-        <motion.div
+        {/* Calendar Button (Commented out as requested) */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -309,9 +330,9 @@ export default function Schedule() {
 
             Add to Google Calendar
 
-          </motion.a>
+          </motion.a> 
 
-        </motion.div>
+        </motion.div>*/}
 
       </div>
 
