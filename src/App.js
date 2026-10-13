@@ -126,7 +126,7 @@ export default function App() {
               className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
             >
               <img
-                src="/photos/card.jpg"
+                src="/photos/card2.png"
                 alt="Wedding Invitation Card"
                 className="w-full h-auto object-contain rounded-xl max-h-[80vh]"
               />
