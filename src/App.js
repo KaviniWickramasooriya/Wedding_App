@@ -41,7 +41,7 @@ export default function App() {
           window.scrollBy({ top: 0.6, behavior: "auto" });
         }
       }, 30);
-    }, 1500);
+    }, 1200);
   }, [stopAutoScroll]);
 
   const handleOpenWebsite = useCallback(() => {
