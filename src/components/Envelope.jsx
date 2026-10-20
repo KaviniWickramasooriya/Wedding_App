@@ -33,15 +33,15 @@ export default function Envelope({ onOpen }) {
         animate="initial"
         exit="open"
         variants={curtainOpenVariant}
-        style={{ transformOrigin: "left", backgroundColor: "#6b4257" }}
+        style={{ transformOrigin: "left", backgroundColor: "#8e4a5d" }}
         className="absolute top-0 left-0 h-full shadow-[15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
-        {/* Fabric Texture & Lighting */}
-        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#8a5874] via-transparent to-transparent pointer-events-none" />
+        {/* Fabric Texture & Lighting (Deep Dusty Rose / Dark Mauve blend) */}
+        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#ab6379] via-[#815194]/30 to-transparent pointer-events-none" />
         {/* Vertical Folds/Pleats */}
         <div className="absolute inset-0 pointer-events-none" style={pleatStyle} />
         {/* Edge Highlight */}
-        <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#8a5874] to-transparent opacity-50" />
+        <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#c28399] to-transparent opacity-60" />
       </motion.div>
 
       {/* --- RIGHT CURTAIN HALF (Pulls to the right edge by collapsing width) --- */}
@@ -50,15 +50,15 @@ export default function Envelope({ onOpen }) {
         animate="initial"
         exit="open"
         variants={curtainOpenVariant}
-        style={{ transformOrigin: "right", backgroundColor: "#6b4257" }}
+        style={{ transformOrigin: "right", backgroundColor: "#8e4a5d" }}
         className="absolute top-0 right-0 h-full shadow-[-15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
-        {/* Fabric Texture & Lighting */}
-        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#8a5874] via-transparent to-transparent pointer-events-none" />
+        {/* Fabric Texture & Lighting (Deep Dusty Rose / Dark Mauve blend) */}
+        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#ab6379] via-[#815194]/30 to-transparent pointer-events-none" />
         {/* Vertical Folds/Pleats */}
         <div className="absolute inset-0 pointer-events-none" style={pleatStyle} />
         {/* Edge Highlight */}
-        <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#8a5874] to-transparent opacity-50" />
+        <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#c28399] to-transparent opacity-60" />
       </motion.div>
 
       {/* --- CENTRAL CONTENT --- */}
@@ -84,7 +84,7 @@ export default function Envelope({ onOpen }) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-serif italic text-2xl text-purple-100 mb-2 drop-shadow-md"
+          className="font-serif italic text-2xl text-pink-100 mb-2 drop-shadow-md"
         >
           {guestName},
         </motion.p>
@@ -93,7 +93,7 @@ export default function Envelope({ onOpen }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="tracking-[0.35em] text-xs uppercase text-purple-200 mb-10"
+          className="tracking-[0.35em] text-xs uppercase text-pink-200 mb-10"
         >
           You're Invited
         </motion.p>
@@ -130,7 +130,7 @@ export default function Envelope({ onOpen }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="font-serif text-[15px] text-purple-100 mb-12 tracking-widest font-light opacity-90"
+          className="font-serif text-[15px] text-pink-100 mb-12 tracking-widest font-light opacity-90"
         >
           Request the honour of your presence
         </motion.p>
@@ -157,7 +157,7 @@ export default function Envelope({ onOpen }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 2.5, repeat: Infinity, delay: 2, ease: "easeInOut" }}
-          className="mt-8 text-[10px] tracking-[0.4em] text-purple-200 uppercase"
+          className="mt-8 text-[10px] tracking-[0.4em] text-pink-200 uppercase"
         >
           Tap to Open 
         </motion.p>
