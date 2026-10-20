@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMusic, FaPause } from "react-icons/fa";
 
@@ -20,54 +20,60 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
+  const scrollIntervalRef = useRef(null);
 
-  // Enhanced Auto-scroll effect optimized for iPhone & Mobile deployment
-  useEffect(() => {
-    if (stage !== "website") return;
+  // Function to stop auto-scrolling upon user interaction
+  const stopAutoScroll = useCallback(() => {
+    if (scrollIntervalRef.current) {
+      clearInterval(scrollIntervalRef.current);
+      scrollIntervalRef.current = null;
+    }
+  }, []);
 
-    let animationFrameId;
-    let startTimeout;
+  // Trigger auto-scroll specifically when entering the website stage
+  const triggerAutoScroll = useCallback(() => {
+    stopAutoScroll();
+    setTimeout(() => {
+      scrollIntervalRef.current = setInterval(() => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+          stopAutoScroll();
+        } else {
+          window.scrollBy({ top: 0.6, behavior: "auto" });
+        }
+      }, 25);
+    }, 1500);
+  }, [stopAutoScroll]);
 
-    const startScroll = () => {
-      startTimeout = setTimeout(() => {
-        const step = () => {
-          window.scrollBy({ top: 2, behavior: "auto" });
-          animationFrameId = requestAnimationFrame(step);
-        };
-        animationFrameId = requestAnimationFrame(step);
-      }, 1200);
-    };
-
-    startScroll();
-
-    const stopAutoScroll = () => {
-      if (startTimeout) clearTimeout(startTimeout);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
-
-    window.addEventListener("wheel", stopAutoScroll, { passive: true });
-    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
-    window.addEventListener("mousedown", stopAutoScroll, { passive: true });
-    window.addEventListener("scroll", stopAutoScroll, { passive: true });
-
-    return () => {
-      if (startTimeout) clearTimeout(startTimeout);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("wheel", stopAutoScroll);
-      window.removeEventListener("touchstart", stopAutoScroll);
-      window.removeEventListener("mousedown", stopAutoScroll);
-      window.removeEventListener("scroll", stopAutoScroll);
-    };
-  }, [stage]);
-
-  const handleOpenEnvelope = () => {
-    setStage("card");
-  };
-
-  const handleOpenWebsite = () => {
+  const handleOpenWebsite = useCallback(() => {
     setStage("website");
     audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
     setIsPlaying(true);
+    triggerAutoScroll(); // Immediate gesture unlock for mobile browsers
+  }, [triggerAutoScroll]);
+
+  useEffect(() => {
+    if (stage !== "website") return;
+
+    triggerAutoScroll();
+
+    window.addEventListener("wheel", stopAutoScroll, { passive: true });
+    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+    window.addEventListener("touchmove", stopAutoScroll, { passive: true });
+    window.addEventListener("mousedown", stopAutoScroll, { passive: true });
+    window.addEventListener("keydown", stopAutoScroll, { passive: true });
+
+    return () => {
+      stopAutoScroll();
+      window.removeEventListener("wheel", stopAutoScroll);
+      window.removeEventListener("touchstart", stopAutoScroll);
+      window.removeEventListener("touchmove", stopAutoScroll);
+      window.removeEventListener("mousedown", stopAutoScroll);
+      window.removeEventListener("keydown", stopAutoScroll);
+    };
+  }, [stage, triggerAutoScroll, stopAutoScroll]);
+
+  const handleOpenEnvelope = () => {
+    setStage("card");
   };
 
   const toggleMusic = () => {
@@ -79,7 +85,7 @@ export default function App() {
     setIsPlaying(!isPlaying);
   };
 
-  // 60-second auto-open timer for the card stage displaying card.png
+  // 60-second auto-open timer for the card stage displaying card2.png
   useEffect(() => {
     if (stage !== "card") return;
 
@@ -88,13 +94,13 @@ export default function App() {
     }, 60000);
 
     return () => clearTimeout(timer);
-  }, [stage]);
+  }, [stage, handleOpenWebsite]);
 
   return (
     <div
       className="
       min-h-screen
-      bg-gradient-to-br from-pink-50 via-white to-purple-100
+      bg-gradient-to-br from-gray-100 via-gray-50 to-slate-200
       font-serif
       text-gray-800
       flex justify-center
@@ -107,7 +113,7 @@ export default function App() {
           <Envelope onOpen={handleOpenEnvelope} key="envelope" />
         )}
 
-        {/* Card Stage displaying /photos/card2.png with 60s auto-open & click-to-enter */}
+        {/* Card Stage displaying /photos/card2.png with border removed */}
         {stage === "card" && (
           <motion.div
             key="invitation-card-image"
@@ -123,7 +129,7 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
+              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
             >
               <img
                 src="/photos/card2.png"
@@ -153,7 +159,7 @@ export default function App() {
               w-full
               max-w-5xl
               mx-auto
-              bg-white/80
+              bg-white/95
               backdrop-blur-3xl
               min-h-screen
               shadow-[0_0_120px_rgba(126,68,95,0.15)]
@@ -178,25 +184,26 @@ export default function App() {
               rounded-full
               text-[#7e445f]
               shadow-[0_8px_25px_rgba(126,68,95,0.3)]
-              border border-pink-300/40
+              border border-gray-200
               transition-all
               "
             >
               {isPlaying ? <FaPause size={18} /> : <FaMusic size={18} />}
             </motion.button>
 
-            {/* 1st Page Section with Unified Background Color */}
+            {/* 1st Page Full-Screen Section for Video Hero across all devices */}
             <section
               className="
               min-h-screen
+              w-full
               flex
               flex-col
               justify-center
               items-center
               overflow-hidden
               bg-gradient-to-b
-              from-pink-100/60
-              via-purple-100/40
+              from-gray-200
+              via-gray-100
               to-white
               pt-6
               pb-12

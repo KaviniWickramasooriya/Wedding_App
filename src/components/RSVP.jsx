@@ -441,7 +441,7 @@ export default function RSVP() {
                 "
               >
 
-                {[1,2,3,4,5,6,7,8,9,10].map(num => (
+                {[1,2,3,4,5,6,7,8].map(num => (
                   <option key={num}>
                     {num} Guest{num > 1 ? "s" : ""}
                   </option>
@@ -494,12 +494,11 @@ export default function RSVP() {
                 >
                   <input
                     hidden
-                    defaultChecked
                     type="radio"
                     name="meal_preference"
-                    value="Non-Vegetarian"
+                    value="Vegetarian"
                   />
-                  Non-Vegetarian
+                  Vegetarian
                 </motion.label>
 
                 <motion.label
@@ -524,11 +523,12 @@ export default function RSVP() {
                 >
                   <input
                     hidden
+                    defaultChecked
                     type="radio"
                     name="meal_preference"
-                    value="Vegetarian"
+                    value="Non-Vegetarian"
                   />
-                  Vegetarian
+                  Non-Vegetarian
                 </motion.label>
 
               </div>

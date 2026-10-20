@@ -46,11 +46,16 @@ export default function VideoHero() {
         relative
         px-6
         py-6
-        bg-transparent
+        bg-gradient-to-b
+        from-gray-100
+        via-gray-200
+        to-slate-200
         overflow-hidden
         w-full
         lg:max-w-5xl
         mx-auto
+        rounded-3xl
+        shadow-sm
       "
     >
       {/* Floating Dynamic Color-Changing Particles Background */}
@@ -179,7 +184,7 @@ export default function VideoHero() {
           bg-gradient-to-tr
           from-pink-400/25
           via-[#7e445f]/20
-          to-rose-300/25
+          to-rose-500/25
           blur-[100px]
           rounded-full
           -z-10
