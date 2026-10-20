@@ -33,15 +33,15 @@ export default function Envelope({ onOpen }) {
         animate="initial"
         exit="open"
         variants={curtainOpenVariant}
-        style={{ transformOrigin: "left", backgroundColor: "#8e4a5d" }}
+        style={{ transformOrigin: "left", backgroundColor: "#7e445f" }}
         className="absolute top-0 left-0 h-full shadow-[15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
-        {/* Fabric Texture & Lighting (Deep Dusty Rose / Dark Mauve blend) */}
-        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#ab6379] via-[#815194]/30 to-transparent pointer-events-none" />
+        {/* Fabric Texture & Lighting (Rich Dark Pink & Purple Lavender Blend) */}
+        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#9d5d82] via-[#8c529c]/40 to-transparent pointer-events-none" />
         {/* Vertical Folds/Pleats */}
         <div className="absolute inset-0 pointer-events-none" style={pleatStyle} />
         {/* Edge Highlight */}
-        <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#c28399] to-transparent opacity-60" />
+        <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#b5769b] to-transparent opacity-60" />
       </motion.div>
 
       {/* --- RIGHT CURTAIN HALF (Pulls to the right edge by collapsing width) --- */}
@@ -50,15 +50,15 @@ export default function Envelope({ onOpen }) {
         animate="initial"
         exit="open"
         variants={curtainOpenVariant}
-        style={{ transformOrigin: "right", backgroundColor: "#8e4a5d" }}
+        style={{ transformOrigin: "right", backgroundColor: "#7e445f" }}
         className="absolute top-0 right-0 h-full shadow-[-15px_0_40px_rgba(0,0,0,0.4)] z-10 overflow-hidden"
       >
-        {/* Fabric Texture & Lighting (Deep Dusty Rose / Dark Mauve blend) */}
-        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#ab6379] via-[#815194]/30 to-transparent pointer-events-none" />
+        {/* Fabric Texture & Lighting (Rich Dark Pink & Purple Lavender Blend) */}
+        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-[#9d5d82] via-[#8c529c]/40 to-transparent pointer-events-none" />
         {/* Vertical Folds/Pleats */}
         <div className="absolute inset-0 pointer-events-none" style={pleatStyle} />
         {/* Edge Highlight */}
-        <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#c28399] to-transparent opacity-60" />
+        <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-transparent via-[#b5769b] to-transparent opacity-60" />
       </motion.div>
 
       {/* --- CENTRAL CONTENT --- */}
