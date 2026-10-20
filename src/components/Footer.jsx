@@ -11,7 +11,7 @@ export default function Footer() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
         w-full 
-        bg-gray-500/90 
+        bg-[#4e5157]/85
         text-white 
         text-center 
         py-10 
@@ -19,11 +19,11 @@ export default function Footer() {
         md:px-12 
         relative 
         overflow-hidden 
-        shadow-[0_-10px_35px_rgba(145,109,177,0.25)]
+        shadow-[0_-10px_35px_rgba(59,62,69,0.35)]
       "
     >
 
-      {/* Lavender Ambient Glow */}
+      {/* Ambient Dusty Rose & Silver Glow */}
       <motion.div
         animate={{
           opacity: [0.15, 0.35, 0.15],
@@ -36,13 +36,13 @@ export default function Footer() {
         className="
           absolute 
           inset-0 
-          bg-[radial-gradient(circle_at_center,_rgba(216,180,254,0.35),transparent_65%)]
+          bg-[radial-gradient(circle_at_center,_rgba(212,153,177,0.25),transparent_65%)]
           pointer-events-none
         "
       />
 
-      {/* Decorative Lavender Lines */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-lavender-300 to-transparent opacity-70" />
+      {/* Decorative Top Line with Dusty Rose Accent */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#d499b1]/60 to-transparent opacity-70" />
 
 
       <div className="relative z-10 flex flex-col items-center">
@@ -58,7 +58,7 @@ export default function Footer() {
             text-[10px] 
             tracking-[0.4em] 
             uppercase 
-            text-gray-200 
+            text-[#bcb9ba] 
             mb-2
           "
         >
@@ -81,27 +81,6 @@ export default function Footer() {
         >
           02 . 12 . 26
         </motion.p>
-
-
-        {/* <motion.p
-          animate={{
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-          }}
-          className="
-            font-serif 
-            italic 
-            text-xs 
-            text-lavender-200 
-            mb-5
-          "
-        >
-          Styled with love 
-        </motion.p> */}
-
 
 
         {/* Names */}
@@ -132,7 +111,7 @@ export default function Footer() {
             >
               A
             </motion.span> 
-            <span className="text-lavender-200 mx-2">♥</span>
+            <span className="text-[#ba7d95] mx-2">♥</span>
             <motion.span 
               whileHover={{ scale: 1.15 }} 
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -150,7 +129,7 @@ export default function Footer() {
             text-[11px] 
             uppercase 
             tracking-[0.35em] 
-            text-gray-200 
+            text-gray-300 
             mb-6
           "
         >
@@ -167,7 +146,8 @@ export default function Footer() {
             whileHover={{
               scale: 1.06,
               y: -4,
-              boxShadow: "0 10px 25px rgba(216,180,254,0.35)",
+              boxShadow: "0 10px 25px rgba(212,153,177,0.35)",
+              backgroundColor: "rgba(181, 101, 118, 0.6)"
             }}
             whileTap={{
               scale: 0.95,
@@ -181,11 +161,9 @@ export default function Footer() {
               py-3 
               px-5
               rounded-full
-              bg-gradient-to-r 
-              from-lavender-300/40 
-              to-lavender-500/40
+              bg-[#7e445f]/50
               border 
-              border-lavender-200/60
+              border-[#d499b1]/50
               backdrop-blur-md
               uppercase
               text-[10px]
@@ -193,7 +171,7 @@ export default function Footer() {
               transition-all
             "
           >
-            <FaPhoneAlt className="text-lavender-100 animate-pulse" />
+            <FaPhoneAlt className="text-[#e8b4cb] animate-pulse" />
             Call Bride
           </motion.a>
 
@@ -204,7 +182,8 @@ export default function Footer() {
             whileHover={{
               scale: 1.06,
               y: -4,
-              boxShadow: "0 10px 25px rgba(216,180,254,0.35)",
+              boxShadow: "0 10px 25px rgba(212,153,177,0.35)",
+              backgroundColor: "rgba(181, 101, 118, 0.6)"
             }}
             whileTap={{
               scale: 0.95,
@@ -218,11 +197,9 @@ export default function Footer() {
               py-3 
               px-5
               rounded-full
-              bg-gradient-to-r 
-              from-lavender-300/40 
-              to-lavender-500/40
+              bg-[#7e445f]/50
               border 
-              border-lavender-200/60
+              border-[#d499b1]/50
               backdrop-blur-md
               uppercase
               text-[10px]
@@ -230,7 +207,7 @@ export default function Footer() {
               transition-all
             "
           >
-            <FaPhoneAlt className="text-lavender-100 animate-pulse" />
+            <FaPhoneAlt className="text-[#e8b4cb] animate-pulse" />
             Call Groom
           </motion.a>
 
@@ -248,7 +225,7 @@ export default function Footer() {
             h-px 
             bg-gradient-to-r 
             from-transparent 
-            via-lavender-200 
+            via-[#d499b1]/50 
             to-transparent
             mb-4
           "
@@ -270,12 +247,12 @@ export default function Footer() {
             text-[10px] 
             uppercase 
             tracking-[0.25em] 
-            text-gray-200
+            text-gray-300
           "
         >
           Created with{" "}
           <FaHeart
-            className="inline mx-1 text-lavender-200 animate-pulse"
+            className="inline mx-1 text-[#e8b4cb] animate-pulse"
             size={11}
           />
             {" "}for Our Special Day

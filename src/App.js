@@ -94,12 +94,12 @@ export default function App() {
     <div
       className="
       min-h-screen
-      bg-gradient-to-br from-lavender-50 via-white to-lavender-100
+      bg-gradient-to-br from-pink-50 via-white to-purple-100
       font-serif
       text-gray-800
       flex justify-center
-      selection:bg-lavender-200
-      selection:text-lavender-900
+      selection:bg-[#7e445f]/20
+      selection:text-[#7e445f]
       "
     >
       <AnimatePresence mode="wait">
@@ -107,7 +107,7 @@ export default function App() {
           <Envelope onOpen={handleOpenEnvelope} key="envelope" />
         )}
 
-        {/* Card Stage displaying /photos/card.png with 60s auto-open & click-to-enter */}
+        {/* Card Stage displaying /photos/card2.png with 60s auto-open & click-to-enter */}
         {stage === "card" && (
           <motion.div
             key="invitation-card-image"
@@ -115,7 +115,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-lavender-900/60 backdrop-blur-md overflow-y-auto cursor-pointer"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#7e445f]/60 backdrop-blur-md overflow-y-auto cursor-pointer"
             onClick={handleOpenWebsite}
           >
             <motion.div
@@ -123,7 +123,7 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
+              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] border-4 border-[#b39263] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
             >
               <img
                 src="/photos/card2.png"
@@ -135,7 +135,7 @@ export default function App() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="mt-4 mb-2"
               >
-                <span className="inline-block px-6 py-2.5 rounded-full bg-lavender-700 text-white text-[10px] tracking-[0.25em] uppercase font-bold shadow-md">
+                <span className="inline-block px-6 py-2.5 rounded-full bg-[#7e445f] text-white text-[10px] tracking-[0.25em] uppercase font-bold shadow-md hover:bg-[#6b3a51] transition-colors">
                   Click to Enter Website
                 </span>
               </motion.div>
@@ -156,7 +156,7 @@ export default function App() {
               bg-white/80
               backdrop-blur-3xl
               min-h-screen
-              shadow-[0_0_120px_rgba(145,109,177,0.15)]
+              shadow-[0_0_120px_rgba(126,68,95,0.15)]
               relative
               overflow-hidden
               border border-white
@@ -172,13 +172,13 @@ export default function App() {
               fixed md:absolute
               top-6 right-6
               z-50
-              bg-lavender-100/90
+              bg-white
               backdrop-blur-xl
               p-4
               rounded-full
-              text-lavender-700
-              shadow-[0_8px_25px_rgba(145,109,177,0.25)]
-              border border-lavender-200
+              text-[#7e445f]
+              shadow-[0_8px_25px_rgba(126,68,95,0.3)]
+              border border-pink-300/40
               transition-all
               "
             >
@@ -195,8 +195,8 @@ export default function App() {
               items-center
               overflow-hidden
               bg-gradient-to-b
-              from-lavender-100/70
-              via-lavender-200/50
+              from-pink-100/60
+              via-purple-100/40
               to-white
               pt-6
               pb-12

@@ -1,16 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Expanded array of floating stars & sparkling particles
+// Expanded array of floating stars & sparkling particles with mixed pink & lavender tones
 const floatingStars = [
-  { top: "10%", left: "5%", size: 4, duration: 3, delay: 0 },
-  { top: "18%", left: "90%", size: 3, duration: 4, delay: 1 },
-  { top: "40%", left: "8%", size: 5, duration: 5, delay: 0.5 },
-  { top: "60%", left: "92%", size: 3.5, duration: 3.5, delay: 1.5 },
-  { top: "85%", left: "15%", size: 4, duration: 4.5, delay: 0.8 },
-  { top: "90%", left: "85%", size: 4.5, duration: 3.2, delay: 2 },
-  { top: "25%", left: "48%", size: 3, duration: 4, delay: 0.3 },
-  { top: "75%", left: "52%", size: 4, duration: 3.8, delay: 1.2 }
+  { top: "10%", left: "5%", size: 4, duration: 3, delay: 0, color: "bg-purple-300" },
+  { top: "18%", left: "90%", size: 3, duration: 4, delay: 1, color: "bg-pink-300" },
+  { top: "40%", left: "8%", size: 5, duration: 5, delay: 0.5, color: "bg-purple-400" },
+  { top: "60%", left: "92%", size: 3.5, duration: 3.5, delay: 1.5, color: "bg-pink-400" },
+  { top: "85%", left: "15%", size: 4, duration: 4.5, delay: 0.8, color: "bg-purple-300" },
+  { top: "90%", left: "85%", size: 4.5, duration: 3.2, delay: 2, color: "bg-pink-300" },
+  { top: "25%", left: "48%", size: 3, duration: 4, delay: 0.3, color: "bg-purple-400" },
+  { top: "75%", left: "52%", size: 4, duration: 3.8, delay: 1.2, color: "bg-pink-300" }
 ];
 
 export default function VideoHero() {
@@ -35,12 +35,12 @@ export default function VideoHero() {
         mx-auto
       "
     >
-      {/* Floating Lavender Stars & Particles Background */}
+      {/* Floating Pink & Lavender Stars & Particles Background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {floatingStars.map((star, index) => (
           <motion.div
             key={index}
-            className="absolute rounded-full bg-lavender-400 shadow-[0_0_12px_rgba(196,181,253,0.9)]"
+            className={`absolute rounded-full ${star.color} shadow-[0_0_12px_rgba(216,133,181,0.8)]`}
             style={{
               top: star.top,
               left: star.left,
@@ -78,7 +78,7 @@ export default function VideoHero() {
           aspect-[4/5]
           rounded-t-[12rem]
           overflow-hidden
-          shadow-[0_25px_70px_rgba(145,109,177,0.3)]
+          shadow-[0_25px_70px_rgba(126,68,95,0.3)]
           border-[6px]
           border-white
           relative
@@ -136,14 +136,14 @@ export default function VideoHero() {
         </h2>
         <div className="flex items-center justify-center gap-3">
           <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#b8973c]/60"></span>
-          <p className="font-serif text-[10px] md:text-[11px] text-lavender-700 tracking-[0.35em] uppercase font-semibold">
+          <p className="font-serif text-[10px] md:text-[11px] text-[#7e445f] tracking-[0.35em] uppercase font-semibold">
             Are Getting Married
           </p>
           <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#b8973c]/60"></span>
         </div>
       </motion.div>
 
-      {/* Ambient Pulsing Glow Aura */}
+      {/* Ambient Pulsing Glow Aura with Pink & Purple touch */}
       <motion.div
         animate={{
           scale: [1, 1.25, 1],
@@ -159,7 +159,8 @@ export default function VideoHero() {
           w-[140%]
           h-[140%]
           bg-gradient-to-tr
-          from-lavender-300/35
+          from-pink-300/30
+          via-purple-300/20
           to-lavender-400/15
           blur-[100px]
           rounded-full

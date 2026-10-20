@@ -30,10 +30,10 @@ export default function TopNames() {
         className="
           w-14 h-14
           rounded-2xl
-          bg-white/70
+          bg-[#7e445f]
           backdrop-blur-md
-          border border-[#d4af37]/40
-          shadow-[0_10px_30px_rgba(145,109,177,0.15)]
+          border border-[#7e445f]/30
+          shadow-[0_10px_30px_rgba(126,68,95,0.15)]
           flex items-center justify-center
           cursor-pointer
           group
@@ -42,7 +42,7 @@ export default function TopNames() {
         <span className="
           font-serif
           text-3xl
-          text-lavender-800
+          text-white
           font-light
           tracking-wider
           group-hover:text-[#d4af37]
@@ -79,10 +79,10 @@ export default function TopNames() {
         className="
           w-14 h-14
           rounded-2xl
-          bg-white/70
+          bg-[#7e445f]
           backdrop-blur-md
-          border border-[#d4af37]/40
-          shadow-[0_10px_30px_rgba(145,109,177,0.15)]
+          border border-[#7e445f]/30
+          shadow-[0_10px_30px_rgba(126,68,95,0.15)]
           flex items-center justify-center
           cursor-pointer
           group
@@ -91,7 +91,7 @@ export default function TopNames() {
         <span className="
           font-serif
           text-3xl
-          text-lavender-800
+          text-white
           font-light
           tracking-wider
           group-hover:text-[#d4af37]

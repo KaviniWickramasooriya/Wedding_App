@@ -71,7 +71,7 @@ export default function Hero() {
             font-serif 
             text-2xl 
             md:text-3xl 
-            text-lavender-900 
+            text-[#7e445f] 
             tracking-[0.25em] 
             uppercase 
             mb-6 
@@ -88,7 +88,7 @@ export default function Hero() {
             <span>OUR</span>
             <span className="h-[1px] w-8 bg-[#d4af37]"></span>
           </div>
-          <span className="font-normal text-lavender-900">STORY</span>
+          <span className="font-normal text-[#8e4a5d]">STORY</span>
         </motion.h2>
 
 

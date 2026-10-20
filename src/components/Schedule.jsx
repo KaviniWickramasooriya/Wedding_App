@@ -10,15 +10,15 @@ import {
   FaCarSide
 } from 'react-icons/fa';
 
-// Floating lavender stars & particles array for background animation
+// Floating pink & lavender stars & particles array for background animation
 const floatingStars = [
-  { top: "10%", left: "10%", size: 4, duration: 3, delay: 0 },
-  { top: "25%", left: "85%", size: 3, duration: 4, delay: 1 },
-  { top: "45%", left: "12%", size: 5, duration: 5, delay: 0.5 },
-  { top: "65%", left: "88%", size: 3.5, duration: 3.5, delay: 1.5 },
-  { top: "82%", left: "18%", size: 4, duration: 4.5, delay: 0.8 },
-  { top: "20%", left: "50%", size: 3, duration: 4, delay: 0.3 },
-  { top: "75%", left: "55%", size: 4.5, duration: 3.8, delay: 1.2 }
+  { top: "10%", left: "10%", size: 4, duration: 3, delay: 0, color: "bg-purple-300" },
+  { top: "25%", left: "85%", size: 3, duration: 4, delay: 1, color: "bg-pink-300" },
+  { top: "45%", left: "12%", size: 5, duration: 5, delay: 0.5, color: "bg-purple-400" },
+  { top: "65%", left: "88%", size: 3.5, duration: 3.5, delay: 1.5, color: "bg-pink-400" },
+  { top: "82%", left: "18%", size: 4, duration: 4.5, delay: 0.8, color: "bg-purple-300" },
+  { top: "20%", left: "50%", size: 3, duration: 4, delay: 0.3, color: "bg-pink-300" },
+  { top: "75%", left: "55%", size: 4.5, duration: 3.8, delay: 1.2, color: "bg-purple-400" }
 ];
 
 export default function Schedule() {
@@ -65,18 +65,18 @@ export default function Schedule() {
       px-6 
       bg-gradient-to-b 
       from-[#e2e4e6] 
-      via-lavender-50 
+      via-pink-50/40 
       to-white 
       relative 
       overflow-hidden
     ">
 
-      {/* Floating Lavender Stars & Particles Background Animation */}
+      {/* Floating Pink & Lavender Stars & Particles Background Animation */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {floatingStars.map((star, index) => (
           <motion.div
             key={index}
-            className="absolute rounded-full bg-lavender-400 shadow-[0_0_12px_rgba(196,181,253,0.9)]"
+            className={`absolute rounded-full ${star.color} shadow-[0_0_12px_rgba(216,133,181,0.8)]`}
             style={{
               top: star.top,
               left: star.left,
@@ -98,7 +98,7 @@ export default function Schedule() {
         ))}
       </div>
 
-      {/* Background Decorative Glow */}
+      {/* Background Decorative Glow with pink & purple touch */}
       <div className="
         absolute 
         top-1/2 
@@ -107,7 +107,7 @@ export default function Schedule() {
         -translate-y-1/2 
         w-[150%] 
         h-[150%] 
-        bg-lavender-200/20 
+        bg-gradient-to-tr from-pink-300/15 via-purple-300/15 to-lavender-300/15 
         rounded-full 
         blur-[100px] 
         pointer-events-none 
@@ -154,7 +154,7 @@ export default function Schedule() {
               font-serif 
               text-3xl 
               md:text-4xl 
-              text-lavender-800 
+              text-[#7e445f] 
               tracking-[0.2em] 
               uppercase
               whitespace-nowrap
@@ -180,7 +180,7 @@ export default function Schedule() {
                 scale: 1.015,
                 y: -2,
                 backgroundColor: "rgba(255,255,255,0.95)",
-                boxShadow: "0 15px 35px rgba(145,109,177,0.18)"
+                boxShadow: "0 15px 35px rgba(126,68,95,0.18)"
               }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{
@@ -198,7 +198,7 @@ export default function Schedule() {
                 px-6 
                 py-5
                 rounded-[1.5rem]
-                shadow-[0_8px_25px_rgba(145,109,177,0.1)]
+                shadow-[0_8px_25px_rgba(126,68,95,0.1)]
                 border 
                 border-white/90
                 flex 
@@ -230,19 +230,19 @@ export default function Schedule() {
                 transition-opacity
               "/>
 
-              {/* Time & Icon Block (Left Side) - Reduced width and gap for tighter spacing */}
+              {/* Time & Icon Block (Left Side) */}
               <div className="flex items-center gap-3 w-full sm:w-40 justify-center sm:justify-start">
                 <div className="
                   w-10 
                   h-10 
                   rounded-xl 
-                  bg-lavender-100/80 
-                  text-lavender-700
+                  bg-[#7e445f]/10 
+                  text-[#7e445f]
                   flex 
                   items-center 
                   justify-center
                   shadow-inner
-                  group-hover:bg-lavender-700
+                  group-hover:bg-[#7e445f]
                   group-hover:text-white
                   transition-all
                   shrink-0
@@ -251,7 +251,7 @@ export default function Schedule() {
                 </div>
 
                 <span className="
-                  text-lavender-900
+                  text-[#7e445f]
                   font-bold
                   text-lg
                   md:text-xl
@@ -294,7 +294,7 @@ export default function Schedule() {
         >
 
           <motion.a
-            whileHover={{ scale: 1.05, backgroundColor: "#62427a", color: "#ffffff" }}
+            whileHover={{ scale: 1.05, backgroundColor: "#6b3a51", color: "#ffffff" }}
             whileTap={{ scale: 0.95 }}
             href={calendarLink}
             target="_blank"
@@ -310,15 +310,15 @@ export default function Schedule() {
               py-4
               bg-white/90
               backdrop-blur-md
-              text-lavender-700
+              text-[#7e445f]
               rounded-full
               text-xs
               uppercase
               tracking-[0.2em]
               font-semibold
-              shadow-[0_10px_30px_rgba(145,109,177,0.12)]
+              shadow-[0_10px_30px_rgba(126,68,95,0.12)]
               border
-              border-lavender-200
+              border-pink-200
               transition-all
             "
           >

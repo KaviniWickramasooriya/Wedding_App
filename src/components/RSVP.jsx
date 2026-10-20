@@ -80,9 +80,9 @@ export default function RSVP() {
           lg:px-14
 
           bg-gradient-to-br
-          from-lavender-200
-          via-lavender-300
-          to-lavender-400
+          from-pink-100
+          via-purple-100
+          to-lavender-200
 
           text-center
           rounded-[2.5rem]
@@ -90,7 +90,7 @@ export default function RSVP() {
           relative
           overflow-hidden
 
-          shadow-[0_20px_55px_rgba(145,109,177,0.28)]
+          shadow-[0_20px_55px_rgba(126,68,95,0.25)]
 
           border
           border-white/80
@@ -111,7 +111,7 @@ export default function RSVP() {
           className="
             absolute
             inset-0
-            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),transparent_65%)]
+            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.35),transparent_65%)]
           "
         />
 
@@ -145,13 +145,14 @@ export default function RSVP() {
                 w-16
                 h-16
                 rounded-full
-                bg-white/40
-                text-[#d4af37]
+                bg-white/50
+                text-[#7e445f]
                 flex
                 items-center
                 justify-center
                 text-2xl
                 mb-5
+                shadow-sm
               "
             >
               ✓
@@ -162,7 +163,7 @@ export default function RSVP() {
               className="
                 font-serif
                 text-3xl
-                text-lavender-900
+                text-[#7e445f]
                 mb-3
               "
             >
@@ -174,7 +175,7 @@ export default function RSVP() {
               className="
                 font-serif
                 text-sm
-                text-lavender-800
+                text-gray-700
               "
             >
               Your RSVP has been beautifully received.
@@ -218,7 +219,7 @@ export default function RSVP() {
               font-serif
               text-2xl
               lg:text-4xl
-              text-lavender-900
+              text-[#7e445f]
               tracking-wider
               mb-3
             "
@@ -236,7 +237,7 @@ export default function RSVP() {
               font-serif
               text-xs
               lg:text-sm
-              text-lavender-800
+              text-gray-700
               mb-7
               leading-relaxed
             "
@@ -281,7 +282,7 @@ export default function RSVP() {
                   text-[11px]
                   uppercase
                   tracking-widest
-                  text-lavender-800
+                  text-[#7e445f]
                   mb-2
                 "
               >
@@ -305,9 +306,9 @@ export default function RSVP() {
                   lg:py-4
                   text-sm
                   font-serif
-                  text-lavender-900
+                  text-gray-800
                   focus:outline-none
-                  focus:border-[#d4af37]
+                  focus:border-[#7e445f]
                 "
               />
 
@@ -326,7 +327,7 @@ export default function RSVP() {
                   text-[11px]
                   uppercase
                   tracking-widest
-                  text-lavender-800
+                  text-[#7e445f]
                   mb-2
                 "
               >
@@ -346,12 +347,15 @@ export default function RSVP() {
                     text-center
                     py-3.5
                     rounded-xl
-                    bg-white/50
+                    bg-white/60
                     cursor-pointer
                     text-sm
-                    has-[:checked]:bg-[#d1ab3c]
+                    font-serif
+                    text-gray-700
+                    has-[:checked]:bg-[#7e445f]
                     has-[:checked]:text-white
                     shadow-sm
+                    transition-colors
                   "
                 >
                   <input
@@ -374,12 +378,15 @@ export default function RSVP() {
                     text-center
                     py-3.5
                     rounded-xl
-                    bg-white/50
+                    bg-white/60
                     cursor-pointer
                     text-sm
-                    has-[:checked]:bg-lavender-700
+                    font-serif
+                    text-gray-700
+                    has-[:checked]:bg-[#7e445f]
                     has-[:checked]:text-white
                     shadow-sm
+                    transition-colors
                   "
                 >
                   <input
@@ -413,6 +420,9 @@ export default function RSVP() {
                 lg:py-4
                 text-sm
                 font-serif
+                text-gray-800
+                focus:outline-none
+                focus:border-[#7e445f]
               "
             >
 
@@ -445,7 +455,8 @@ export default function RSVP() {
 
             <motion.button
               whileHover={{
-                scale:1.04
+                scale:1.04,
+                backgroundColor: "#6b3a51"
               }}
               whileTap={{
                 scale:0.97
@@ -457,9 +468,7 @@ export default function RSVP() {
                 py-4
                 rounded-xl
 
-                bg-gradient-to-r
-                from-[#d1ab3c]
-                to-[#d1ab3c]
+                bg-[#7e445f]
 
                 text-white
                 text-xs
@@ -467,7 +476,8 @@ export default function RSVP() {
                 tracking-[0.25em]
                 font-bold
 
-                shadow-[0_8px_20px_rgba(212,175,55,0.3)]
+                shadow-[0_8px_20px_rgba(126,68,95,0.3)]
+                transition-colors
               "
             >
               {

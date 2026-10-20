@@ -16,8 +16,8 @@ export default function Location() {
         md:px-12 
         bg-gradient-to-b 
         from-white 
-        via-lavender-50/40 
-        to-lavender-100/60
+        via-pink-50/30 
+        to-purple-100/50
         flex 
         flex-col 
         items-center 
@@ -26,7 +26,7 @@ export default function Location() {
       "
     >
 
-      {/* Decorative ambient background glow */}
+      {/* Decorative ambient background glow with pink & purple touch */}
       <div className="
         absolute 
         top-1/2 
@@ -35,7 +35,7 @@ export default function Location() {
         -translate-y-1/2 
         w-[70%] 
         h-[70%] 
-        bg-lavender-300/20 
+        bg-gradient-to-tr from-pink-300/15 via-purple-300/15 to-lavender-300/15 
         rounded-full 
         blur-[140px] 
         pointer-events-none 
@@ -84,7 +84,7 @@ export default function Location() {
               font-serif 
               text-3xl 
               md:text-4xl 
-              text-lavender-700 
+              text-[#7e445f] 
               tracking-[0.2em] 
               uppercase
               font-light
@@ -124,7 +124,7 @@ export default function Location() {
             backdrop-blur-xl 
             rounded-[2.5rem] 
             overflow-hidden 
-            shadow-[0_25px_60px_rgba(145,109,177,0.18)] 
+            shadow-[0_25px_60px_rgba(126,68,95,0.15)] 
             border border-white/80
             flex 
             flex-col
@@ -132,7 +132,7 @@ export default function Location() {
         >
 
           {/* Map Container precisely centered on Waters Edge */}
-          <div className="w-full h-72 bg-lavender-100/50 relative overflow-hidden">
+          <div className="w-full h-72 bg-purple-100/50 relative overflow-hidden">
 
             <iframe 
               src="https://maps.google.com/maps?q=Waters%20Edge,%20Battaramulla&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -157,7 +157,7 @@ export default function Location() {
             flex-col 
             items-center 
             bg-gradient-to-t 
-            from-lavender-50/60 
+            from-pink-50/40 
             to-white/90
           ">
 
@@ -165,13 +165,13 @@ export default function Location() {
               w-12 
               h-12 
               rounded-2xl 
-              bg-lavender-100/80 
-              text-lavender-700 
+              bg-[#7e445f]/10 
+              text-[#7e445f] 
               flex 
               items-center 
               justify-center 
               shadow-sm
-              border border-lavender-200/50
+              border border-[#7e445f]/20
               mb-4
             ">
               <FaMapMarkerAlt size={20}/>
@@ -182,7 +182,7 @@ export default function Location() {
               font-serif 
               text-xl 
               md:text-3xl 
-              text-lavender-700 
+              text-[#7e445f] 
               font-normal 
               mb-1
             ">
@@ -214,7 +214,7 @@ export default function Location() {
 
 
             <motion.a 
-              whileHover={{ scale: 1.05, backgroundColor: "#68488a" }}
+              whileHover={{ scale: 1.05, backgroundColor: "#6b3a51" }}
               whileTap={{ scale: 0.95 }}
               href="https://maps.app.goo.gl/miNKr8uEbpws7HCaA"
               target="_blank"
@@ -226,13 +226,13 @@ export default function Location() {
                 px-8 
                 py-3.5 
                 rounded-full 
-                bg-lavender-700 
+                bg-[#7e445f] 
                 text-white 
                 text-[10px] 
                 tracking-[0.25em] 
                 uppercase 
                 font-bold 
-                shadow-[0_10px_25px_rgba(109,74,138,0.3)]
+                shadow-[0_10px_25px_rgba(126,68,95,0.3)]
                 transition-all
               "
             >

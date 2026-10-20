@@ -27,12 +27,12 @@ export default function Countdown({ targetDate }) {
     <motion.div 
       whileHover={{ scale: 1.08, y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      className="flex flex-col items-center justify-center bg-lavender-700 text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-[0_10px_25px_rgba(109,74,138,0.25)] border border-lavender-600 cursor-pointer"
+      className="flex flex-col items-center justify-center bg-[#7e445f] text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-[0_10px_25px_rgba(126,68,95,0.3)] border border-[#9d5d82] cursor-pointer"
     >
       <span className="font-serif text-2xl md:text-3xl font-semibold tracking-wide">
         {value.toString().padStart(2, '0')}
       </span>
-      <span className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase opacity-80 mt-0.5 font-medium">
+      <span className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase opacity-90 mt-0.5 font-medium">
         {label}
       </span>
     </motion.div>
@@ -47,8 +47,8 @@ export default function Countdown({ targetDate }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center py-20 px-6 bg-gray-200 relative overflow-hidden"
     >
-      {/* Decorative ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-lavender-300/20 rounded-full blur-[100px] pointer-events-none -z-0" />
+      {/* Decorative ambient background glow with pink & purple touch */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-gradient-to-tr from-pink-300/20 via-purple-300/20 to-lavender-300/20 rounded-full blur-[100px] pointer-events-none -z-0" />
 
       {/* <motion.h3 
         initial={{ opacity: 0, y: -15 }}
@@ -78,7 +78,7 @@ export default function Countdown({ targetDate }) {
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="mt-8 text-xs font-serif tracking-[0.3em] text-lavender-700 uppercase font-medium relative z-10"
+        className="mt-8 text-xs font-serif tracking-[0.3em] text-[#7e445f] uppercase font-medium relative z-10"
       >
         Until our forever begins
       </motion.p>

@@ -16,7 +16,7 @@ export default function InvitationCard({ onOpen }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
       transition={{ duration: 0.8 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-lavender-900/50 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-[#7e445f]/40 backdrop-blur-md overflow-y-auto"
     >
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
@@ -24,7 +24,7 @@ export default function InvitationCard({ onOpen }) {
         whileHover={{ scale: 1.01 }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         onClick={onOpen}
-        className="w-full max-w-md bg-[#fcfbf9] text-gray-800 p-6 sm:p-10 rounded-[2rem] shadow-[0_25px_70px_rgba(0,0,0,0.3)] border-[5px] sm:border-[6px] border-double border-[#b39263] relative cursor-pointer text-center font-serif my-auto"
+        className="w-full max-w-md bg-[#fcfbf9] text-gray-800 p-6 sm:p-10 rounded-[2rem] shadow-[0_25px_70px_rgba(126,68,95,0.25)] border-[5px] sm:border-[6px] border-double border-[#b39263] relative cursor-pointer text-center font-serif my-auto"
       >
         <div className="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] opacity-5 pointer-events-none rounded-[2rem]" />
 
@@ -42,7 +42,7 @@ export default function InvitationCard({ onOpen }) {
 
           <div className="py-1 sm:py-2">
             <h2 
-              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#8e4a5d] drop-shadow-sm font-normal"
               style={{ textTransform: 'none' }}
             >
               Anuththara
@@ -51,7 +51,7 @@ export default function InvitationCard({ onOpen }) {
               AND
             </p>
             <h2 
-              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#a82462] drop-shadow-sm font-normal"
+              className="font-cursive text-4xl sm:text-5xl md:text-6xl text-[#8e4a5d] drop-shadow-sm font-normal"
               style={{ textTransform: 'none' }}
             >
               Yasith
@@ -91,7 +91,7 @@ export default function InvitationCard({ onOpen }) {
             transition={{ duration: 2, repeat: Infinity }}
             className="pt-4 sm:pt-5"
           >
-            <span className="inline-block px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-lavender-700 text-white text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold shadow-md hover:bg-lavender-800 transition-colors">
+            <span className="inline-block px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#7e445f] text-white text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold shadow-md hover:bg-[#6b3a51] transition-colors">
               Click to Enter Website
             </span>
           </motion.div>
