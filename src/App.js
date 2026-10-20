@@ -40,7 +40,7 @@ export default function App() {
         } else {
           window.scrollBy({ top: 0.6, behavior: "auto" });
         }
-      }, 25);
+      }, 30);
     }, 1500);
   }, [stopAutoScroll]);
 
