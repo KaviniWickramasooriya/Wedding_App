@@ -181,24 +181,24 @@ export default function Location() {
             <h4 className="
               font-serif 
               text-xl 
-              md:text-3xl 
+              md:text-2xl 
               text-[#7e445f] 
               font-normal 
               mb-1
             ">
-              Eagle Banquet Hall
-            </h4>
+              Eagle Hall
+            </h4> 
 
 
             <p className="
               font-serif 
               text-2xl
-              md:text-lg 
+              md:text-2xl 
               text-[#b8973c] 
               mb-2 
               italic
             ">
-              Waters Edge
+              Waters Edge, Colombo
             </p>
 
 

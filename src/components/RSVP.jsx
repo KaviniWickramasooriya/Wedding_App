@@ -12,7 +12,7 @@ export default function RSVP() {
 
     formData.append(
       "access_key",
-      "3c2b6575-366b-4b10-b9cd-dd28b265323b"
+      "76a06888-3fa6-44ba-bf1b-a1623be6938c"
     );
 
     try {
@@ -80,9 +80,9 @@ export default function RSVP() {
           lg:px-14
 
           bg-gradient-to-br
-          from-pink-100
-          via-purple-100
-          to-lavender-200
+          from-gray-200
+          via-gray-300
+          to-slate-300
 
           text-center
           rounded-[2.5rem]
@@ -90,15 +90,15 @@ export default function RSVP() {
           relative
           overflow-hidden
 
-          shadow-[0_20px_55px_rgba(126,68,95,0.25)]
+          shadow-[0_20px_55px_rgba(126,68,95,0.2)]
 
           border
-          border-white/80
+          border-white/90
         "
       >
 
 
-        {/* Soft Glow */}
+        {/* Soft Glow with pink & purple touch */}
         <motion.div
           animate={{
             opacity:[0.3,0.55,0.3],
@@ -111,7 +111,7 @@ export default function RSVP() {
           className="
             absolute
             inset-0
-            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.35),transparent_65%)]
+            bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),transparent_65%)]
           "
         />
 
@@ -145,7 +145,7 @@ export default function RSVP() {
                 w-16
                 h-16
                 rounded-full
-                bg-white/50
+                bg-white/80
                 text-[#7e445f]
                 flex
                 items-center
@@ -297,9 +297,9 @@ export default function RSVP() {
                 placeholder="Mr. & Mrs. Family"
                 className="
                   w-full
-                  bg-white/70
+                  bg-white/80
                   border
-                  border-white/70
+                  border-white
                   rounded-xl
                   px-4
                   py-3.5
@@ -347,7 +347,7 @@ export default function RSVP() {
                     text-center
                     py-3.5
                     rounded-xl
-                    bg-white/60
+                    bg-white/70
                     cursor-pointer
                     text-sm
                     font-serif
@@ -378,7 +378,7 @@ export default function RSVP() {
                     text-center
                     py-3.5
                     rounded-xl
-                    bg-white/60
+                    bg-white/70
                     cursor-pointer
                     text-sm
                     font-serif
@@ -407,32 +407,133 @@ export default function RSVP() {
 
             {/* Guests */}
 
-            <select
-              name="guest_count"
-              className="
-                w-full
-                bg-white/70
-                border
-                border-white/70
-                rounded-xl
-                px-4
-                py-3.5
-                lg:py-4
-                text-sm
-                font-serif
-                text-gray-800
-                focus:outline-none
-                focus:border-[#7e445f]
-              "
-            >
+            <div>
+              <label
+                className="
+                  block
+                  font-serif
+                  text-[11px]
+                  uppercase
+                  tracking-widest
+                  text-[#7e445f]
+                  mb-2
+                "
+              >
+                Number of Guests
+              </label>
 
-              {[1,2,3,4,5,6,7,8,9,10].map(num => (
-                <option key={num}>
-                  {num} Guest{num > 1 ? "s" : ""}
-                </option>
-              ))}
+              <select
+                name="guest_count"
+                className="
+                  w-full
+                  bg-white/80
+                  border
+                  border-white
+                  rounded-xl
+                  px-4
+                  py-3.5
+                  lg:py-4
+                  text-sm
+                  font-serif
+                  text-gray-800
+                  focus:outline-none
+                  focus:border-[#7e445f]
+                "
+              >
 
-            </select>
+                {[1,2,3,4,5,6,7,8,9,10].map(num => (
+                  <option key={num}>
+                    {num} Guest{num > 1 ? "s" : ""}
+                  </option>
+                ))}
+
+              </select>
+            </div>
+
+
+
+            {/* Meal Preference */}
+
+            <div>
+
+              <label
+                className="
+                  block
+                  font-serif
+                  text-[11px]
+                  uppercase
+                  tracking-widest
+                  text-[#7e445f]
+                  mb-2
+                "
+              >
+                Meal Preference
+              </label>
+
+              <div className="flex gap-3">
+
+                <motion.label
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                  className="
+                    flex-1
+                    text-center
+                    py-3.5
+                    rounded-xl
+                    bg-white/70
+                    cursor-pointer
+                    text-sm
+                    font-serif
+                    text-gray-700
+                    has-[:checked]:bg-[#7e445f]
+                    has-[:checked]:text-white
+                    shadow-sm
+                    transition-colors
+                  "
+                >
+                  <input
+                    hidden
+                    defaultChecked
+                    type="radio"
+                    name="meal_preference"
+                    value="Non-Vegetarian"
+                  />
+                  Non-Vegetarian
+                </motion.label>
+
+                <motion.label
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                  className="
+                    flex-1
+                    text-center
+                    py-3.5
+                    rounded-xl
+                    bg-white/70
+                    cursor-pointer
+                    text-sm
+                    font-serif
+                    text-gray-700
+                    has-[:checked]:bg-[#7e445f]
+                    has-[:checked]:text-white
+                    shadow-sm
+                    transition-colors
+                  "
+                >
+                  <input
+                    hidden
+                    type="radio"
+                    name="meal_preference"
+                    value="Vegetarian"
+                  />
+                  Vegetarian
+                </motion.label>
+
+              </div>
+
+            </div>
 
 
 

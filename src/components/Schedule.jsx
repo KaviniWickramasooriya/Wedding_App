@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaUserTie, 
@@ -10,18 +10,35 @@ import {
   FaCarSide
 } from 'react-icons/fa';
 
-// Floating pink & lavender stars & particles array for background animation
+// Array of floating stars & sparkling particles for background animation
 const floatingStars = [
-  { top: "10%", left: "10%", size: 4, duration: 3, delay: 0, color: "bg-purple-300" },
-  { top: "25%", left: "85%", size: 3, duration: 4, delay: 1, color: "bg-pink-300" },
-  { top: "45%", left: "12%", size: 5, duration: 5, delay: 0.5, color: "bg-purple-400" },
-  { top: "65%", left: "88%", size: 3.5, duration: 3.5, delay: 1.5, color: "bg-pink-400" },
-  { top: "82%", left: "18%", size: 4, duration: 4.5, delay: 0.8, color: "bg-purple-300" },
-  { top: "20%", left: "50%", size: 3, duration: 4, delay: 0.3, color: "bg-pink-300" },
-  { top: "75%", left: "55%", size: 4.5, duration: 3.8, delay: 1.2, color: "bg-purple-400" }
+  { top: "10%", left: "10%", size: 4, duration: 3, delay: 0 },
+  { top: "25%", left: "85%", size: 3, duration: 4, delay: 1 },
+  { top: "45%", left: "12%", size: 5, duration: 5, delay: 0.5 },
+  { top: "65%", left: "88%", size: 3.5, duration: 3.5, delay: 1.5 },
+  { top: "82%", left: "18%", size: 4, duration: 4.5, delay: 0.8 },
+  { top: "20%", left: "50%", size: 3, duration: 4, delay: 0.3 },
+  { top: "75%", left: "55%", size: 4.5, duration: 3.8, delay: 1.2 }
 ];
 
 export default function Schedule() {
+  // Color shifting state for continuous dynamic color transitions (Pinks, Roses, Dark Pinks, and Gold - NO purple)
+  const [colorIndex, setColorIndex] = useState(0);
+
+  const dynamicColors = [
+    "bg-pink-400 shadow-[0_0_12px_rgba(244,114,182,0.8)]",
+    "bg-[#7e445f] shadow-[0_0_12px_rgba(126,68,95,0.8)]",
+    "bg-rose-400 shadow-[0_0_12px_rgba(251,113,133,0.8)]",
+    "bg-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.8)]",
+    "bg-pink-500 shadow-[0_0_12px_rgba(236,72,153,0.8)]"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setColorIndex((prev) => (prev + 1) % dynamicColors.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [dynamicColors.length]);
 
   const events = [
     { 
@@ -30,7 +47,7 @@ export default function Schedule() {
       icon: <FaUserTie size={16} /> 
     },
     { 
-      time: "9:30 AM", 
+      time: "9:15 AM", 
       title: "Poruwa Ceremony & Auspicious Rituals", 
       icon: <FaRing size={16} /> 
     },
@@ -40,17 +57,17 @@ export default function Schedule() {
       icon: <FaCameraRetro size={16} /> 
     },
     { 
-      time: "12:00 PM", 
+      time: "11:30 AM", 
       title: "Wedding Reception & Cocktail Hour", 
       icon: <FaGlassCheers size={16} /> 
     },
     { 
-      time: "12:45 PM", 
+      time: "1:00 PM", 
       title: "Grand Wedding Lunch Buffet", 
       icon: <FaUtensils size={16} /> 
     },
     { 
-      time: "3:45 PM", 
+      time: "4:00 PM", 
       title: "Going Away", 
       icon: <FaCarSide size={16} /> 
     }
@@ -71,12 +88,12 @@ export default function Schedule() {
       overflow-hidden
     ">
 
-      {/* Floating Pink & Lavender Stars & Particles Background Animation */}
+      {/* Floating Dynamic Color-Changing Particles Background Animation (No Purple) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {floatingStars.map((star, index) => (
           <motion.div
             key={index}
-            className={`absolute rounded-full ${star.color} shadow-[0_0_12px_rgba(216,133,181,0.8)]`}
+            className={`absolute rounded-full transition-colors duration-1000 ${dynamicColors[(index + colorIndex) % dynamicColors.length]}`}
             style={{
               top: star.top,
               left: star.left,
@@ -98,7 +115,7 @@ export default function Schedule() {
         ))}
       </div>
 
-      {/* Background Decorative Glow with pink & purple touch */}
+      {/* Background Decorative Glow with pink & gold warmth */}
       <div className="
         absolute 
         top-1/2 
@@ -107,7 +124,7 @@ export default function Schedule() {
         -translate-y-1/2 
         w-[150%] 
         h-[150%] 
-        bg-gradient-to-tr from-pink-300/15 via-purple-300/15 to-lavender-300/15 
+        bg-gradient-to-tr from-pink-300/15 via-rose-300/15 to-pink-200/15 
         rounded-full 
         blur-[100px] 
         pointer-events-none 

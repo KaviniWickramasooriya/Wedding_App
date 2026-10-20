@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-// Expanded array of floating stars & sparkling particles with mixed pink & lavender tones
+// Expanded array of floating stars & sparkling particles with smoothly shifting, vibrant theme colors
 const floatingStars = [
-  { top: "10%", left: "5%", size: 4, duration: 3, delay: 0, color: "bg-purple-300" },
-  { top: "18%", left: "90%", size: 3, duration: 4, delay: 1, color: "bg-pink-300" },
-  { top: "40%", left: "8%", size: 5, duration: 5, delay: 0.5, color: "bg-purple-400" },
-  { top: "60%", left: "92%", size: 3.5, duration: 3.5, delay: 1.5, color: "bg-pink-400" },
-  { top: "85%", left: "15%", size: 4, duration: 4.5, delay: 0.8, color: "bg-purple-300" },
-  { top: "90%", left: "85%", size: 4.5, duration: 3.2, delay: 2, color: "bg-pink-300" },
-  { top: "25%", left: "48%", size: 3, duration: 4, delay: 0.3, color: "bg-purple-400" },
-  { top: "75%", left: "52%", size: 4, duration: 3.8, delay: 1.2, color: "bg-pink-300" }
+  { top: "10%", left: "5%", size: 4, duration: 3, delay: 0 },
+  { top: "18%", left: "90%", size: 3, duration: 4, delay: 1 },
+  { top: "40%", left: "8%", size: 5, duration: 5, delay: 0.5 },
+  { top: "60%", left: "92%", size: 3.5, duration: 3.5, delay: 1.5 },
+  { top: "85%", left: "15%", size: 4, duration: 4.5, delay: 0.8 },
+  { top: "90%", left: "85%", size: 4.5, duration: 3.2, delay: 2 },
+  { top: "25%", left: "48%", size: 3, duration: 4, delay: 0.3 },
+  { top: "75%", left: "52%", size: 4, duration: 3.8, delay: 1.2 }
 ];
 
 export default function VideoHero() {
+  // Color shifting state for dynamic continuous color transitions (Strictly pinks, dark pinks, roses, and gold/platinum accents - NO purple)
+  const [colorIndex, setColorIndex] = useState(0);
+
+  const dynamicColors = [
+    "bg-pink-400 shadow-[0_0_15px_rgba(244,114,182,0.9)]",
+    "bg-[#7e445f] shadow-[0_0_15px_rgba(126,68,95,0.9)]",
+    "bg-rose-400 shadow-[0_0_15px_rgba(251,113,133,0.9)]",
+    "bg-[#b39263] shadow-[0_0_15px_rgba(179,146,99,0.9)]",
+    "bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.9)]"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setColorIndex((prev) => (prev + 1) % dynamicColors.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [dynamicColors.length]);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -35,12 +53,12 @@ export default function VideoHero() {
         mx-auto
       "
     >
-      {/* Floating Pink & Lavender Stars & Particles Background */}
+      {/* Floating Dynamic Color-Changing Particles Background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {floatingStars.map((star, index) => (
           <motion.div
             key={index}
-            className={`absolute rounded-full ${star.color} shadow-[0_0_12px_rgba(216,133,181,0.8)]`}
+            className={`absolute rounded-full transition-colors duration-1000 ${dynamicColors[(index + colorIndex) % dynamicColors.length]}`}
             style={{
               top: star.top,
               left: star.left,
@@ -49,8 +67,8 @@ export default function VideoHero() {
             }}
             animate={{
               opacity: [0.2, 1, 0.2],
-              y: [0, -30, 0],
-              scale: [1, 1.6, 1],
+              y: [0, -35, 0],
+              scale: [1, 1.7, 1],
             }}
             transition={{
               duration: star.duration,
@@ -78,7 +96,7 @@ export default function VideoHero() {
           aspect-[4/5]
           rounded-t-[12rem]
           overflow-hidden
-          shadow-[0_25px_70px_rgba(126,68,95,0.3)]
+          shadow-[0_25px_70px_rgba(126,68,95,0.35)]
           border-[6px]
           border-white
           relative
@@ -109,7 +127,7 @@ export default function VideoHero() {
         {/* Luxury Gold Inner Border Accent */}
         <div className="absolute inset-3.5 border border-[#d4af37]/80 rounded-t-[11rem] pointer-events-none z-20 shadow-[inset_0_0_15px_rgba(212,175,55,0.2)] transition-colors duration-500 group-hover:border-[#d4af37]" />
 
-        {/* Previous Date Badge Style inside top of image */}
+        {/* Date Badge Style inside top of image */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +161,7 @@ export default function VideoHero() {
         </div>
       </motion.div>
 
-      {/* Ambient Pulsing Glow Aura with Pink & Purple touch */}
+      {/* Ambient Pulsing Glow Aura with Smoothly Changing Mixed Pink & Rose Tones (No Purple) */}
       <motion.div
         animate={{
           scale: [1, 1.25, 1],
@@ -159,9 +177,9 @@ export default function VideoHero() {
           w-[140%]
           h-[140%]
           bg-gradient-to-tr
-          from-pink-300/30
-          via-purple-300/20
-          to-lavender-400/15
+          from-pink-400/25
+          via-[#7e445f]/20
+          to-rose-300/25
           blur-[100px]
           rounded-full
           -z-10
