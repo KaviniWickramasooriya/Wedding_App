@@ -19,7 +19,17 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
-  const audioRef = useRef(new Audio("/music/background.mp3"));
+  const audioRef = useRef(null);
+
+  // Initialize audio object once safely
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/music/background.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.preload = "auto";
+    }
+  }, []);
+
   const scrollIntervalRef = useRef(null);
   const resumeTimeoutRef = useRef(null);
 
@@ -63,18 +73,27 @@ export default function App() {
     }, 5000);
   }, [stopAutoScroll, startAutoScrollLoop]);
 
+  const playAudioSafe = () => {
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((e) => {
+        console.log("Mobile audio autoplay blocked, waiting for user gesture:", e);
+        setIsPlaying(false);
+      });
+    }
+  };
+
   const handleOpenWebsite = useCallback(() => {
     setStage("website");
-    audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
-    setIsPlaying(true);
+    playAudioSafe();
     triggerInitialAutoScroll();
   }, [triggerInitialAutoScroll]);
 
-  const handleStartHeartTransition = () => {
+  const handleStartHeartTransition = useCallback(() => {
     setStage("heart");
-    audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
-    setIsPlaying(true);
-  };
+    playAudioSafe();
+  }, []);
 
   useEffect(() => {
     if (stage !== "website") return;
@@ -99,19 +118,26 @@ export default function App() {
   }, [stage, triggerInitialAutoScroll, handleUserScrollInteraction, stopAutoScroll]);
 
   const handleOpenEnvelope = () => {
+    if (audioRef.current) {
+      audioRef.current.load();
+    }
     setStage("card");
   };
 
   const toggleMusic = () => {
+    if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();
+      setIsPlaying(false);
     } else {
-      audioRef.current.play();
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((e) => console.log("Play blocked:", e));
     }
-    setIsPlaying(!isPlaying);
   };
 
   const toggleMute = () => {
+    if (!audioRef.current) return;
     const nextMutedState = !isMuted;
     audioRef.current.muted = nextMutedState;
     setIsMuted(nextMutedState);
@@ -125,7 +151,7 @@ export default function App() {
     }, 15000);
 
     return () => clearTimeout(timer);
-  }, [stage]);
+  }, [stage, handleStartHeartTransition]);
 
   return (
     <div
@@ -162,7 +188,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#7e445f]/60 backdrop-blur-md overflow-y-auto cursor-pointer"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gradient-to-br from-pink-100/40 via-white/50 to-pink-200/40 backdrop-blur-sm overflow-y-auto cursor-pointer"
             onClick={handleStartHeartTransition}
           >
             <motion.div
@@ -170,15 +196,15 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-0"
+              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.2)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-0"
             >
               <img
-                src="/photos/card2.png"
+                src="/photos/card1.png"
                 alt="Wedding Invitation Card"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="w-full h-auto object-contain rounded-xl max-h-[85vh]"
+                className="w-full h-auto object-contain rounded-xl max-h-[85vh] border-2 border-[#7e445f]/20"
               />
               <motion.div 
                 animate={{ opacity: [0.4, 1, 0.4] }}
