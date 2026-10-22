@@ -199,7 +199,7 @@ export default function App() {
               className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.2)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-0"
             >
               <img
-                src="/photos/card2.png"
+                src="/photos/card1.png"
                 alt="Wedding Invitation Card"
                 loading="eager"
                 fetchPriority="high"
