@@ -38,7 +38,7 @@ export default function App() {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
         stopAutoScroll();
       } else {
-        window.scrollBy({ top: 0.8, behavior: "auto" });
+        window.scrollBy({ top: 1, behavior: "auto" });
       }
     }, 30);
   }, [stopAutoScroll]);
