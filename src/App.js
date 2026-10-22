@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 export default function App() {
   const [stage, setStage] = useState("envelope"); // "envelope" -> "card" -> "heart" -> "website"
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
   const scrollIntervalRef = useRef(null);
@@ -37,7 +38,7 @@ export default function App() {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
         stopAutoScroll();
       } else {
-        window.scrollBy({ top: 0.6, behavior: "auto" });
+        window.scrollBy({ top: 0.8, behavior: "auto" });
       }
     }, 30);
   }, [stopAutoScroll]);
@@ -110,12 +111,18 @@ export default function App() {
     setIsPlaying(!isPlaying);
   };
 
+  const toggleMute = () => {
+    const nextMutedState = !isMuted;
+    audioRef.current.muted = nextMutedState;
+    setIsMuted(nextMutedState);
+  };
+
   useEffect(() => {
     if (stage !== "card") return;
 
     const timer = setTimeout(() => {
       handleStartHeartTransition();
-    }, 60000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [stage]);
@@ -124,7 +131,7 @@ export default function App() {
     <div
       className="
       min-h-screen
-      bg-gradient-to-br from-gray-100 via-gray-50 to-slate-200
+      bg-gradient-to-br from-pink-50/50 via-gray-50 to-slate-100
       font-serif
       text-gray-800
       flex justify-center
@@ -133,9 +140,14 @@ export default function App() {
       relative
       "
     >
-      {/* Global Screen-Fixed Music Toggle Bar (Visible across all website views) */}
+      {/* Global Screen-Fixed Music Toggle Bar with Mute and Play props */}
       {stage === "website" && (
-        <MusicPlayerBar isPlaying={isPlaying} toggleMusic={toggleMusic} />
+        <MusicPlayerBar 
+          isPlaying={isPlaying} 
+          toggleMusic={toggleMusic} 
+          isMuted={isMuted} 
+          toggleMute={toggleMute} 
+        />
       )}
 
       <AnimatePresence mode="wait">
@@ -158,21 +170,24 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-2 sm:p-4"
+              className="w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(126,68,95,0.4)] bg-[#fcfbf9] relative my-auto flex flex-col items-center p-0"
             >
               <img
                 src="/photos/card2.png"
                 alt="Wedding Invitation Card"
-                className="w-full h-auto object-contain rounded-xl max-h-[80vh]"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-auto object-contain rounded-xl max-h-[85vh]"
               />
               <motion.div 
                 animate={{ opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="mt-4 mb-2"
+                className="mt-0 mb-0"
               >
-                <span className="inline-block px-6 py-2.5 rounded-full bg-[#7e445f] text-white text-[10px] tracking-[0.25em] uppercase font-bold shadow-md hover:bg-[#6b3a51] transition-colors">
+                {/* <span className="inline-block px-6 py-2.5 rounded-full bg-[#7e445f] text-white text-[10px] tracking-[0.25em] uppercase font-bold shadow-md hover:bg-[#6b3a51] transition-colors">
                   Click to Enter Website
-                </span>
+                </span> */}
               </motion.div>
             </motion.div>
           </motion.div>
@@ -212,9 +227,9 @@ export default function App() {
               items-center
               overflow-hidden
               bg-gradient-to-b
-              from-gray-200
-              via-gray-100
-              to-white
+              from-pink-50/30
+              via-white
+              to-gray-50
               pt-6
               pb-12
               "

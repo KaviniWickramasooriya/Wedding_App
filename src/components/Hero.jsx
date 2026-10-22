@@ -74,7 +74,7 @@ export default function Hero() {
             text-[#7e445f] 
             tracking-[0.25em] 
             uppercase 
-            mb-6 
+            mb-4
             flex 
             flex-col
             items-center 
@@ -83,12 +83,25 @@ export default function Hero() {
             font-light
           "
         >
-          <div className="flex items-center gap-3">
-            <span className="h-[1px] w-8 bg-[#d4af37]"></span>
-            <span>OUR</span>
-            <span className="h-[1px] w-8 bg-[#d4af37]"></span>
+          {/* <div className="flex items-center gap-3">
+            <span className="h-[1px] w-6 bg-[#d4af37]"></span>
+            {/* <span>OUR STORY</span> */}
+            {/* <span className="h-[1px] w-6 bg-[#d4af37]"></span>
           </div>
-          <span className="font-normal text-[#8e4a5d]">STORY</span>
+          <span className="font-normal text-[#8e4a5d]">STORY</span> */} 
+
+              {/* Decorative Gold Divider Line with Diamond Accent */}
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-center justify-center gap-4 w-full max-w-xs mt-0"
+              >
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#d4af37]/60" />
+                <div className="w-2 h-2 rotate-45 bg-[#d4af37]" />
+                <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#d4af37]/60" />
+              </motion.div>
         </motion.h2>
 
 
@@ -103,7 +116,8 @@ export default function Hero() {
             md:text-lg 
             text-gray-800 
             leading-relaxed 
-            italic 
+            italic
+            mt-6 
             px-2
           "
         >

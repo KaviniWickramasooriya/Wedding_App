@@ -14,7 +14,6 @@ const floatingStars = [
 ];
 
 export default function VideoHero() {
-  // Color shifting state for dynamic continuous color transitions (Strictly pinks, dark pinks, roses, and gold/platinum accents - NO purple)
   const [colorIndex, setColorIndex] = useState(0);
 
   const dynamicColors = [
@@ -34,10 +33,9 @@ export default function VideoHero() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
       className="
         flex
         flex-col
@@ -47,9 +45,9 @@ export default function VideoHero() {
         px-6
         py-6
         bg-gradient-to-b
-        from-gray-100
-        via-gray-200
-        to-slate-200
+        from-white
+        via-pink-50/40
+        to-gray-50
         overflow-hidden
         w-full
         lg:max-w-5xl
@@ -89,7 +87,7 @@ export default function VideoHero() {
       <motion.div
         whileHover={{ scale: 1.015, y: -4 }}
         transition={{
-          duration: 0.6,
+          duration: 0.4,
           type: "spring",
           stiffness: 250,
           damping: 22,
@@ -101,7 +99,7 @@ export default function VideoHero() {
           aspect-[4/5]
           rounded-t-[12rem]
           overflow-hidden
-          shadow-[0_25px_70px_rgba(126,68,95,0.35)]
+          shadow-[0_25px_70px_rgba(126,68,95,0.25)]
           border-[6px]
           border-white
           relative
@@ -110,22 +108,20 @@ export default function VideoHero() {
           group
         "
       >
-        {/* Hero Image with smooth parallax zoom on hover */}
-        <motion.img 
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+        <img 
           src="/photos/image.jpg"
           alt="Anu & Yasith"
           loading="eager"
+          fetchPriority="high"
           decoding="async"
           className="
             w-full
             h-full
             object-cover
             transition-transform
-            duration-1000
-            group-hover:scale-110
+            duration-700
+            group-hover:scale-105
+            transform-gpu
           "
         />
 
@@ -133,27 +129,15 @@ export default function VideoHero() {
         <div className="absolute inset-3.5 border border-[#d4af37]/80 rounded-t-[11rem] pointer-events-none z-20 shadow-[inset_0_0_15px_rgba(212,175,55,0.2)] transition-colors duration-500 group-hover:border-[#d4af37]" />
 
         {/* Date Badge Style inside top of image */}
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-6 left-1/2 -translate-x-1/2 z-30 bg-white/20 backdrop-blur-md border border-white/40 px-3.5 py-1 rounded-full shadow-md"
-        >
-          <p className="text-[9px] tracking-[0.3em] uppercase text-white font-serif font-medium">
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 bg-white/30 backdrop-blur-md border border-white/50 px-3.5 py-1 rounded-full shadow-md">
+          <p className="text-[9px] tracking-[0.3em] uppercase text-[#7e445f] font-serif font-bold">
             02 . 12 . 2026
           </p>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Editorial Content Displayed Underneath the Image */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-8 text-center z-30 px-4"
-      >
+      <div className="mt-8 text-center z-30 px-4">
         <h2 className="font-cursive text-4xl md:text-5xl text-[#b8973c] drop-shadow-sm mb-3">
           Anu & Yasith
         </h2>
@@ -164,13 +148,13 @@ export default function VideoHero() {
           </p>
           <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#b8973c]/60"></span>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Ambient Pulsing Glow Aura with Smoothly Changing Mixed Pink & Rose Tones (No Purple) */}
+      {/* Ambient Luminous Glow Aura */}
       <motion.div
         animate={{
           scale: [1, 1.25, 1],
-          opacity: [0.25, 0.45, 0.25],
+          opacity: [0.15, 0.3, 0.15],
         }}
         transition={{
           duration: 6,
@@ -182,9 +166,9 @@ export default function VideoHero() {
           w-[140%]
           h-[140%]
           bg-gradient-to-tr
-          from-pink-400/25
-          via-[#7e445f]/20
-          to-rose-500/25
+          from-pink-300/30
+          via-[#7e445f]/15
+          to-rose-200/30
           blur-[100px]
           rounded-full
           -z-10

@@ -73,8 +73,6 @@ export default function Schedule() {
     }
   ];
 
-  // const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Anu+and+Yasith&dates=20261202T033000Z/20261202T103000Z&details=Join+us+to+celebrate+our+wedding!&location=Water%27s+Edge,+Battaramulla";
-
   return (
     <div className="
       py-16 
@@ -133,7 +131,7 @@ export default function Schedule() {
 
       <div className="max-w-2xl mx-auto relative z-10">
 
-        {/* Header with 'The Schedule' in one row structure */}
+        {/* Header with 'Order of Events' */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,44 +140,38 @@ export default function Schedule() {
           className="text-center mb-12 md:mb-16"
         >
 
-          <motion.p 
-            initial={{ opacity: 0, y: -15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="
-              font-cursive 
-              text-3xl 
-              md:text-4xl 
-              text-[#d4af37] 
-              mb-2
-            "
-          >
-            Order of Events
-          </motion.p>
-
-
-          <motion.div 
+          <motion.h2 
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center justify-center gap-4 my-2"
-          >
-            <span className="h-[1px] w-10 md:w-16 bg-[#d4af37]/60"></span>
-            <h2 className="
+            className="
               font-serif 
-              text-3xl 
-              md:text-4xl 
+              text-xl 
+              md:text-3xl 
               text-[#7e445f] 
               tracking-[0.2em] 
               uppercase
-              whitespace-nowrap
-            ">
-              The Schedule
-            </h2>
-            <span className="h-[1px] w-10 md:w-16 bg-[#d4af37]/60"></span>
-          </motion.div>
+              font-light
+            "
+          >
+            Order of Events
+          </motion.h2>
+
+
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 90 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="
+              h-[1px] 
+              bg-[#d4af37] 
+              mx-auto 
+              mt-4 
+              rounded-full
+            " 
+          />
 
         </motion.div>
 
@@ -241,7 +233,7 @@ export default function Schedule() {
                 top-0 
                 bottom-0 
                 w-1.5 
-                bg-[#d4af37]
+                bg-[#797979]
                 opacity-0
                 group-hover:opacity-100
                 transition-opacity
@@ -300,56 +292,18 @@ export default function Schedule() {
 
         </div>
 
-
-        {/* Calendar Button (Commented out as requested) */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        {/* Decorative Gold Divider Line with Diamond Accent at Bottom */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-12 text-center"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center justify-center gap-4 w-full max-w-xs mx-auto mt-12"
         >
-
-          <motion.a
-            whileHover={{ scale: 1.05, backgroundColor: "#6b3a51", color: "#ffffff" }}
-            whileTap={{ scale: 0.95 }}
-            href={calendarLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              inline-flex 
-              items-center 
-              justify-center 
-              gap-3
-              w-full
-              md:w-auto
-              px-10
-              py-4
-              bg-white/90
-              backdrop-blur-md
-              text-[#7e445f]
-              rounded-full
-              text-xs
-              uppercase
-              tracking-[0.2em]
-              font-semibold
-              shadow-[0_10px_30px_rgba(126,68,95,0.12)]
-              border
-              border-pink-200
-              transition-all
-            "
-          >
-
-            <FaCalendarPlus 
-              size={15} 
-              className="text-[#d4af37]"
-            />
-
-            Add to Google Calendar
-
-          </motion.a> 
-
-        </motion.div>*/}
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#d4af37]/60" />
+          <div className="w-2 h-2 rotate-45 bg-[#d4af37]" />
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#d4af37]/60" />
+        </motion.div>
 
       </div>
 

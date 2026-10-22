@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaPhoneAlt, FaHeart } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -227,14 +227,14 @@ export default function Footer() {
             from-transparent 
             via-[#d4af37]/60 
             to-transparent
-            mb-4
+            mb-0
           "
         />
 
 
 
         {/* Footer Text */}
-        <motion.p
+        {/* <motion.p
           animate={{
             opacity: [0.7, 1, 0.7],
           }}
@@ -256,7 +256,7 @@ export default function Footer() {
             size={11}
           />
             {" "}for Our Special Day
-        </motion.p>
+        </motion.p> */}
 
 
       </div>

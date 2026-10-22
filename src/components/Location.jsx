@@ -10,7 +10,7 @@ export default function Location() {
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="
-        pt-12
+        pt-20
         pb-24
         px-6 
         md:px-12 
@@ -42,7 +42,6 @@ export default function Location() {
         -z-0
       " />
 
-
       <div className="
         relative 
         z-10 
@@ -53,27 +52,8 @@ export default function Location() {
         items-center
       ">
 
-
-        {/* Section Header */}
-        <div className="text-center mb-12">
-
-          <motion.p 
-            initial={{ opacity: 0, y: -15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="
-              font-cursive 
-              text-4xl 
-              md:text-5xl
-              text-[#d4af37] 
-              mb-1 
-              drop-shadow-sm
-            "
-          >
-            How to find us
-          </motion.p>
-
+        {/* Section Header with added top margin space */}
+        <div className="text-center mt-3 mb-12">
 
           <motion.h2 
             initial={{ opacity: 0, y: -15 }}
@@ -82,8 +62,8 @@ export default function Location() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="
               font-serif 
-              text-3xl 
-              md:text-4xl 
+              text-xl 
+              md:text-3xl 
               text-[#7e445f] 
               tracking-[0.2em] 
               uppercase
@@ -92,7 +72,6 @@ export default function Location() {
           >
             The Location
           </motion.h2>
-
 
           <motion.div 
             initial={{ width: 0 }}
@@ -109,7 +88,6 @@ export default function Location() {
           />
 
         </div>
-
 
         {/* Location Card with Luxury Glassmorphism */}
         <motion.div 
@@ -133,7 +111,6 @@ export default function Location() {
 
           {/* Map Container precisely centered on Waters Edge */}
           <div className="w-full h-72 bg-purple-100/50 relative overflow-hidden">
-
             <iframe 
               src="https://maps.google.com/maps?q=Waters%20Edge,%20Battaramulla&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -145,9 +122,7 @@ export default function Location() {
               title="Waters Edge Map"
               className="grayscale-[20%] contrast-[105%]"
             />
-
           </div>
-
 
           <div className="
             p-8
@@ -177,10 +152,9 @@ export default function Location() {
               <FaMapMarkerAlt size={20}/>
             </div>
 
-
             <h4 className="
               font-serif 
-              text-xl 
+              text-lg 
               md:text-2xl 
               text-[#7e445f] 
               font-normal 
@@ -189,10 +163,9 @@ export default function Location() {
               Eagle Ballroom
             </h4> 
 
-
             <p className="
               font-serif 
-              text-2xl
+              text-xl
               md:text-2xl 
               text-[#b8973c] 
               mb-2 
@@ -200,7 +173,6 @@ export default function Location() {
             ">
               Waters Edge, Colombo
             </p>
-
 
             <p className="
               text-xs 
@@ -211,7 +183,6 @@ export default function Location() {
             ">
               316 Ethul Kotte Road, Battaramulla
             </p>
-
 
             <motion.a 
               whileHover={{ scale: 1.05, backgroundColor: "#6b3a51" }}
@@ -240,11 +211,22 @@ export default function Location() {
               Get Directions 
             </motion.a>
 
-
           </div>
 
         </motion.div>
 
+        {/* Decorative Gold Divider Line with Diamond Accent */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center justify-center gap-4 w-full max-w-xs mt-12"
+        >
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#d4af37]/60" />
+          <div className="w-2 h-2 rotate-45 bg-[#d4af37]" />
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#d4af37]/60" />
+        </motion.div>
 
       </div>
 

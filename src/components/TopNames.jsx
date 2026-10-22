@@ -18,7 +18,7 @@ export default function TopNames() {
       "
     >
       {/* Subtle Ambient Gold Backglow */}
-      <div className="absolute w-44 h-12 bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-xl pointer-events-none -z-10" />
+      <div className="absolute w-44 h-12 bg-gradient-to-r from-transparent via-[#d4af37]/15 to-transparent blur-xl pointer-events-none -z-10" />
 
       {/* Monogram A Container */}
       <motion.div
@@ -57,7 +57,7 @@ export default function TopNames() {
       <motion.div
         animate={{
           scale: [1, 1.25, 1],
-          filter: ["drop-shadow(0 0 8px rgba(212,175,55,0.4))", "drop-shadow(0 0 16px rgba(212,175,55,0.8))", "drop-shadow(0 0 8px rgba(212,175,55,0.4))"]
+          filter: ["drop-shadow(0 0 6px rgba(212,175,55,0.3))", "drop-shadow(0 0 12px rgba(212,175,55,0.6))", "drop-shadow(0 0 6px rgba(212,175,55,0.3))"]
         }}
         transition={{
           duration: 2.5,
@@ -101,7 +101,6 @@ export default function TopNames() {
           Y
         </span>
       </motion.div>
-
     </motion.div>
   );
 }

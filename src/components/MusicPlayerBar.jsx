@@ -21,9 +21,9 @@ export default function MusicPlayerBar({ isPlaying, toggleMusic, isMuted, toggle
         </button>
 
         {/* Center: Music Word and Animated Sound Wave Bars */}
-        <div className="flex items-center gap-2.5 px-3 border-x border-gray-300/60">
+        {/* <div className="flex items-center gap-2.5 px-3 border-x border-gray-300/60">
           <span className="font-semibold text-gray-800 text-[11px] tracking-[0.2em]">MUSIC</span>
-          {/* <div className="flex items-end gap-0.5 h-3 w-3">
+          <div className="flex items-end gap-0.5 h-3 w-3">
             {[0.4, 0.8, 0.5].map((scale, i) => (
               <motion.span
                 key={i}
@@ -41,8 +41,8 @@ export default function MusicPlayerBar({ isPlaying, toggleMusic, isMuted, toggle
                 className="w-[2px] bg-[#7e445f] rounded-full h-full origin-bottom"
               />
             ))}
-          </div> */}
-        </div>
+          </div>
+        </div> */}
 
         {/* Right Side: Mute / Unmute Button */}
         <button

@@ -37,11 +37,9 @@ export default function RSVP() {
     }
   };
 
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
-      // Re-triggers smooth animation every time it comes back into view on scroll or page refresh
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
       transition={{
@@ -50,17 +48,15 @@ export default function RSVP() {
       }}
       className="
         w-full
-        mt-8
+        mt-4
         px-6
         md:px-3
         lg:px-5
-        py-12
+        py-8
         flex
         justify-center
       "
     >
-
-
       <motion.div
         whileHover={{
           scale: 1.015,
@@ -72,32 +68,23 @@ export default function RSVP() {
           w-full
           max-w-sm
           lg:max-w-xl
-
-          py-10
-          lg:py-14
-
+          py-8
+          lg:py-10
           px-6
           lg:px-14
-
           bg-gradient-to-br
           from-gray-200
           via-gray-300
           to-slate-300
-
           text-center
           rounded-[2.5rem]
-
           relative
           overflow-hidden
-
           shadow-[0_20px_55px_rgba(126,68,95,0.2)]
-
           border
           border-white/90
         "
       >
-
-
         {/* Soft Glow with pink & purple touch */}
         <motion.div
           animate={{
@@ -115,14 +102,9 @@ export default function RSVP() {
           "
         />
 
-
         <div className="relative z-10">
-
-
         <AnimatePresence mode="wait">
-
         {formStatus === "success" ? (
-
           <motion.div
             key="success"
             initial={{
@@ -139,7 +121,6 @@ export default function RSVP() {
             }}
             className="py-6 flex flex-col items-center"
           >
-
             <div
               className="
                 w-16
@@ -158,7 +139,6 @@ export default function RSVP() {
               ✓
             </div>
 
-
             <h2
               className="
                 font-serif
@@ -170,7 +150,6 @@ export default function RSVP() {
               Thank You!
             </h2>
 
-
             <p
               className="
                 font-serif
@@ -181,16 +160,9 @@ export default function RSVP() {
               Your RSVP has been beautifully received.
               We can't wait to celebrate with you!
             </p>
-
           </motion.div>
-
-
         ) : (
-
-
         <motion.div key="form">
-
-
           <motion.p
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -202,13 +174,12 @@ export default function RSVP() {
               tracking-[0.35em]
               uppercase
               text-[#d4af37]
-              mb-2
+              mb-1
               font-bold
             "
           >
             Kindly Reply
           </motion.p>
-
 
           <motion.h2
             initial={{ opacity: 0, y: -15 }}
@@ -221,12 +192,11 @@ export default function RSVP() {
               lg:text-4xl
               text-[#7e445f]
               tracking-wider
-              mb-3
+              mb-2
             "
           >
             Will You Join Us?
           </motion.h2>
-
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -238,7 +208,7 @@ export default function RSVP() {
               text-xs
               lg:text-sm
               text-gray-700
-              mb-7
+              mb-5
               leading-relaxed
             "
           >
@@ -246,18 +216,15 @@ export default function RSVP() {
             Please let us know if you will be joining our celebration.
           </motion.p>
 
-
-
           <form
             onSubmit={handleSubmit}
             className="
               flex
               flex-col
-              gap-4
+              gap-3
               text-left
             "
           >
-
             <input
               type="hidden"
               name="subject"
@@ -270,11 +237,8 @@ export default function RSVP() {
               value="Wedding RSVP System"
             />
 
-
-
             {/* Name */}
             <div>
-
               <label
                 className="
                   block
@@ -283,12 +247,11 @@ export default function RSVP() {
                   uppercase
                   tracking-widest
                   text-[#7e445f]
-                  mb-2
+                  mb-1
                 "
               >
                 Full Name
               </label>
-
 
               <input
                 required
@@ -302,8 +265,7 @@ export default function RSVP() {
                   border-white
                   rounded-xl
                   px-4
-                  py-3.5
-                  lg:py-4
+                  py-3
                   text-sm
                   font-serif
                   text-gray-800
@@ -311,15 +273,10 @@ export default function RSVP() {
                   focus:border-[#7e445f]
                 "
               />
-
             </div>
 
-
-
             {/* Attendance */}
-
             <div>
-
               <label
                 className="
                   block
@@ -328,85 +285,63 @@ export default function RSVP() {
                   uppercase
                   tracking-widest
                   text-[#7e445f]
-                  mb-2
+                  mb-1
                 "
               >
                 Will you attend?
               </label>
 
-
               <div className="flex gap-3">
-
-
-                <motion.label
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
+                <label
                   className="
                     flex-1
                     text-center
-                    py-3.5
+                    py-3
                     rounded-xl
                     bg-white/70
                     cursor-pointer
                     text-sm
                     font-serif
                     text-gray-700
-                    has-[:checked]:bg-[#7e445f]
-                    has-[:checked]:text-white
                     shadow-sm
-                    transition-colors
                   "
                 >
                   <input
-                    hidden
                     defaultChecked
                     type="radio"
                     name="attending"
                     value="Joyfully Accepts"
+                    className="mr-2 accent-[#7e445f]"
                   />
                   Accepts
-                </motion.label>
+                </label>
 
-
-                <motion.label
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
+                <label
                   className="
                     flex-1
                     text-center
-                    py-3.5
+                    py-3
                     rounded-xl
                     bg-white/70
                     cursor-pointer
                     text-sm
                     font-serif
                     text-gray-700
-                    has-[:checked]:bg-[#7e445f]
-                    has-[:checked]:text-white
                     shadow-sm
-                    transition-colors
                   "
                 >
                   <input
-                    hidden
                     type="radio"
                     name="attending"
                     value="Regretfully Declines"
+                    className="mr-2 accent-[#7e445f]"
                   />
                   Declines
-                </motion.label>
-
-
+                </label>
               </div>
-
             </div>
 
-
-
-            {/* Guests */}
-
+            {/* Joining Side Selection */}
             <div>
               <label
                 className="
@@ -416,7 +351,73 @@ export default function RSVP() {
                   uppercase
                   tracking-widest
                   text-[#7e445f]
-                  mb-2
+                  mb-1
+                "
+              >
+                Joining From
+              </label>
+
+              <div className="flex gap-3">
+                <label
+                  className="
+                    flex-1
+                    text-center
+                    py-3
+                    rounded-xl
+                    bg-white/70
+                    cursor-pointer
+                    text-xs
+                    font-serif
+                    text-gray-700
+                    shadow-sm
+                  "
+                >
+                  <input
+                    defaultChecked
+                    type="radio"
+                    name="wedding_side"
+                    value="Bride's Side"
+                    className="mr-2 accent-[#7e445f]"
+                  />
+                  Bride's Side
+                </label>
+
+                <label
+                  className="
+                    flex-1
+                    text-center
+                    py-3
+                    rounded-xl
+                    bg-white/70
+                    cursor-pointer
+                    text-xs
+                    font-serif
+                    text-gray-700
+                    shadow-sm
+                  "
+                >
+                  <input
+                    type="radio"
+                    name="wedding_side"
+                    value="Groom's Side"
+                    className="mr-2 accent-[#7e445f]"
+                  />
+                  Groom's Side
+                </label>
+              </div>
+            </div>
+
+            {/* Guests */}
+            <div>
+              <label
+                className="
+                  block
+                  font-serif
+                  text-[11px]
+                  uppercase
+                  tracking-widest
+                  text-[#7e445f]
+                  mb-1
                 "
               >
                 Number of Guests
@@ -431,8 +432,7 @@ export default function RSVP() {
                   border-white
                   rounded-xl
                   px-4
-                  py-3.5
-                  lg:py-4
+                  py-3
                   text-sm
                   font-serif
                   text-gray-800
@@ -440,22 +440,16 @@ export default function RSVP() {
                   focus:border-[#7e445f]
                 "
               >
-
                 {[1,2,3,4,5,6,7,8].map(num => (
                   <option key={num}>
                     {num} Guest{num > 1 ? "s" : ""}
                   </option>
                 ))}
-
               </select>
             </div>
 
-
-
             {/* Meal Preference */}
-
             <div>
-
               <label
                 className="
                   block
@@ -464,78 +458,99 @@ export default function RSVP() {
                   uppercase
                   tracking-widest
                   text-[#7e445f]
-                  mb-2
+                  mb-1
                 "
               >
                 Meal Preference
               </label>
 
               <div className="flex gap-3">
-
-                <motion.label
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
+                <label
                   className="
                     flex-1
                     text-center
-                    py-3.5
+                    py-3
                     rounded-xl
                     bg-white/70
                     cursor-pointer
-                    text-sm
+                    text-xs
                     font-serif
                     text-gray-700
-                    has-[:checked]:bg-[#7e445f]
-                    has-[:checked]:text-white
                     shadow-sm
-                    transition-colors
                   "
                 >
                   <input
-                    hidden
                     type="radio"
                     name="meal_preference"
                     value="Vegetarian"
+                    className="mr-2 accent-[#7e445f]"
                   />
                   Vegetarian
-                </motion.label>
+                </label>
 
-                <motion.label
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
+                <label
                   className="
                     flex-1
                     text-center
-                    py-3.5
+                    py-3
                     rounded-xl
                     bg-white/70
                     cursor-pointer
-                    text-sm
+                    text-xs
                     font-serif
                     text-gray-700
-                    has-[:checked]:bg-[#7e445f]
-                    has-[:checked]:text-white
                     shadow-sm
-                    transition-colors
                   "
                 >
                   <input
-                    hidden
                     defaultChecked
                     type="radio"
                     name="meal_preference"
                     value="Non-Vegetarian"
+                    className="mr-2 accent-[#7e445f]"
                   />
                   Non-Vegetarian
-                </motion.label>
-
+                </label>
               </div>
-
             </div>
 
+            {/* Message / Wishes Section */}
+            <div>
+              <label
+                className="
+                  block
+                  font-serif
+                  text-[11px]
+                  uppercase
+                  tracking-widest
+                  text-[#7e445f]
+                  mb-1
+                "
+              >
+                Wishes / Message for the Couple
+              </label>
 
+              <textarea
+                name="message"
+                rows="2"
+                placeholder="Write your wishes here..."
+                className="
+                  w-full
+                  bg-white/80
+                  border
+                  border-white
+                  rounded-xl
+                  px-4
+                  py-3
+                  text-sm
+                  font-serif
+                  text-gray-800
+                  focus:outline-none
+                  focus:border-[#7e445f]
+                  resize-none
+                "
+              />
+            </div>
 
             {formStatus === "error" && (
               <p
@@ -552,8 +567,6 @@ export default function RSVP() {
               </p>
             )}
 
-
-
             <motion.button
               whileHover={{
                 scale:1.04,
@@ -564,19 +577,16 @@ export default function RSVP() {
               }}
               disabled={formStatus==="submitting"}
               className="
-                mt-2
+                mt-1
                 w-full
-                py-4
+                py-3.5
                 rounded-xl
-
                 bg-[#7e445f]
-
                 text-white
                 text-xs
                 uppercase
                 tracking-[0.25em]
                 font-bold
-
                 shadow-[0_8px_20px_rgba(126,68,95,0.3)]
                 transition-colors
               "
@@ -586,23 +596,13 @@ export default function RSVP() {
                 ? "Sending Response..."
                 : "Send RSVP"
               }
-
             </motion.button>
-
-
           </form>
-
-
         </motion.div>
-
         )}
-
         </AnimatePresence>
-
         </div>
-
       </motion.div>
-
     </motion.section>
   );
 }
