@@ -237,7 +237,7 @@ export default function RSVP() {
               value="Wedding RSVP System"
             />
 
-            {/* Name */}
+            {/* Family / Full Name */}
             <div>
               <label
                 className="
@@ -250,14 +250,14 @@ export default function RSVP() {
                   mb-1
                 "
               >
-                Full Name
+                Full Name / Family Name
               </label>
 
               <input
                 required
                 type="text"
                 name="name"
-                placeholder="Mr. & Mrs. Family"
+                placeholder="e.g., Mr. & Mrs. Perera"
                 className="
                   w-full
                   bg-white/80
@@ -275,7 +275,7 @@ export default function RSVP() {
               />
             </div>
 
-            {/* Attendance */}
+            {/* Attendance (Full-square block selection style) */}
             <div>
               <label
                 className="
@@ -304,6 +304,9 @@ export default function RSVP() {
                     font-serif
                     text-gray-700
                     shadow-sm
+                    has-[:checked]:bg-[#7e445f]
+                    has-[:checked]:text-white
+                    transition-colors
                   "
                 >
                   <input
@@ -311,7 +314,7 @@ export default function RSVP() {
                     type="radio"
                     name="attending"
                     value="Joyfully Accepts"
-                    className="mr-2 accent-[#7e445f]"
+                    className="hidden"
                   />
                   Accepts
                 </label>
@@ -328,20 +331,23 @@ export default function RSVP() {
                     font-serif
                     text-gray-700
                     shadow-sm
+                    has-[:checked]:bg-[#7e445f]
+                    has-[:checked]:text-white
+                    transition-colors
                   "
                 >
                   <input
                     type="radio"
                     name="attending"
                     value="Regretfully Declines"
-                    className="mr-2 accent-[#7e445f]"
+                    className="hidden"
                   />
                   Declines
                 </label>
               </div>
             </div>
 
-            {/* Joining Side Selection */}
+            {/* Joining Side Selection (Clean row alignment with toggle dots) */}
             <div>
               <label
                 className="
@@ -357,98 +363,114 @@ export default function RSVP() {
                 Joining From
               </label>
 
-              <div className="flex gap-3">
-                <label
-                  className="
-                    flex-1
-                    text-center
-                    py-3
-                    rounded-xl
-                    bg-white/70
-                    cursor-pointer
-                    text-xs
-                    font-serif
-                    text-gray-700
-                    shadow-sm
-                  "
-                >
+              <div className="flex gap-6 items-center px-2 py-1">
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-serif text-gray-700">
                   <input
                     defaultChecked
                     type="radio"
                     name="wedding_side"
                     value="Bride's Side"
-                    className="mr-2 accent-[#7e445f]"
+                    className="accent-[#7e445f] w-4 h-4 cursor-pointer"
                   />
-                  Bride's Side
+                  <span>Bride's Side</span>
                 </label>
 
-                <label
-                  className="
-                    flex-1
-                    text-center
-                    py-3
-                    rounded-xl
-                    bg-white/70
-                    cursor-pointer
-                    text-xs
-                    font-serif
-                    text-gray-700
-                    shadow-sm
-                  "
-                >
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-serif text-gray-700">
                   <input
                     type="radio"
                     name="wedding_side"
                     value="Groom's Side"
-                    className="mr-2 accent-[#7e445f]"
+                    className="accent-[#7e445f] w-4 h-4 cursor-pointer"
                   />
-                  Groom's Side
+                  <span>Groom's Side</span>
                 </label>
               </div>
             </div>
 
-            {/* Guests */}
-            <div>
-              <label
-                className="
-                  block
-                  font-serif
-                  text-[11px]
-                  uppercase
-                  tracking-widest
-                  text-[#7e445f]
-                  mb-1
-                "
-              >
-                Number of Guests
-              </label>
+            {/* Guests & Children Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label
+                  className="
+                    block
+                    font-serif
+                    text-[11px]
+                    uppercase
+                    tracking-widest
+                    text-[#7e445f]
+                    mb-1
+                  "
+                >
+                  Guests
+                </label>
 
-              <select
-                name="guest_count"
-                className="
-                  w-full
-                  bg-white/80
-                  border
-                  border-white
-                  rounded-xl
-                  px-4
-                  py-3
-                  text-sm
-                  font-serif
-                  text-gray-800
-                  focus:outline-none
-                  focus:border-[#7e445f]
-                "
-              >
-                {[1,2,3,4,5,6,7,8].map(num => (
-                  <option key={num}>
-                    {num} Guest{num > 1 ? "s" : ""}
-                  </option>
-                ))}
-              </select>
+                <select
+                  name="guest_count"
+                  className="
+                    w-full
+                    bg-white/80
+                    border
+                    border-white
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-serif
+                    text-gray-800
+                    focus:outline-none
+                    focus:border-[#7e445f]
+                  "
+                >
+                  {[1,2,3,4,5,6,7,8].map(num => (
+                    <option key={num}>
+                      {num} Adult{num > 1 ? "s" : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label
+                  className="
+                    block
+                    font-serif
+                    text-[11px]
+                    uppercase
+                    tracking-widest
+                    text-[#7e445f]
+                    mb-1
+                  "
+                >
+                  Children (For Family Invites)
+                </label>
+
+                <select
+                  name="children_count"
+                  className="
+                    w-full
+                    bg-white/80
+                    border
+                    border-white
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-serif
+                    text-gray-800
+                    focus:outline-none
+                    focus:border-[#7e445f]
+                  "
+                >
+                  {[0,1,2,3,4,5].map(num => (
+                    <option key={num} value={num}>
+                      {num === 0 ? "No Children" : `${num} Child${num > 1 ? "ren" : ""}`}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-            {/* Meal Preference */}
+            {/* Meal Preference (Clean row alignment with toggle dots) */}
             <div>
               <label
                 className="
@@ -464,52 +486,26 @@ export default function RSVP() {
                 Meal Preference
               </label>
 
-              <div className="flex gap-3">
-                <label
-                  className="
-                    flex-1
-                    text-center
-                    py-3
-                    rounded-xl
-                    bg-white/70
-                    cursor-pointer
-                    text-xs
-                    font-serif
-                    text-gray-700
-                    shadow-sm
-                  "
-                >
+              <div className="flex gap-6 items-center px-2 py-1">
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-serif text-gray-700">
                   <input
                     type="radio"
                     name="meal_preference"
                     value="Vegetarian"
-                    className="mr-2 accent-[#7e445f]"
+                    className="accent-[#7e445f] w-4 h-4 cursor-pointer"
                   />
-                  Vegetarian
+                  <span>Vegetarian</span>
                 </label>
 
-                <label
-                  className="
-                    flex-1
-                    text-center
-                    py-3
-                    rounded-xl
-                    bg-white/70
-                    cursor-pointer
-                    text-xs
-                    font-serif
-                    text-gray-700
-                    shadow-sm
-                  "
-                >
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-serif text-gray-700">
                   <input
                     defaultChecked
                     type="radio"
                     name="meal_preference"
                     value="Non-Vegetarian"
-                    className="mr-2 accent-[#7e445f]"
+                    className="accent-[#7e445f] w-4 h-4 cursor-pointer"
                   />
-                  Non-Vegetarian
+                  <span>Non-Vegetarian</span>
                 </label>
               </div>
             </div>
