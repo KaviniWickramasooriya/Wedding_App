@@ -186,7 +186,7 @@ export default function Location() {
               font-normal 
               mb-1
             ">
-              Eagle Hall
+              Eagle Ballroom
             </h4> 
 
 

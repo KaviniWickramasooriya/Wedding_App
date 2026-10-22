@@ -1,28 +1,28 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaMusic, FaPause } from "react-icons/fa";
 
 import Envelope from "./components/Envelope";
-// import InvitationCard from "./components/InvitationCard"; // Commented out as requested
+import HeartTransition from "./components/HeartTransition";
+import MusicPlayerBar from "./components/MusicPlayerBar";
 import TopNames from "./components/TopNames";
 import VideoHero from "./components/VideoHero";
 import DateDisplay from "./components/DateDisplay";
 import Countdown from "./components/Countdown";
 import Hero from "./components/Hero";
 import Location from "./components/Location";
-// import Gallery from "./components/Gallery";
 import Schedule from "./components/Schedule";
 import RSVP from "./components/RSVP";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const [stage, setStage] = useState("envelope"); // "envelope" -> "card" -> "website"
+  const [stage, setStage] = useState("envelope"); // "envelope" -> "card" -> "heart" -> "website"
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef(new Audio("/music/background.mp3"));
   const scrollIntervalRef = useRef(null);
+  const resumeTimeoutRef = useRef(null);
 
-  // Function to stop auto-scrolling upon user interaction
+  // Function to stop auto-scrolling
   const stopAutoScroll = useCallback(() => {
     if (scrollIntervalRef.current) {
       clearInterval(scrollIntervalRef.current);
@@ -30,47 +30,72 @@ export default function App() {
     }
   }, []);
 
-  // Trigger auto-scroll specifically when entering the website stage
-  const triggerAutoScroll = useCallback(() => {
+  // Start smooth slow auto-scroll loop
+  const startAutoScrollLoop = useCallback(() => {
     stopAutoScroll();
-    setTimeout(() => {
-      scrollIntervalRef.current = setInterval(() => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-          stopAutoScroll();
-        } else {
-          window.scrollBy({ top: 0.6, behavior: "auto" });
-        }
-      }, 30);
-    }, 1200);
+    scrollIntervalRef.current = setInterval(() => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        stopAutoScroll();
+      } else {
+        window.scrollBy({ top: 0.6, behavior: "auto" });
+      }
+    }, 30);
   }, [stopAutoScroll]);
+
+  // Handle manual interaction: stop scroll immediately, then wait 5 seconds to resume
+  const handleUserScrollInteraction = useCallback(() => {
+    stopAutoScroll();
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      startAutoScrollLoop();
+    }, 5000);
+  }, [stopAutoScroll, startAutoScrollLoop]);
+
+  // Exactly 5-second wait on the 1st page before auto-scroll starts upon entering the website
+  const triggerInitialAutoScroll = useCallback(() => {
+    stopAutoScroll();
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      startAutoScrollLoop();
+    }, 5000);
+  }, [stopAutoScroll, startAutoScrollLoop]);
 
   const handleOpenWebsite = useCallback(() => {
     setStage("website");
     audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
     setIsPlaying(true);
-    triggerAutoScroll(); // Immediate gesture unlock for mobile browsers
-  }, [triggerAutoScroll]);
+    triggerInitialAutoScroll();
+  }, [triggerInitialAutoScroll]);
+
+  const handleStartHeartTransition = () => {
+    setStage("heart");
+    audioRef.current.play().catch((e) => console.log("Audio play blocked:", e));
+    setIsPlaying(true);
+  };
 
   useEffect(() => {
     if (stage !== "website") return;
 
-    triggerAutoScroll();
+    triggerInitialAutoScroll();
 
-    window.addEventListener("wheel", stopAutoScroll, { passive: true });
-    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
-    window.addEventListener("touchmove", stopAutoScroll, { passive: true });
-    window.addEventListener("mousedown", stopAutoScroll, { passive: true });
-    window.addEventListener("keydown", stopAutoScroll, { passive: true });
+    window.addEventListener("wheel", handleUserScrollInteraction, { passive: true });
+    window.addEventListener("touchstart", handleUserScrollInteraction, { passive: true });
+    window.addEventListener("touchmove", handleUserScrollInteraction, { passive: true });
+    window.addEventListener("mousedown", handleUserScrollInteraction, { passive: true });
+    window.addEventListener("keydown", handleUserScrollInteraction, { passive: true });
 
     return () => {
       stopAutoScroll();
-      window.removeEventListener("wheel", stopAutoScroll);
-      window.removeEventListener("touchstart", stopAutoScroll);
-      window.removeEventListener("touchmove", stopAutoScroll);
-      window.removeEventListener("mousedown", stopAutoScroll);
-      window.removeEventListener("keydown", stopAutoScroll);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      window.removeEventListener("wheel", handleUserScrollInteraction);
+      window.removeEventListener("touchstart", handleUserScrollInteraction);
+      window.removeEventListener("touchmove", handleUserScrollInteraction);
+      window.removeEventListener("mousedown", handleUserScrollInteraction);
+      window.removeEventListener("keydown", handleUserScrollInteraction);
     };
-  }, [stage, triggerAutoScroll, stopAutoScroll]);
+  }, [stage, triggerInitialAutoScroll, handleUserScrollInteraction, stopAutoScroll]);
 
   const handleOpenEnvelope = () => {
     setStage("card");
@@ -85,16 +110,15 @@ export default function App() {
     setIsPlaying(!isPlaying);
   };
 
-  // 60-second auto-open timer for the card stage displaying card2.png
   useEffect(() => {
     if (stage !== "card") return;
 
     const timer = setTimeout(() => {
-      handleOpenWebsite();
+      handleStartHeartTransition();
     }, 60000);
 
     return () => clearTimeout(timer);
-  }, [stage, handleOpenWebsite]);
+  }, [stage]);
 
   return (
     <div
@@ -106,14 +130,19 @@ export default function App() {
       flex justify-center
       selection:bg-[#7e445f]/20
       selection:text-[#7e445f]
+      relative
       "
     >
+      {/* Global Screen-Fixed Music Toggle Bar (Visible across all website views) */}
+      {stage === "website" && (
+        <MusicPlayerBar isPlaying={isPlaying} toggleMusic={toggleMusic} />
+      )}
+
       <AnimatePresence mode="wait">
         {stage === "envelope" && (
           <Envelope onOpen={handleOpenEnvelope} key="envelope" />
         )}
 
-        {/* Card Stage displaying /photos/card2.png with border removed */}
         {stage === "card" && (
           <motion.div
             key="invitation-card-image"
@@ -122,7 +151,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             transition={{ duration: 0.8 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#7e445f]/60 backdrop-blur-md overflow-y-auto cursor-pointer"
-            onClick={handleOpenWebsite}
+            onClick={handleStartHeartTransition}
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
@@ -149,6 +178,10 @@ export default function App() {
           </motion.div>
         )}
 
+        {stage === "heart" && (
+          <HeartTransition onComplete={handleOpenWebsite} key="heart-transition" />
+        )}
+
         {stage === "website" && (
           <motion.div
             key="main-content"
@@ -169,29 +202,6 @@ export default function App() {
               pb-0
             "
           >
-            {/* Music Button */}
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 10 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleMusic}
-              className="
-              fixed md:absolute
-              top-6 right-6
-              z-50
-              bg-white
-              backdrop-blur-xl
-              p-4
-              rounded-full
-              text-[#7e445f]
-              shadow-[0_8px_25px_rgba(126,68,95,0.3)]
-              border border-gray-200
-              transition-all
-              "
-            >
-              {isPlaying ? <FaPause size={18} /> : <FaMusic size={18} />}
-            </motion.button>
-
-            {/* 1st Page Full-Screen Section for Video Hero across all devices */}
             <section
               className="
               min-h-screen
@@ -222,7 +232,6 @@ export default function App() {
               <Location />
             </div>
 
-            {/* <Gallery /> */}
             <Schedule />
             <RSVP />
             <Footer />
